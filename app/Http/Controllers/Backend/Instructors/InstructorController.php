@@ -11,7 +11,7 @@ use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use Exception;
 use File;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class InstructorController extends Controller
 {
@@ -141,22 +141,28 @@ class InstructorController extends Controller
             }
 
             if ($instructor->save()) {
-                $user = User::where('instructor_id', $instructor->id)->first();
-                $user->instructor_id = $instructor->id;
-                $user->name_en = $request->fullName_en;
-                $user->email = $request->emailAddress;
-                $user->contact_en = $request->contactNumber_en;
-                $user->role_id = $request->roleId;
-                $user->status = $request->status;
-                $user->password = Hash::make($request->password);
-                if (isset($imageName)) {
-                    $user->image = $imageName; // Save the image name in the users table
-                }
-                if ($user->save()) {
-                    DB::commit();
-                    $this->notice::success('Lưu thành công!');
-                    return redirect()->route('instructor.index');
-                }
+                // $user = User::updateOrCreate(
+                //     ['instructor_id' => $instructor->id],
+                //     [
+                //         'name_en'     => $request->fullName_en,
+                //         'email'       => $request->emailAddress,
+                //         'contact_en'  => $request->contactNumber_en,
+                //         'role_id'     => $request->roleId,
+                //         'status'      => $request->status,
+                //         'password'    => !empty($request->password)
+                //             ? Hash::make($request->password)
+                //             : DB::raw('password'),
+                //         'image'       => $imageName ?? null,
+                //     ]
+                // );
+                // if (isset($imageName)) {
+                //     $user->image = $imageName; // Save the image name in the users table
+                // }
+                // if ($user->save()) {
+                DB::commit();
+                $this->notice::success('Lưu thành công!');
+                return redirect()->route('instructor.index');
+                // }
             }
             return redirect()->back()->withInput()->with('error', 'Vui lòng thử lại');
         } catch (Exception $e) {

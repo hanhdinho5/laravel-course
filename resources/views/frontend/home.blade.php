@@ -92,7 +92,7 @@
                 <div class="col-lg-12">
                     <div class="featured-popular-courses-heading d-flex align-content-center justify-content-between">
                         <div class="main-heading">
-                            <h3 class="font-title--md">Các khóa học phổ biến của chúng tôi</h3>
+                            <h3 class="font-title--md">khóa học phổ biến của chúng tôi</h3>
                         </div>
                         <div class="nav-button featured-popular-courses-tabs">
                             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -163,8 +163,9 @@
                                                     <p class="font-para--md">{{ $pc?->instructor->name_en }}</p>
                                                 </a>
                                                 <div class="price">
-                                                    <span>{{ $pc->price ? '৳' . $pc->price : 'Free' }}</span>
-                                                    <del>{{ $pc->old_price ? '৳' . $pc->old_price : '' }}</del>
+                                                    <span>
+                                                        {{ $pc->price == null || $pc->price == 0 ? 'Free' : number_format($pc->price, 0, ',', '.') . ' VNĐ' }}
+                                                    </span>
                                                 </div>
                                             </div>
                                             <div class="contentCard-more">
@@ -279,15 +280,15 @@
                             @empty
                                 <div class="col-xl-4 col-md-6">
                                     <div class="contentCard contentCard--course">
-                                        <h3>No Courses Available</h3>
+                                        <h3>Hiện chưa có khoá học nào</h3>
                                     </div>
                                 </div>
                             @endforelse
                         </div>
                         <div class="row">
                             <div class="col-lg-12 text-center">
-                                <a href="{{ route('searchCourse') }}" class="button button-lg button--primary">Browse all
-                                    Courses</a>
+                                <a href="{{ route('searchCourse') }}" class="button button-lg button--primary">Xem tất cả
+                                    khoá học</a>
                             </div>
                         </div>
                     </div>
@@ -355,15 +356,15 @@
                             @empty
                                 <div class="col-xl-4 col-md-6">
                                     <div class="contentCard contentCard--course">
-                                        <h3>No Courses Available</h3>
+                                        <h3>Hiện chưa có khoá học nào</h3>
                                     </div>
                                 </div>
                             @endforelse
                         </div>
                         <div class="row">
                             <div class="col-lg-12 text-center">
-                                <a href="{{ route('searchCourse') }}" class="button button-lg button--primary">Browse all
-                                    Courses</a>
+                                <a href="{{ route('searchCourse') }}" class="button button-lg button--primary">Xem tất cả
+                                    khoá học</a>
                             </div>
                         </div>
                     </div>
@@ -431,15 +432,15 @@
                             @empty
                                 <div class="col-xl-4 col-md-6">
                                     <div class="contentCard contentCard--course">
-                                        <h3>No Courses Available</h3>
+                                        <h3>Hiện chưa có khoá học nào</h3>
                                     </div>
                                 </div>
                             @endforelse
                         </div>
                         <div class="row">
                             <div class="col-lg-12 text-center">
-                                <a href="{{ route('searchCourse') }}" class="button button-lg button--primary">Browse all
-                                    Courses</a>
+                                <a href="{{ route('searchCourse') }}" class="button button-lg button--primary">Xem tất cả
+                                    khoá học</a>
                             </div>
                         </div>
                     </div>
@@ -507,15 +508,15 @@
                             @empty
                                 <div class="col-xl-4 col-md-6">
                                     <div class="contentCard contentCard--course">
-                                        <h3>No Courses Available</h3>
+                                        <h3>Hiện chưa có khoá học nào</h3>
                                     </div>
                                 </div>
                             @endforelse
                         </div>
                         <div class="row">
                             <div class="col-lg-12 text-center">
-                                <a href="{{ route('searchCourse') }}" class="button button-lg button--primary">Browse all
-                                    Courses</a>
+                                <a href="{{ route('searchCourse') }}" class="button button-lg button--primary">Xem tất cả
+                                    khoá học</a>
                             </div>
                         </div>
                     </div>

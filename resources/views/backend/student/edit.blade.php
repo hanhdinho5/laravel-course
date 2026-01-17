@@ -51,13 +51,7 @@
                                             <span class="text-danger"> {{ $errors->first('fullName_en') }}</span>
                                         @endif
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label class="form-label">নাম (বাংলায়)</label>
-                                            <input type="text" class="form-control" name="fullName_bn"
-                                                value="{{ old('fullName_bn', $student->name_bn) }}">
-                                        </div>
-                                    </div>
+
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label class="form-label">Số điện thoại</label>
@@ -68,16 +62,7 @@
                                             <span class="text-danger"> {{ $errors->first('contactNumber_en') }}</span>
                                         @endif
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label class="form-label">ফোন নাম্বার (বাংলায়)</label>
-                                            <input type="tel" class="form-control" name="contactNumber_bn"
-                                                value="{{ old('contactNumber_bn', $student->contact_bn) }}">
-                                        </div>
-                                        @if ($errors->has('contactNumber_bn'))
-                                            <span class="text-danger"> {{ $errors->first('contactNumber_bn') }}</span>
-                                        @endif
-                                    </div>
+
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label class="form-label">Email</label>

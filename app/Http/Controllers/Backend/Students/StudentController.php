@@ -44,13 +44,11 @@ class StudentController extends Controller
             $student->contact_en = $request->contactNumber_en;
             $student->contact_bn = $request->contactNumber_bn;
             $student->email = $request->emailAddress;
-            $student->role_id = $request->roleId;
             $student->date_of_birth = $request->birthDate;
             $student->gender = $request->gender;
             $student->status = $request->status;
             $student->password = Hash::make($request->password);
             $student->language = 'en';
-            $student->access_block = $request->accessBlock;
 
             if ($request->hasFile('image')) {
                 $imageName = rand(111, 999) . time() . '.' . $request->image->extension();
@@ -99,13 +97,11 @@ class StudentController extends Controller
             $student->contact_en = $request->contactNumber_en;
             $student->contact_bn = $request->contactNumber_bn;
             $student->email = $request->emailAddress;
-            $student->role_id = $request->roleId;
             $student->date_of_birth = $request->birthDate;
             $student->gender = $request->gender;
             $student->status = $request->status;
             $student->password = Hash::make($request->password);
             $student->language = 'en';
-            $student->access_block = $request->accessBlock;
 
             if ($request->hasFile('image')) {
                 $imageName = rand(111, 999) . time() . '.' . $request->image->extension();
@@ -117,7 +113,7 @@ class StudentController extends Controller
             else
                 return redirect()->back()->withInput()->with('error', 'Vui lòng thử lại');
         } catch (Exception $e) {
-            // dd($e);
+            dd($e);
             return redirect()->back()->withInput()->with('error', 'Vui lòng thử lại');
         }
     }

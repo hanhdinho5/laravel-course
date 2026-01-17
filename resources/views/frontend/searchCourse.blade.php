@@ -262,68 +262,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Search by Duration  -->
-                        {{-- <div class="accordion-item">
-                            <h2 class="accordion-header" id="durationAcc">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#durationCollapse" aria-expanded="false"
-                                    aria-controls="durationCollapse">
-                                    Khoảng thời gian
-                                </button>
-                            </h2>
-                            <div id="durationCollapse" class="accordion-collapse collapse" aria-labelledby="durationAcc"
-                                data-bs-parent="#sidebarFilter">
-                                <div class="accordion-body">
-                                    <form action="#">
-                                        <div class="accordion-body__item">
-                                            <div class="check-box">
-                                                <input type="checkbox" class="checkbox-primary" />
-                                                <label> Tất cả </label>
-                                            </div>
-                                            <p class="check-details">
-                                                1,54,750
-                                            </p>
-                                        </div>
-                                        <div class="accordion-body__item">
-                                            <div class="check-box">
-                                                <input type="checkbox" class="checkbox-primary" />
-                                                <label> 0 - 5 phút </label>
-                                            </div>
-                                            <p class="check-details">
-                                                45,770
-                                            </p>
-                                        </div>
-                                        <div class="accordion-body__item">
-                                            <div class="check-box">
-                                                <input type="checkbox" class="checkbox-primary" />
-                                                <label> 5 - 10 phút </label>
-                                            </div>
-                                            <p class="check-details">
-                                                35,790
-                                            </p>
-                                        </div>
-                                        <div class="accordion-body__item">
-                                            <div class="check-box">
-                                                <input type="checkbox" class="checkbox-primary" />
-                                                <label> 10 - 15 phút </label>
-                                            </div>
-                                            <p class="check-details">
-                                                5,770
-                                            </p>
-                                        </div>
-                                        <div class="accordion-body__item">
-                                            <div class="check-box">
-                                                <input type="checkbox" class="checkbox-primary" />
-                                                <label> 15+ phút </label>
-                                            </div>
-                                            <p class="check-details">
-                                                765
-                                            </p>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div> --}}
+
                     </div>
                 </div>
 
