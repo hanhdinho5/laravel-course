@@ -18,6 +18,12 @@ class SearchCourseController extends Controller
             $textS = $request->input('textSearch');
         $category = CourseCategory::get();
         $selectedCategories = $request->input('categories', []);
+        if (empty($selectedCategories)) {
+            $singleCategory = $request->input('category_id', $request->input('category'));
+            if (!empty($singleCategory)) {
+                $selectedCategories = [$singleCategory];
+            }
+        }
 
         $course = Course::where('status', 2)->where('title', 'like', '%' . $textS . '%')
             ->when($selectedCategories, function ($query) use ($selectedCategories) {

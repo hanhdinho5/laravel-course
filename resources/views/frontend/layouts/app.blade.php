@@ -84,7 +84,8 @@
                         </li> --}}
                     </ul>
                     <div class="d-flex align-items-center justify-content-between rightContent">
-                        <form class="header__Search-form" id="searchForm">
+                        <form class="header__Search-form" id="searchForm" action="{{ route('searchCourse') }}"
+                            method="get">
                             <button type="button" class="border-0 bg-transparent header__Search-button"
                                 onclick="openSearch()">
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
@@ -99,8 +100,8 @@
                                 <span class="closebtn" onclick="closeSearch()" title="Close Overlay">×</span>
                                 <div class="overlay-content">
                                     <div>
-                                        <input type="text" placeholder="Search.." name="search" />
-                                        <button type="button">
+                                        <input type="text" placeholder="Tìm kiếm khoá học.." name="textSearch" />
+                                        <button type="submit">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 24 24" fill="none" stroke="#ffff" stroke-width="2"
                                                 stroke-linecap="round" stroke-linejoin="round"

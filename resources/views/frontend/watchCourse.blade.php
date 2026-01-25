@@ -44,21 +44,21 @@
                                     <i class="fas fa-book-open text-primary"></i>
                                     <span>{{ $course->lesson ? $course->lesson : 0 }} Bài học</span>
                                 </div>
-                                <div class="totoal-hours">
+                                {{-- <div class="totoal-hours">
                                     <i class="far fa-clock text-danger"></i>
                                     <span>{{ $course->duration ? $course->duration : 0 }} Giờ</span>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="coursedescription-header-end">
                     <!-- <a href="#" class="rating-link" data-bs-toggle="modal" data-bs-target="#ratingModal">Leave a Rating</a> -->
-                    <a href="#" class="button button--text" data-bs-toggle="modal"
+                    <a href="#" class="button button--primary" data-bs-toggle="modal"
                         data-bs-target="#ratingModal">Để lại đánh giá</a>
 
                     <!-- <a href="#" class="btn btn-primary regular-fill-btn">Next Lession</a> -->
-                    <button class="button button--primary">Bài học tiếp theo</button>
+                    {{-- <button class="button button--primary">Bài học tiếp theo</button> --}}
                 </div>
             </div>
         </div>
@@ -91,15 +91,18 @@
                                 <button class="nav-link" id="nav-lnotes-tab" data-bs-toggle="tab"
                                     data-bs-target="#nav-lnotes" type="button" role="tab"
                                     aria-controls="nav-lnotes" aria-selected="false">Ghi chú bài học</button>
-                                <button class="nav-link" id="nav-lcomments-tab" data-bs-toggle="tab"
+                                <button class="nav-link"> <a href="http://127.0.0.1:8001/vi/test-set-category/4"
+                                        target="_blank">Tham
+                                        gia ôn luyện TOEIC</a></button>
+                                {{-- <button class="nav-link" id="nav-lcomments-tab" data-bs-toggle="tab"
                                     data-bs-target="#nav-lcomments" type="button" role="tab"
-                                    aria-controls="nav-lcomments" aria-selected="false">Bình luận</button>
-                                <button class="nav-link" id="nav-loverview-tab" data-bs-toggle="tab"
+                                    aria-controls="nav-lcomments" aria-selected="false">Bình luận</button> --}}
+                                {{-- <button class="nav-link" id="nav-loverview-tab" data-bs-toggle="tab"
                                     data-bs-target="#nav-loverview" type="button" role="tab"
                                     aria-controls="nav-loverview" aria-selected="false">Tổng quan</button>
                                 <button class="nav-link" id="nav-linstruc-tab" data-bs-toggle="tab"
                                     data-bs-target="#nav-linstruc" type="button" role="tab"
-                                    aria-controls="nav-linstruc" aria-selected="false">Giảng viên</button>
+                                    aria-controls="nav-linstruc" aria-selected="false">Giảng viên</button> --}}
                             </div>
                         </nav>
                         <div class="tab-content course-description-start-content-tabitem" id="nav-tabContent">
@@ -151,19 +154,16 @@
                                 <!-- Mô tả bài học Ends Here -->
                             </div>
                             <!-- Course Notes Starts Here -->
-                            <div class="tab-pane fade" id="nav-lnotes" role="tabpanel"
-                                aria-labelledby="nav-lnotes-tab">
+                            <div class="tab-pane fade" id="nav-lnotes" role="tabpanel" aria-labelledby="nav-lnotes-tab">
                                 <div class="course-notes-area">
                                     <div class="course-notes">
                                         <div class="course-notes-item">
                                             <p>
-                                                You have to take a minute to understand what is the goal, what is the
-                                                problem, what they're trying to achieve with it who is the target
-                                                audience,
-                                                who is the competition, and understand
-                                                what are you trying to do here and how will success will look like of
-                                                the
-                                                project. the way to do that is basically by doing two things
+                                                Bạn cần dành chút thời gian để hiểu mục tiêu là gì, vấn đề là gì, họ
+                                                đang cố gắng đạt được điều gì, đối tượng mục tiêu là ai, đối thủ cạnh
+                                                tranh là ai, và hiểu rõ bạn đang cố gắng làm gì ở đây và sự thành công
+                                                của dự án sẽ như thế nào. Về cơ bản, cách để làm điều đó là bằng cách
+                                                làm hai việc.
                                             </p>
                                         </div>
                                     </div>
@@ -386,11 +386,11 @@
                             aria-labelledby="lessons-tab">
                             <div class="videolist-area-heading">
                                 <h6>Nội dung bài học</h6>
-                                <p>Hoàn thành 5%</p>
+                                {{-- <p>Hoàn thành 5%</p> --}}
                             </div>
-                            <div class="videolist-area-bar">
+                            {{-- <div class="videolist-area-bar">
                                 <span class="videolist-area-bar--progress"></span>
-                            </div>
+                            </div> --}}
                             <div class="videolist-area-bar__wrapper">
                                 @foreach ($lessons as $lesson)
                                     <div class="videolist-area-wizard"
@@ -578,6 +578,16 @@
                             border-color: #0d6efd #0d6efd #fff;
                             /* cho viền xanh đồng bộ */
                         }
+
+                        .main-wizard.is-active .main-wizard__wrapper {
+                            background: #e7f1ff;
+                            border-left: 3px solid #0d6efd;
+                        }
+
+                        .main-wizard.is-active .main-wizard-title p {
+                            color: #0d6efd;
+                            font-weight: 600;
+                        }
                     </style>
                 </div>
             </div>
@@ -715,33 +725,31 @@
             // Nếu bạn muốn chỉ click header để toggle (không click toàn wrapper),
             // hãy bỏ bớt handler on '.videolist-area-wizard' hoặc dùng stopPropagation ở đây.
 
-            // tránh handler chung làm rối: muốn vẫn cập nhật mô tả khi click header:
-            $('.videolist-area-wizard > .wizard-heading').on('click', function(e) {
-                // note: toggleLesson already được gọi bởi onclick inline; nếu muốn chuyển hoàn toàn lên jQuery
-                // bạn có thể thay onclick trên HTML bằng: toggleLesson(this);
-                // ở đây ta cập nhật description/notes
-                var lessonWrapper = $(this).closest('.videolist-area-wizard');
-                var lessonDescription = lessonWrapper.data('lesson-description');
-                var lessonNotes = lessonWrapper.data('lesson-notes');
+            // Keep description/notes default (no auto update on lesson click)
 
-                $('#nav-ldescrip .lesson-description p').html(lessonDescription || '');
-                $('#nav-lnotes .course-notes-area .course-notes-item p').html(lessonNotes || '');
-                // prevent bubbling to parent handlers if any
+
+            // Khi click v�o material (item), update ti�u d? + highlight
+            function setActiveMaterial($item) {
+                if (!$item || $item.length === 0) return;
+                $(".main-wizard").removeClass("is-active");
+                $item.addClass("is-active");
+                var materialTitle = $item.data("material-title") || "";
+                if (materialTitle) {
+                    $(".material-title").text(materialTitle);
+                }
+            }
+
+            $(".main-wizard").on("click", function(e) {
+                setActiveMaterial($(this));
+                // stop parent click (n?u c�)
                 e.stopPropagation();
             });
 
-            // Khi click vào material (item), không muốn trigger click của video-list wrapper
-            $('.main-wizard').on('click', function(e) {
-                var materialTitle = $(this).data('material-title') || '';
-                $('.material-title').html(materialTitle);
-                // stop parent click (nếu có)
+            // N?u a.main-wizard-start c� onclick show_video/open_file th� v?n c?p nh?t ti�u d?
+            $(".main-wizard-start").on("click", function(e) {
+                setActiveMaterial($(this).closest(".main-wizard"));
                 e.stopPropagation();
-            });
-
-            // Nếu a.main-wizard-start có onclick show_video/open_file thì ngăn chặn bubbling
-            $('.main-wizard-start').on('click', function(e) {
-                e.stopPropagation();
-                // tiếp tục để onclick inline chạy (show_video/open_file)
+                // ti?p t?c d? onclick inline ch?y (show_video/open_file)
             });
 
             // starRating init (giữ nguyên)

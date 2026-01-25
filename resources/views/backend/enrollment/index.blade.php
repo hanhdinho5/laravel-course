@@ -145,8 +145,6 @@
 
         // Khi bấm nút "Xác nhận"
         document.getElementById('confirmActivate').addEventListener('click', async function() {
-            console.log('Confirm clicked');
-
             if (!selectedId) return;
 
             try {
@@ -155,16 +153,12 @@
                     headers: {
                         'Content-Type': 'application/json',
                         'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    },
+                    }
                 });
 
                 if (!response.ok) throw new Error('Request failed');
 
-                const modalEl = document.getElementById('confirmModal');
-                const modalInstance = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
-                modalInstance.hide();
-
-                // alert('Kích hoạt thành công!');
+                $('#confirmModal').modal('hide');
                 location.reload();
 
             } catch (error) {

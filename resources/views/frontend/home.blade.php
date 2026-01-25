@@ -7,7 +7,7 @@
 
     <!-- Banner Starts Here -->
     <section class="main-banner" style="background-image: url({{ asset('frontend/dist/images/banner/banner.jpg') }});">
-        <div class="container">
+        <div class="container mt-0">
             <div class="row">
                 <div class="col-lg-7 mb-lg-0 order-2 order-lg-0 d-flex align-items-center">
                     <div class="banner-two-start">
@@ -16,7 +16,7 @@
                             Cam kết của chúng tôi là hướng dẫn bạn đến những khóa học trực tuyến tốt nhất, cung cấp những
                             hiểu biết chuyên sâu mọi lúc mọi nơi.
                         </p>
-                        <form>
+                        {{-- <form>
                             <div class="banner-input">
                                 <div class="main-input">
                                     <input type="text" placeholder="hôm nay bạn muốn học gì..." />
@@ -31,7 +31,7 @@
                                     <button class="button button-lg button--primary">Tìm kiếm</button>
                                 </div>
                             </div>
-                        </form>
+                        </form> --}}
                     </div>
                 </div>
                 <div class="col-lg-5 order-1 order-lg-0">
@@ -47,7 +47,7 @@
     <!-- Browse Categories Starts Here -->
     <section class="section browse-categories">
         <div class="container">
-            <h2 class="font-title--md text-center mb-0">Duyệt khóa học với các danh mục hàng đầu</h2>
+            <h2 class="font-title--md text-center mb-0">Danh mục các khoá học</h2>
             <div class="browse-categories__wrapper position-relative">
                 <div class="categories--box">
                     @forelse ($category as $cat)
@@ -56,16 +56,20 @@
                             $courseCount = $cat->course()->count();
                         @endphp
                         <div class="browse-categories-item default-item-one mb-2">
-                            <div class="browse-categories-item-icon">
-                                <div class="categories-one default-categories">
-                                    <img src="{{ asset('uploads/courseCategories/' . $cat->category_image) }}"
-                                        class="rounded-circle" width="80" height="80" alt="">
+                            <a href="{{ route('searchCourse', ['category_id' => $cat->id]) }}">
+                                <div class="browse-categories-item-icon">
+                                    <div class="categories-one default-categories">
+                                        <img src="{{ asset('uploads/courseCategories/' . $cat->category_image) }}"
+                                            class="rounded-circle" width="80" height="80" alt="">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="browse-categories-item-text">
-                                <h6 class="font-title--card"><a href="#">{{ $cat->category_name }}</a></h6>
-                                <p>{{ $courseCount }} Courses</p>
-                            </div>
+                                <div class="browse-categories-item-text">
+                                    <h6 class="font-title--card">
+                                        {{ $cat->category_name }}
+                                    </h6>
+                                    <p>{{ $courseCount }} Khoá học</p>
+                                </div>
+                            </a>
                         </div>
                     @empty
                     @endforelse
@@ -94,52 +98,13 @@
                         <div class="main-heading">
                             <h3 class="font-title--md">khóa học phổ biến của chúng tôi</h3>
                         </div>
-                        <div class="nav-button featured-popular-courses-tabs">
-                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link active ps-0" id="pills-all-tab" data-bs-toggle="pill"
-                                        data-bs-target="#pills-all" type="button" role="tab" aria-controls="pills-all"
-                                        aria-selected="true">
-                                        Tất cả
-                                    </button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="pills-design-tab" data-bs-toggle="pill"
-                                        data-bs-target="#pills-design" type="button" role="tab"
-                                        aria-controls="pills-design" aria-selected="false">
-                                        Thiết kế
-                                    </button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="pills-dev-tab" data-bs-toggle="pill"
-                                        data-bs-target="#pills-dev" type="button" role="tab"
-                                        aria-controls="pills-dev" aria-selected="false">
-                                        Phát triển
-                                    </button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="pills-bus-tab" data-bs-toggle="pill"
-                                        data-bs-target="#pills-bus" type="button" role="tab"
-                                        aria-controls="pills-bus" aria-selected="false">
-                                        Kinh doanh
-                                    </button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link me-0" id="pills-its-tab" data-bs-toggle="pill"
-                                        data-bs-target="#pills-its" type="button" role="tab"
-                                        aria-controls="pills-its" aria-selected="false">
-                                        IT & Software
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
+
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active" id="pills-all" role="tabpanel"
-                        aria-labelledby="pills-all-tab">
+                    <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
                         <div class="row">
                             @forelse ($popularCourses as $pc)
                                 <div class="col-xl-4 col-md-6">
@@ -153,8 +118,7 @@
                                                 <a href="{{ route('courseDetails', ['id' => encryptor('encrypt', $pc->id)]) }}"
                                                     class="font-title--card">{{ $pc->title }}</a>
                                             </h5>
-                                            <div
-                                                class="contentCard-info d-flex align-items-center justify-content-between">
+                                            <div class="contentCard-info d-flex align-items-center justify-content-between">
                                                 <a href="{{ route('instructorProfile', encryptor('encrypt', $pc->instructor?->id)) }}"
                                                     class="contentCard-user d-flex align-items-center">
                                                     <img src="{{ asset('uploads/users/' . $pc?->instructor->image) }}"
@@ -211,7 +175,7 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-12 text-center">
-                                <a href="{{ route('searchCourse') }}" class="button button-lg button--primary">Duyệt tất
+                                <a href="{{ route('searchCourse') }}" class="button button-lg button--primary">Tất
                                     cả các khóa học</a>
                             </div>
                         </div>
@@ -717,112 +681,67 @@
     </section>
 
     <!--  Latest Events Featured Starts Here -->
-    <section class="section section--bg-offwhite-three latest-events-featured main-events-featured">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h3 class="font-title--md">Sự kiện mới nhất</h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 position-relative px-0 mx-0">
-                    <div class="eventsSlider">
-                        @forelse ($course as $c)
-                            <div class="contentCard contentCard--event contentCard--space">
-                                <div class="contentCard-top">
-                                    <a href="#"><img src="{{ asset('uploads/courses/' . $c->image) }}"
-                                            alt="images" class="img-fluid" /></a>
-                                </div>
-                                <div class="contentCard-bottom">
-                                    <h5>
-                                        <a href="{{ route('courseDetails', encryptor('encrypt', $c->id)) }}"
-                                            class="font-title--card">{{ $c->title }}</a>
-                                    </h5>
-                                    <div class="contentCard-more">
-                                        <div class="d-flex align-items-center">
-                                            <div class="icon">
-                                                <img src="{{ asset('frontend/dist/images/icon/location.png') }}"
-                                                    alt="location" />
-                                            </div>
-                                            <span>Chicago, Illinois</span>
-                                        </div>
-                                        <div class="d-flex align-items-center">
-                                            <div class="icon">
-                                                <img src="{{ asset('frontend/dist/images/icon/calendar.png') }}"
-                                                    alt="calendar" />
-                                            </div>
-                                            <span>29th jan, 2020</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @empty
-                        @endforelse
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <a href="{{ route('searchCourse') }}" class="button button-lg button--primary mt-lg-5 mt-5">Duyệt tất
-                        cả các sự kiện</a>
-                </div>
-            </div>
-        </div>
-        <div class="main-events-featured-shape">
-            <img src="{{ asset('frontend/dist/images/shape/triangel3.png') }}" alt="shape"
-                class="img-fluid shape01" />
-        </div>
-    </section>
+
 
     <!--  Main Become Instructor Starts Here -->
     <section class="section main-become-instructor">
         <div class="container">
             <div class="row">
+                <!-- Bước đăng ký -->
                 <div class="col-lg-6">
                     <div class="main-become-instructor-item me-12">
-                        <div class="main-image">
-                            <img src="{{ asset('frontend/dist/images/event/image01.png') }}" alt="image"
-                                class="img-fluid" />
-                        </div>
+
                         <div class="main-text">
-                            <h6 class="font-title--sm">Trở thành một giảng viên</h6>
+                            <h6 class="font-title--sm">Hướng dẫn đăng ký khóa học</h6>
                             <p>
-                                Trở thành giảng viên tại Eduguard giúp bạn chia sẻ kinh nghiệm và lan tỏa giá trị. Bạn có
-                                thể xây dựng khóa học riêng, phát triển thương hiệu cá nhân và tiếp cận hàng nghìn học viên.
-                                Đây là cơ hội vừa giảng dạy, vừa tạo nguồn thu nhập bền vững
+                                Việc đăng ký khóa học tại Eduguard vô cùng đơn giản và nhanh chóng.
+                                Chỉ với vài bước, bạn đã có thể sở hữu khóa học mong muốn và bắt đầu học tập ngay.
                             </p>
-                            <div class="text-center">
-                                <a href="become-instructor.html" class="green-btn">Apply as Instructor</a>
+                            <ul class="ps-3">
+                                <li>Thêm khóa học vào giỏ hàng</li>
+                                <li>Xác nhận thông tin đăng ký</li>
+                                <li>Nhận email thông báo tổng học phí</li>
+                            </ul>
+                            <div class="text-center mt-3">
+                                <a href="{{ route('searchCourse') }}" class="green-btn">
+                                    Xem khóa học
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Thanh toán & kích hoạt -->
                 <div class="col-lg-6">
                     <div class="main-become-instructor-item ms-12 mb-0">
-                        <div class="main-image">
-                            <img src="{{ asset('frontend/dist/images/event/image02.png') }}" alt="image"
-                                class="img-fluid" />
-                        </div>
+
                         <div class="main-text">
-                            <h6 class="font-title--sm">Sử dụng Eduguard cho doanh nghiệp</h6>
+                            <h6 class="font-title--sm">Thanh toán & kích hoạt</h6>
                             <p>
-                                Eduguard mang đến giải pháp đào tạo trực tuyến toàn diện cho doanh nghiệp, giúp nâng cao kỹ
-                                năng nhân viên nhanh chóng và hiệu quả. Hệ thống quản lý học tập linh hoạt, dễ theo dõi tiến
-                                độ và đánh giá chất lượng đào tạo. Đây là lựa chọn tối ưu để tiết kiệm chi phí nhưng vẫn đảm
-                                bảo năng lực đội ngũ
+                                Sau khi hoàn tất thanh toán, hệ thống sẽ ghi nhận và quản trị viên
+                                sẽ tiến hành duyệt đăng ký để kích hoạt khóa học cho bạn.
                             </p>
-                            <div class="text-center">
-                                <a href="#" class="green-btn">Nhận Eduguard cho doanh nghiệp</a>
+                            <ul class="ps-3">
+                                <li>Thanh toán học phí theo hướng dẫn trong email</li>
+                                <li>Quản trị viên kiểm tra & duyệt đăng ký</li>
+                                <li>Khóa học được kích hoạt cho học viên</li>
+                            </ul>
+                            <div class="text-center mt-3">
+                                <a href="{{ route('cart') }}" class="green-btn">
+                                    Đi tới giỏ hàng
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="main-become-instructor-shape">
             <img src="{{ asset('frontend/dist/images/shape/line03.png') }}" alt="shape" class="img-fluid" />
         </div>
     </section>
+
 
     <!-- News Letter Starts Here -->
     <section style="background-color: #ebebf2;">
@@ -840,7 +759,7 @@
                                 <input type="email" class="form-control border-lowBlack"
                                     placeholder="Nhập email của bạn" />
                                 <button class="button button-lg button--primary" type="button">
-                                    Đặt mua
+                                    Gửi email
                                 </button>
                             </div>
                         </form>

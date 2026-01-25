@@ -27,6 +27,7 @@ use App\Http\Controllers\WatchCourseController as watchCourse;
 use App\Http\Controllers\LessonController as lesson;
 use App\Http\Controllers\EnrollmentController as enrollment;
 use App\Http\Controllers\EventController as event;
+// use App\Models\Instructor;
 
 /* students */
 use App\Http\Controllers\Students\AuthController as sauth;
@@ -34,6 +35,7 @@ use App\Http\Controllers\Students\DashboardController as studashboard;
 use App\Http\Controllers\Students\ProfileController as stu_profile;
 use App\Http\Controllers\Students\payController as sslcz;
 use App\Http\Controllers\TestController;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,7 +86,7 @@ Route::middleware(['checkrole'])->prefix('admin')->group(function () {
     Route::resource('message', message::class);
     Route::resource('coupon', coupon::class);
     Route::resource('enrollment', enrollment::class);
-    Route::post('/admin/activate-course/{id}', [enrollment::class, 'activate'])->name('admin.activate-course'); // duyệt khi học viên thanh toán
+    // Route::post('/admin/activate-course/{id}', [enrollment::class, 'activate'])->name('admin.activate-course'); // duyệt khi học viên thanh toán
     Route::post('/activate-course/{id}', [enrollment::class, 'activate'])
         ->name('enrollment.activate');
 
@@ -110,6 +112,13 @@ Route::middleware(['checkstudent'])->prefix('students')->group(function () {
 
     // ssl Routes
     Route::post('/payment/ssl/submit', [sslcz::class, 'store'])->name('payment.ssl.submit');
+
+    // Cart
+    Route::get('/cart_page', [CartController::class, 'index']);
+    Route::get('cart', [CartController::class, 'cart'])->name('cart');
+    Route::get('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add.to.cart');
+    Route::patch('update-cart', [CartController::class, 'update'])->name('update.cart');
+    Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('remove.from.cart');
 });
 
 // frontend pages
@@ -120,13 +129,6 @@ Route::get('courseDetails/{id}', [course::class, 'frontShow'])->name('courseDeta
 Route::get('instructorProfile/{id}', [instructor::class, 'frontShow'])->name('instructorProfile');
 Route::get('checkout', [checkout::class, 'index'])->name('checkout');
 Route::post('checkout', [checkout::class, 'store'])->name('checkout.store');
-
-// Cart
-Route::get('/cart_page', [CartController::class, 'index']);
-Route::get('cart', [CartController::class, 'cart'])->name('cart');
-Route::get('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add.to.cart');
-Route::patch('update-cart', [CartController::class, 'update'])->name('update.cart');
-Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('remove.from.cart');
 
 // Coupon
 Route::post('coupon_check', [CartController::class, 'coupon_check'])->name('coupon_check');
@@ -145,7 +147,9 @@ Route::post('/payment/ssl/notify', [sslcz::class, 'notify'])->name('payment.ssl.
 Route::post('/payment/ssl/cancel', [sslcz::class, 'cancel'])->name('payment.ssl.cancel');
 
 Route::get('/about', function () {
-    return view('frontend.about');
+    $instructor = DB::table('instructors')->get();
+
+    return view('frontend.about', compact('instructor'));
 })->name('about');
 
 Route::get('/contact', function () {

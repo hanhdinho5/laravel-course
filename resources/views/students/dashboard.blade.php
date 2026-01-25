@@ -92,11 +92,11 @@
                             KH đang hoạt động
                         </button> --}}
 
-                        <button class="nav-link" id="nav-completedcourses-tab" data-bs-toggle="tab"
+                        {{-- <button class="nav-link" id="nav-completedcourses-tab" data-bs-toggle="tab"
                             data-bs-target="#nav-completedcourses" type="button" role="tab"
                             aria-controls="nav-completedcourses" aria-selected="false">
                             Khoá học hoàn thành
-                        </button>
+                        </button> --}}
 
                         {{-- <button class="nav-link" id="nav-purchase-tab" data-bs-toggle="tab" data-bs-target="#nav-purchase"
                             type="button" role="tab" aria-controls="nav-purchase" aria-selected="false">Lịch sử
@@ -161,7 +161,7 @@
                                                     <p class="font-para--md">{{ $a->course?->instructor?->name_en }}</p>
                                                 </a>
                                                 <div class="contentCard-course--status d-flex align-items-center">
-                                                    <span class="percentage">Hoàn thành 43%</span>
+                                                    {{-- <span class="percentage">Hoàn thành 43%</span> --}}
                                                 </div>
                                             </div>
                                             @if ($a->status == '1')
@@ -173,9 +173,9 @@
                                                     class="button button-md button--primary-outline w-100 my-3"
                                                     href="#">Khoá học chưa kịch hoạt</a>
                                             @endif
-                                            <div class="contentCard-watch--progress">
+                                            {{-- <div class="contentCard-watch--progress">
                                                 <span class="percentage" style="width: 43%;"></span>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -192,7 +192,7 @@
                                 </div>
                             @endforelse
 
-                            <div class="col-lg-12 mt-lg-5">
+                            {{-- <div class="col-lg-12 mt-lg-5">
                                 <div class="pagination justify-content-center pb-0">
                                     <div class="pagination-group">
                                         <a href="#" class="p_prev">
@@ -216,7 +216,7 @@
                                         </a>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
 

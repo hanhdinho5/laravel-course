@@ -8,8 +8,8 @@
         <div class="container">
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb align-items-center bg-transparent mb-0">
-                    <li class="breadcrumb-item"><a href="index.html" class="fs-6 text-secondary">Home</a></li>
-                    <li class="breadcrumb-item active"><a href="cart.html" class="fs-6 text-secondary">Cart</a></li>
+                    <li class="breadcrumb-item"><a href="index.html" class="fs-6 text-secondary">Trang chủ</a></li>
+                    <li class="breadcrumb-item active"><a href="cart.html" class="fs-6 text-secondary">Giỏ hàng</a></li>
                 </ol>
             </nav>
         </div>

@@ -105,6 +105,9 @@ class ProfileController extends Controller
                 $user->image = $imageName;
                 $user->save();
 
+                // ✅ CẬP NHẬT LẠI SESSION
+                session()->put('image', $imageName);
+
                 return redirect()->back()->with('success', 'Thay đổi ảnh thành công!');
             } else {
                 return redirect()->back()->with('error', 'Vui lòng chọn tệp hình ảnh hợp lệ.');
