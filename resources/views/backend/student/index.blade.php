@@ -15,14 +15,14 @@
             <div class="row page-titles mx-0">
                 <div class="col-sm-6 p-md-0">
                     <div class="welcome-text">
-                        <h4>Student List</h4>
+                        <h4>Danh sách học viên</h4>
                     </div>
                 </div>
                 <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                        <li class="breadcrumb-item active"><a href="{{ route('student.index') }}">Students</a></li>
-                        <li class="breadcrumb-item active"><a href="{{ route('student.index') }}">All Student</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Trang chủ</a></li>
+                        <li class="breadcrumb-item active"><a href="{{ route('student.index') }}">Học viên</a></li>
+                        {{-- <li class="breadcrumb-item active"><a href="{{ route('student.index') }}">All Student</a></li> --}}
                     </ol>
                 </div>
             </div>
@@ -31,9 +31,9 @@
                 <div class="col-lg-12">
                     <ul class="nav nav-pills mb-3">
                         <li class="nav-item"><a href="#list-view" data-toggle="tab"
-                                class="nav-link btn-primary mr-1 show active">List View</a></li>
-                        <li class="nav-item"><a href="#grid-view" data-toggle="tab" class="nav-link btn-primary">Grid
-                                View</a></li>
+                                class="nav-link btn-primary mr-1 show active">Xem danh sách</a></li>
+                        {{-- <li class="nav-item"><a href="#grid-view" data-toggle="tab" class="nav-link btn-primary">Grid
+                                View</a></li> --}}
                     </ul>
                 </div>
                 <div class="col-lg-12">
@@ -41,8 +41,8 @@
                         <div id="list-view" class="tab-pane fade active show col-lg-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">All Students List </h4>
-                                    <a href="{{ route('student.create') }}" class="btn btn-primary">+ Add new</a>
+                                    <h4 class="card-title">Tất cả danh sách</h4>
+                                    <a href="{{ route('student.create') }}" class="btn btn-primary">+ Thêm mới</a>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
@@ -50,13 +50,13 @@
                                             <thead>
                                                 <tr>
                                                     <th>{{ __('#') }}</th>
-                                                    <th>{{ __('Name') }}</th>
+                                                    <th>{{ __('Tên') }}</th>
                                                     <th>{{ __('Email') }}</th>
-                                                    <th>{{ __('Contact') }}</th>
-                                                    <th>{{ __('Role') }}</th>
-                                                    <th>{{ __('Gender') }}</th>
-                                                    <th>{{ __('Status') }}</th>
-                                                    <th>{{ __('Action') }}</th>
+                                                    <th>{{ __('Điện thoại') }}</th>
+                                                    {{-- <th>{{ __('Vai trò') }}</th> --}}
+                                                    <th>{{ __('Giới tính') }}</th>
+                                                    <th>{{ __('Trạng thái') }}</th>
+                                                    <th>{{ __('Hành động') }}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -70,26 +70,26 @@
                                                         <td>{{ $d->contact_en }}</td>
                                                         <td>{{ $d->role?->name }}</td>
                                                         <td>
-                                                            {{ $d->gender == 'male' ? __('Male') : ($d->gender == 'female' ? __('Female') : __('Other')) }}
+                                                            {{ $d->gender == 'male' ? __('Nam') : ($d->gender == 'female' ? __('Nữ') : __('Nam')) }}
                                                         </td>
                                                         <td>
                                                             <span
                                                                 class="badge {{ $d->status == 1
                                                                     ? "
-                                                                                                                        badge-success"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        badge-success"
                                                                     : 'badge-danger' }}">
                                                                 @if ($d->status == 1)
-                                                                    {{ __('Active') }}
-                                                                    @else{{ __('Inactive') }}
+                                                                    {{ __('Hoạt động') }}
+                                                                    @else{{ __('Tạm khoá') }}
                                                                 @endif
                                                             </span>
                                                         </td>
                                                         <td>
                                                             <a href="{{ route('student.edit', encryptor('encrypt', $d->id)) }}"
-                                                                class="btn btn-sm btn-primary" title="Edit"><i
+                                                                class="btn btn-sm btn-primary" title="Sửa"><i
                                                                     class="la la-pencil"></i></a>
                                                             <a href="javascript:void(0);" class="btn btn-sm btn-danger"
-                                                                title="Delete"
+                                                                title="Xoá"
                                                                 onclick="$('#form{{ $d->id }}').submit()"><i
                                                                     class="la la-trash-o"></i></a>
                                                             <form id="form{{ $d->id }}"
@@ -102,7 +102,7 @@
                                                     </tr>
                                                 @empty
                                                     <tr>
-                                                        <th colspan="7" class="text-center">No Student Found</th>
+                                                        <th colspan="7" class="text-center">Không tồn tại dữ liệu</th>
                                                     </tr>
                                                 @endforelse
                                             </tbody>
@@ -158,7 +158,7 @@
                                                             <span
                                                                 class="badge {{ $d->status == 1
                                                                     ? "
-                                                                                                                        badge-success"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        badge-success"
                                                                     : 'badge-danger' }}">
                                                                 @if ($d->status == 1)
                                                                     {{ __('Active') }}

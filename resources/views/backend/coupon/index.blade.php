@@ -9,8 +9,8 @@
 @section('content')
 
     <!--**********************************
-        Content body start
-    ***********************************-->
+                Content body start
+            ***********************************-->
     <div class="content-body">
         <!-- row -->
         <div class="container-fluid">
@@ -62,10 +62,10 @@
                                                         <td>{{ $c->valid_until }}</td>
                                                         <td>
                                                             <a href="{{ route('coupon.edit', $c->id) }}"
-                                                                class="btn btn-sm btn-primary" title="Edit"><i
+                                                                class="btn btn-sm btn-primary" title="Sửa"><i
                                                                     class="la la-pencil"></i></a>
                                                             <a href="javascript:void(0);" class="btn btn-sm btn-danger"
-                                                                title="Delete"
+                                                                title="Xoá"
                                                                 onclick="$('#form{{ $c->id }}').submit()"><i
                                                                     class="la la-trash-o"></i></a>
                                                             <form id="form{{ $c->id }}"
@@ -94,8 +94,8 @@
         </div>
     </div>
     <!--**********************************
-        Content body end
-    ***********************************-->
+                Content body end
+            ***********************************-->
 
 @endsection
 

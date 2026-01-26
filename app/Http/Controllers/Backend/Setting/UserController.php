@@ -19,7 +19,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $data = User::paginate(10);
+        $data = User::get();
+        // dd($data);
         return view('backend.user.index', compact('data'));
     }
 

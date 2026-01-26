@@ -22,9 +22,17 @@ class AddNewRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'courseTitle_en'=> 'required|max:255',
-            'categoryId'=> 'required|max:3',
-            'instructorId'=> 'required|max:3',
+            'courseTitle_en' => 'required|max:255',
+            'categoryId' => 'required|max:3',
+            'instructorId' => 'required|max:3',
+        ];
+    }
+    public function attributes(): array
+    {
+        return [
+            'courseTitle_en' => 'tiêu đề',
+            'categoryId'     => 'danh mục',
+            'instructorId'   => 'giảng viên',
         ];
     }
 }

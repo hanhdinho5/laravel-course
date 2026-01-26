@@ -56,7 +56,7 @@
                             $courseCount = $cat->course()->count();
                         @endphp
                         <div class="browse-categories-item default-item-one mb-2">
-                            <a href="{{ route('searchCourse', ['category_id' => $cat->id]) }}">
+                            <a href="{{ route('searchCourse', ['category_id' => $cat->id]) }}" class="d-block">
                                 <div class="browse-categories-item-icon">
                                     <div class="categories-one default-categories">
                                         <img src="{{ asset('uploads/courseCategories/' . $cat->category_image) }}"

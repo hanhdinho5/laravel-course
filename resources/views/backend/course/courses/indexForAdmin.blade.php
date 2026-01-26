@@ -35,7 +35,7 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">Danh sách tất cả các khóa học </h4>
-                                    <a href="{{ route('enrollment.create') }}" class="btn btn-primary">+ Thêm mới</a>
+                                    <a href="{{ route('course.create') }}" class="btn btn-primary">+ Thêm mới</a>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
@@ -67,24 +67,21 @@
                                                         <td>
                                                             <span
                                                                 class="badge
-                                                    @if ($d->status == 0) badge-warning
-                                                    @elseif($d->status == 1) badge-danger
-                                                    @elseif($d->status == 2) badge-success @endif">
-                                                                @if ($d->status == 0)
-                                                                    {{ __('Pending') }}
-                                                                @elseif($d->status == 1)
-                                                                    {{ __('Inactive') }}
-                                                                @elseif($d->status == 2)
-                                                                    {{ __('Active') }}
+                                                    @if ($d->status == 2) badge-success
+                                                    @else badge-danger @endif">
+                                                                @if ($d->status == 2)
+                                                                    {{ __('Hoạt động') }}
+                                                                @else
+                                                                    {{ __('Tạm khoá') }}
                                                                 @endif
                                                             </span>
                                                         </td>
                                                         <td>
                                                             <a href="{{ route('course.edit', encryptor('encrypt', $d->id)) }}"
-                                                                class="btn btn-sm btn-primary" title="Edit"><i
+                                                                class="btn btn-sm btn-primary" title="Sửa"><i
                                                                     class="la la-pencil"></i></a>
                                                             <a href="javascript:void(0);" class="btn btn-sm btn-danger"
-                                                                title="Delete"
+                                                                title="Xoá"
                                                                 onclick="$('#form{{ $d->id }}').submit()"><i
                                                                     class="la la-trash-o"></i></a>
                                                             <form id="form{{ $d->id }}"

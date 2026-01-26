@@ -15,7 +15,7 @@ class QuizController extends Controller
      */
     public function index()
     {
-        $quiz = Quiz::paginate(10);
+        $quiz = Quiz::get();
         return view('backend.quiz.quizzes.index', compact('quiz'));
     }
 
@@ -101,7 +101,7 @@ class QuizController extends Controller
     {
         $data = Quiz::findOrFail(encryptor('decrypt', $id));
         if ($data->delete()) {
-            $this->notice::error('Data Deleted!');
+            $this->notice::error('Xoá dữ liệu thành công!');
             return redirect()->back();
         }
     }

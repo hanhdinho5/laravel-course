@@ -9,8 +9,8 @@
 @section('content')
 
     <!--**********************************
-        Content body start
-    ***********************************-->
+                    Content body start
+                ***********************************-->
     <div class="content-body">
         <!-- row -->
         <div class="container-fluid">
@@ -47,7 +47,7 @@
                                                     <th>{{ __('#') }}</th>
                                                     <th>{{ __('Tiêu đề sự kiện') }}</th>
                                                     <th>{{ __('Đề tài') }}</th>
-                                                    <th>{{ __('Loại vị trí') }}</th>
+                                                    <th>{{ __('Vị trí') }}</th>
                                                     <th>{{ __('Ngày') }}</th>
                                                     <th>{{ __('Hoạt động') }}</th>
                                                 </tr>
@@ -60,13 +60,15 @@
                                                         <td><strong>{{ $e->title }}</strong></td>
                                                         <td><strong>{{ $e->topic }}</strong></td>
                                                         <td>{{ $e->location }}</td>
-                                                        <td>{{ \Carbon\Carbon::parse($e->date)->format('j F, Y, l') }}</td>
+                                                        <td>
+                                                            {{ \Carbon\Carbon::parse($e->date)->locale('vi')->translatedFormat('j F, Y') }}
+                                                        </td>
                                                         <td>
                                                             <a href="{{ route('event.edit', $e->id) }}"
-                                                                class="btn btn-sm btn-primary" title="Edit"><i
+                                                                class="btn btn-sm btn-primary" title="Sửa"><i
                                                                     class="la la-pencil"></i></a>
                                                             <a href="javascript:void(0);" class="btn btn-sm btn-danger"
-                                                                title="Delete"
+                                                                title="Xoá"
                                                                 onclick="$('#form{{ $e->id }}').submit()"><i
                                                                     class="la la-trash-o"></i></a>
                                                             <form id="form{{ $e->id }}"
@@ -95,8 +97,8 @@
         </div>
     </div>
     <!--**********************************
-        Content body end
-    ***********************************-->
+                    Content body end
+                ***********************************-->
 
 @endsection
 

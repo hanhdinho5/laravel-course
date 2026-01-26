@@ -17,7 +17,7 @@ class QuestionController extends Controller
     {
         // dd(1);
         $quiz = Quiz::findOrFail(encryptor('decrypt', $quizId));
-        $question = Question::where('quiz_id', $quiz->id)->paginate(10);
+        $question = Question::where('quiz_id', $quiz->id)->get();
 
         return view('backend.quiz.question.index', compact('quiz', 'question'));
     }

@@ -54,7 +54,7 @@
                                                     <th>{{ __('Email') }}</th>
                                                     <th>{{ __('Liên hệ') }}</th>
                                                     <th>{{ __('Vai trò') }}</th>
-                                                    <th>{{ __('Truy cập đầy đủ') }}</th>
+                                                    {{-- <th>{{ __('Truy cập đầy đủ') }}</th> --}}
                                                     <th>{{ __('Trạng thái') }}</th>
                                                     <th>{{ __('Hoạt động') }}</th>
                                                 </tr>
@@ -69,23 +69,23 @@
                                                         <td>{{ $d->email }}</td>
                                                         <td>{{ $d->contact_en }}</td>
                                                         <td>{{ $d->role?->name }}</td>
-                                                        <td>
+                                                        {{-- <td>
                                                             <span
                                                                 class="badge {{ $d->full_access == 1
                                                                     ? "
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        badge-info"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        badge-info"
                                                                     : 'badge-warning' }}">
                                                                 @if ($d->full_access == 1)
                                                                     {{ __('Yes') }}
                                                                     @else{{ __('No') }}
                                                                 @endif
                                                             </span>
-                                                        </td>
+                                                        </td> --}}
                                                         <td>
                                                             <span
                                                                 class="badge {{ $d->status == 1
                                                                     ? "
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        badge-success"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        badge-success"
                                                                     : 'badge-danger' }}">
                                                                 @if ($d->status == 1)
                                                                     {{ __('Hoạt động') }}
@@ -95,10 +95,10 @@
                                                         </td>
                                                         <td>
                                                             <a href="{{ route('user.edit', encryptor('encrypt', $d->id)) }}"
-                                                                class="btn btn-sm btn-primary" title="Edit"><i
+                                                                class="btn btn-sm btn-primary" title="Sửa"><i
                                                                     class="la la-pencil"></i></a>
                                                             <a href="javascript:void(0);" class="btn btn-sm btn-danger"
-                                                                title="Delete"
+                                                                title="Xoá"
                                                                 onclick="$('#form{{ $d->id }}').submit()"><i
                                                                     class="la la-trash-o"></i></a>
                                                             <form id="form{{ $d->id }}"

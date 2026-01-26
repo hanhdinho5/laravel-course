@@ -16,14 +16,14 @@
             <div class="row page-titles mx-0">
                 <div class="col-sm-6 p-md-0">
                     <div class="welcome-text">
-                        <h4>Edit Course Lesson</h4>
+                        <h4>Sửa bài học</h4>
                     </div>
                 </div>
                 <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                        <li class="breadcrumb-item active"><a href="{{ route('lesson.index') }}">Course Lessons</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0);">Edit Course Lesson</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Trang chủ</a></li>
+                        <li class="breadcrumb-item active"><a href="{{ route('lesson.index') }}">Bài học</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0);">Sửa bài học</a></li>
                     </ol>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                 <div class="col-xl-12 col-xxl-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title">Basic Info</h5>
+                            <h5 class="card-title">Thông tin</h5>
                         </div>
                         <div class="card-body">
                             <form action="{{ route('lesson.update', encryptor('encrypt', $lesson->id)) }}" method="post"
@@ -43,7 +43,7 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                         <div class="form-group">
-                                            <label class="form-label">Title</label>
+                                            <label class="form-label">Tiêu đề</label>
                                             <input type="text" class="form-control" name="lessonTitle"
                                                 value="{{ old('lessonTitle', $lesson->title) }}">
                                         </div>
@@ -53,14 +53,14 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                         <div class="form-group">
-                                            <label class="form-label">Course</label>
+                                            <label class="form-label">Khoá học</label>
                                             <select class="form-control" name="courseId">
                                                 @forelse ($course as $c)
                                                     <option value="{{ $c->id }}"
                                                         {{ old('courseId', $lesson->course_id) == $c->id ? 'selected' : '' }}>
                                                         {{ $c->title }}</option>
                                                 @empty
-                                                    <option value="">No Course Lesson Lesson Found</option>
+                                                    <option value="">Không có khoá học</option>
                                                 @endforelse
                                             </select>
                                         </div>
@@ -70,7 +70,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                         <div class="form-group">
-                                            <label class="form-label">Lesson Description</label>
+                                            <label class="form-label">Mô tả bài học</label>
                                             <textarea class="form-control" name="lessonDescription">{{ old('lessonDescription', $lesson->description) }}</textarea>
                                         </div>
                                         @if ($errors->has('lessonDescription'))
@@ -79,7 +79,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                         <div class="form-group">
-                                            <label class="form-label">Lesson Notes</label>
+                                            <label class="form-label">Ghi chú khoá học</label>
                                             <textarea class="form-control" name="lessonNotes">{{ old('lessonNotes', $lesson->notes) }}</textarea>
                                         </div>
                                         @if ($errors->has('lessonNotes'))
@@ -87,8 +87,9 @@
                                         @endif
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                        <button type="submit" class="btn btn-light">Cancel</button>
+                                        <button type="submit" class="btn btn-primary">Lưu</button>
+                                        <button type="" class="btn btn-light"> <a
+                                                href="{{ route('lesson.index') }}">Quay lại</a></button>
                                     </div>
                                 </div>
                             </form>

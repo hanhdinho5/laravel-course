@@ -115,7 +115,7 @@ class EventController extends Controller
     {
         $data = Event::findOrFail($id);
         if ($data->delete()) {
-            $this->notice::error('Data Deleted!');
+            $this->notice::error('Xoá dữ liệu thành công!');
             return redirect()->back();
         }
     }

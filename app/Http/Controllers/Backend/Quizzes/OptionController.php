@@ -103,7 +103,7 @@ class OptionController extends Controller
     {
         $data = Option::findOrFail(encryptor('decrypt', $id));
         if ($data->delete()) {
-            $this->notice::error('Data Deleted!');
+            $this->notice::error('Xoá dữ liệu thành công!');
             return redirect()->back();
         }
     }

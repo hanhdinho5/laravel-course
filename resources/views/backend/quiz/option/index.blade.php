@@ -68,15 +68,15 @@
                                                             <span
                                                                 class="badge {{ $o->is_correct == 1
                                                                     ? "
-                                                                                                                        badge-success"
+                                                                                                                                                                                                                                                        badge-success"
                                                                     : 'badge-danger' }}">{{ $o->is_correct == 1 ? 'Correct' : 'Wrong' }}</span>
                                                         </td>
                                                         <td>
                                                             <a href="{{ route('option.edit', encryptor('encrypt', $o->id)) }}"
-                                                                class="btn btn-sm btn-primary" title="Edit"><i
+                                                                class="btn btn-sm btn-primary" title="Sửa"><i
                                                                     class="la la-pencil"></i></a>
                                                             <a href="javascript:void(0);" class="btn btn-sm btn-danger"
-                                                                title="Delete"
+                                                                title="Xoá"
                                                                 onclick="$('#form{{ $o->id }}').submit()"><i
                                                                     class="la la-trash-o"></i></a>
                                                             <form id="form{{ $o->id }}"

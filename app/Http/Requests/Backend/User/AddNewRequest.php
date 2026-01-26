@@ -13,7 +13,7 @@ class AddNewRequest extends FormRequest
     {
         return true;
     }
- 
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -22,12 +22,21 @@ class AddNewRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'userName_en' => 'required|max:255', 
+            'userName_en' => 'required|max:255',
             'roleId' => 'required|max:2',
             'contactNumber_en' => 'required|unique:users,contact_en',
             'emailAddress' => 'required|unique:users,email',
             'password' => 'required'
         ];
     }
+    public function attributes(): array
+    {
+        return [
+            'userName_en'      => 'tên người dùng',
+            'roleId'           => 'vai trò',
+            'contactNumber_en' => 'số điện thoại',
+            'emailAddress'     => 'email',
+            'password'         => 'mật khẩu',
+        ];
+    }
 }
- 

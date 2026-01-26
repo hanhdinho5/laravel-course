@@ -372,7 +372,7 @@
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     Designation' }}
                                                     </p>
                                                     <div class="d-flex align-items-center instructor-text-bottom">
-                                                        <div class="d-flex align-items-center ratings-icon">
+                                                        {{-- <div class="d-flex align-items-center ratings-icon">
                                                             <svg width="20" height="20" viewBox="0 0 20 20"
                                                                 fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -381,7 +381,7 @@
                                                                     stroke-linecap="round" stroke-linejoin="round" />
                                                             </svg>
                                                             <p class="font-para--md">4.9 Star Rating</p>
-                                                        </div>
+                                                        </div> --}}
                                                         <div class="d-flex align-items-center ratings-icon">
                                                             <svg width="18" height="18" viewBox="0 0 18 18"
                                                                 fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -395,16 +395,16 @@
                                                                     stroke-linecap="round" stroke-linejoin="round" />
                                                             </svg>
 
-                                                            <p class="font-para--md">5 Courses</p>
+                                                            <p class="font-para--md">5 khoá học</p>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <p class="lead-p font-para--lg">
-                                                {{ $course->instructor?->title ? $course->instructor?->title : 'No Title' }}
+                                                {{ $course->instructor?->title ? $course->instructor?->title : 'Không có tiêu đề' }}
                                             </p>
                                             <p class="font-para--md">
-                                                {{ $course->instructor?->bio ? $course->instructor?->bio : 'No Title' }}
+                                                {{ $course->instructor?->bio ? $course->instructor?->bio : 'Không có tiêu đề' }}
                                             </p>
                                         </div>
                                     </div>
@@ -2371,8 +2371,6 @@
                                                     fill="currentColor"></path>
                                             </svg>
                                         </a>
-
-
                                     </li>
                                 </ul>
                             </div>
@@ -2416,13 +2414,13 @@
                                         </div>
                                     </div>
                                     <div class="contentCard-more">
-                                        <div class="d-flex align-items-center">
+                                        {{-- <div class="d-flex align-items-center">
                                             <div class="icon">
                                                 <img src="{{ asset('frontend/dist/images/icon/star.png') }}"
                                                     alt="star" />
                                             </div>
                                             <span>4.5</span>
-                                        </div>
+                                        </div> --}}
                                         <div class="eye d-flex align-items-center">
                                             <div class="icon">
                                                 <img src="{{ asset('frontend/dist/images/icon/eye.png') }}"
@@ -2435,14 +2433,14 @@
                                                 <img src="{{ asset('frontend/dist/images/icon/book.png') }}"
                                                     alt="location" />
                                             </div>
-                                            <span>37 Lesson</span>
+                                            <span>37 Bài học</span>
                                         </div>
                                         <div class="clock d-flex align-items-center">
                                             <div class="icon">
                                                 <img src="{{ asset('frontend/dist/images/icon/Clock.png') }}"
                                                     alt="clock" />
                                             </div>
-                                            <span>3 Hours</span>
+                                            <span>3 Giờ</span>
                                         </div>
                                     </div>
                                 </div>
@@ -2469,13 +2467,13 @@
                                         </div>
                                     </div>
                                     <div class="contentCard-more">
-                                        <div class="d-flex align-items-center">
+                                        {{-- <div class="d-flex align-items-center">
                                             <div class="icon">
                                                 <img src="{{ asset('frontend/dist/images/icon/star.png') }}"
                                                     alt="star" />
                                             </div>
                                             <span>4.5</span>
-                                        </div>
+                                        </div> --}}
                                         <div class="eye d-flex align-items-center">
                                             <div class="icon">
                                                 <img src="{{ asset('frontend/dist/images/icon/eye.png') }}"
@@ -2488,14 +2486,14 @@
                                                 <img src="{{ asset('frontend/dist/images/icon/book.png') }}"
                                                     alt="location" />
                                             </div>
-                                            <span>37 Lesson</span>
+                                            <span>37 Bài học</span>
                                         </div>
                                         <div class="clock d-flex align-items-center">
                                             <div class="icon">
                                                 <img src="{{ asset('frontend/dist/images/icon/Clock.png') }}"
                                                     alt="clock" />
                                             </div>
-                                            <span>3 Hours</span>
+                                            <span>3 Giờ</span>
                                         </div>
                                     </div>
                                 </div>
@@ -2522,13 +2520,13 @@
                                         </div>
                                     </div>
                                     <div class="contentCard-more">
-                                        <div class="d-flex align-items-center">
+                                        {{-- <div class="d-flex align-items-center">
                                             <div class="icon">
                                                 <img src="{{ asset('frontend/dist/images/icon/star.png') }}"
                                                     alt="star" />
                                             </div>
                                             <span>4.5</span>
-                                        </div>
+                                        </div> --}}
                                         <div class="eye d-flex align-items-center">
                                             <div class="icon">
                                                 <img src="{{ asset('frontend/dist/images/icon/eye.png') }}"
@@ -2541,14 +2539,14 @@
                                                 <img src="{{ asset('frontend/dist/images/icon/book.png') }}"
                                                     alt="location" />
                                             </div>
-                                            <span>37 Lesson</span>
+                                            <span>37 Bài học</span>
                                         </div>
                                         <div class="clock d-flex align-items-center">
                                             <div class="icon">
                                                 <img src="{{ asset('frontend/dist/images/icon/Clock.png') }}"
                                                     alt="clock" />
                                             </div>
-                                            <span>3 Hours</span>
+                                            <span>3 Giờ</span>
                                         </div>
                                     </div>
                                 </div>
@@ -2575,13 +2573,13 @@
                                         </div>
                                     </div>
                                     <div class="contentCard-more">
-                                        <div class="d-flex align-items-center">
+                                        {{-- <div class="d-flex align-items-center">
                                             <div class="icon">
                                                 <img src="{{ asset('frontend/dist/images/icon/star.png') }}"
                                                     alt="star" />
                                             </div>
                                             <span>4.5</span>
-                                        </div>
+                                        </div> --}}
                                         <div class="eye d-flex align-items-center">
                                             <div class="icon">
                                                 <img src="{{ asset('frontend/dist/images/icon/eye.png') }}"
@@ -2594,14 +2592,14 @@
                                                 <img src="{{ asset('frontend/dist/images/icon/book.png') }}"
                                                     alt="location" />
                                             </div>
-                                            <span>37 Lesson</span>
+                                            <span>37 Bài học</span>
                                         </div>
                                         <div class="clock d-flex align-items-center">
                                             <div class="icon">
                                                 <img src="{{ asset('frontend/dist/images/icon/Clock.png') }}"
                                                     alt="clock" />
                                             </div>
-                                            <span>3 Hours</span>
+                                            <span>3 Giờ</span>
                                         </div>
                                     </div>
                                 </div>

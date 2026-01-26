@@ -192,7 +192,7 @@
                             </div>
                         </div> --}}
                         <!-- Search by Rating  -->
-                        <div class="accordion-item">
+                        {{-- <div class="accordion-item">
                             <h2 class="accordion-header" id="ratingAcc">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#ratingCollapse" aria-expanded="false"
@@ -261,7 +261,7 @@
                                     </form>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                     </div>
                 </div>
@@ -269,16 +269,9 @@
                 <div class="col-lg-8">
                     <div class="event-search-results">
                         <div class="event-search-results-heading">
-                            <div class="nice-select" tabindex="0">
-                                <span class="current">Được xem nhiều nhất</span>
-                                <ul class="list">
-                                    <li data-value="Nothing" data-display="category" class="option selected focus">
-                                        Không có gì
-                                    </li>
-                                    <li data-value="1" class="option">Một số tùy chọn</li>
-                                    <li data-value="2" class="option">Một lựa chọn khác</li>
-                                    <li data-value="4" class="option">Khoai tây</li>
-                                </ul>
+                            <div>
+                                <h3 class="current">KHOÁ HỌC</h3>
+
                             </div>
                             <p>{{ $course->count() }} KHÓA HỌC.</p>
                             <button class="button button-lg button--primary button--primary-filter d-lg-none"
@@ -344,13 +337,13 @@
                                             </div>
                                         </div>
                                         <div class="contentCard-more">
-                                            <div class="d-flex align-items-center">
+                                            {{-- <div class="d-flex align-items-center">
                                                 <div class="icon">
                                                     <img src="{{ asset('frontend/dist/images/icon/star.png') }}"
                                                         alt="star" />
                                                 </div>
                                                 <span>4.5</span>
-                                            </div>
+                                            </div> --}}
                                             <div class="eye d-flex align-items-center">
                                                 <div class="icon">
                                                     <img src="{{ asset('frontend/dist/images/icon/eye.png') }}"

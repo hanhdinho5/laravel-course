@@ -104,7 +104,7 @@ class LessonController extends Controller
     {
         $data = Lesson::findOrFail(encryptor('decrypt', $id));
         if ($data->delete()) {
-            $this->notice::error('Data Deleted!');
+            $this->notice::error('Xoá dữ liệu thành công!');
             return redirect()->back();
         }
     }

@@ -9,8 +9,8 @@
 @section('content')
 
     <!--**********************************
-                Content body start
-            ***********************************-->
+                        Content body start
+                    ***********************************-->
     <div class="content-body">
         <!-- row -->
         <div class="container-fluid">
@@ -69,7 +69,7 @@
                                                             <span
                                                                 class="badge {{ $d->category_status == 1
                                                                     ? "
-                                                                                                                                                                                                                                                        badge-success"
+                                                                                                                                                                                                                                                                                                                                                                                        badge-success"
                                                                     : 'badge-danger' }}">
                                                                 @if ($d->category_status == 1)
                                                                     {{ __('Active') }}
@@ -85,10 +85,10 @@
                                                         </td>
                                                         <td>
                                                             <a href="{{ route('courseCategory.edit', $d->id) }}"
-                                                                class="btn btn-sm btn-primary" title="Edit"><i
+                                                                class="btn btn-sm btn-primary" title="Sửa"><i
                                                                     class="la la-pencil"></i></a>
                                                             <a href="javascript:void(0);" class="btn btn-sm btn-danger"
-                                                                title="Delete"
+                                                                title="Xoá"
                                                                 onclick="$('#form{{ $d->id }}').submit()"><i
                                                                     class="la la-trash-o"></i></a>
                                                             <form id="form{{ $d->id }}"
@@ -147,7 +147,7 @@
                                                             <strong><span
                                                                     class="badge {{ $d->category_status == 1
                                                                         ? "
-                                                                                                                                                                                                                                                                    badge-success"
+                                                                                                                                                                                                                                                                                                                                                                                                            badge-success"
                                                                         : 'badge-danger' }}">
                                                                     @if ($d->category_status == 1)
                                                                         {{ __('Active') }}
@@ -186,8 +186,8 @@
         </div>
     </div>
     <!--**********************************
-                Content body end
-            ***********************************-->
+                        Content body end
+                    ***********************************-->
 
 @endsection
 

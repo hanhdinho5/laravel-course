@@ -68,10 +68,10 @@
                                                         <td>{{ $r->student?->name_en }}</td>
                                                         <td>
                                                             <a href="{{ route('review.edit', encryptor('encrypt', $r->id)) }}"
-                                                                class="btn btn-sm btn-primary" title="Edit"><i
+                                                                class="btn btn-sm btn-primary" title="Sửa"><i
                                                                     class="la la-pencil"></i></a>
                                                             <a href="javascript:void(0);" class="btn btn-sm btn-danger"
-                                                                title="Delete"
+                                                                title="Xoá"
                                                                 onclick="$('#form{{ $r->id }}').submit()"><i
                                                                     class="la la-trash-o"></i></a>
                                                             <form id="form{{ $r->id }}"

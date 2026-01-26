@@ -141,7 +141,7 @@
                                                 <td colspan="5">Không có học viên mới nào</td>
                                             </tr>
                                         @endforelse
-                                        <tr class="btn-reveal-trigger">
+                                        {{-- <tr class="btn-reveal-trigger">
                                             <td class="p-3">
                                                 <a href="javascript:void(0);">
                                                     <div class="media d-flex align-items-center">
@@ -240,7 +240,7 @@
                                                 <a href="javascript:void(0);" class="btn btn-sm btn-danger"><i
                                                         class="la la-trash-o"></i></a>
                                             </td>
-                                        </tr>
+                                        </tr> --}}
 
                                     </tbody>
                                 </table>

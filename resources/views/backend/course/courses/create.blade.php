@@ -48,13 +48,7 @@
                                             <span class="text-danger"> {{ $errors->first('courseTitle_en') }}</span>
                                         @endif
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label class="form-label">টাইটেল (বাংলায়)</label>
-                                            <input type="text" class="form-control" name="courseTitle_bn"
-                                                value="{{ old('courseTitle_bn') }}">
-                                        </div>
-                                    </div>
+
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label class="form-label">Miêu tả</label>
@@ -64,15 +58,7 @@
                                             <span class="text-danger"> {{ $errors->first('courseDescription_en') }}</span>
                                         @endif
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label class="form-label">বিস্তারিত (বাংলায়)</label>
-                                            <textarea class="form-control" name="courseDescription_bn" value="{{ old('courseDescription_bn') }}"></textarea>
-                                        </div>
-                                        @if ($errors->has('courseDescription_bn'))
-                                            <span class="text-danger"> {{ $errors->first('courseDescription_bn') }}</span>
-                                        @endif
-                                    </div>
+
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label class="form-label">Loại</label>
@@ -116,15 +102,15 @@
                                                 </option>
                                                 <option value="paid" @if (old('courseType') == 'paid') selected @endif>Trả
                                                 </option>
-                                                <option value="subscription"
+                                                {{-- <option value="subscription"
                                                     @if (old('courseType') == 'subscription') selected @endif>Dựa trên đăng kí
-                                                </option>
+                                                </option> --}}
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                         <div class="form-group">
-                                            <label class="form-label">Khó khăn</label>
+                                            <label class="form-label">Trình độ</label>
                                             <select class="form-control" name="courseDifficulty">
                                                 <option value="beginner" @if (old('courseDifficulty') == 'beginner') selected @endif>
                                                     Người mới bắt đầu</option>
@@ -157,16 +143,7 @@
                                             <span class="text-danger"> {{ $errors->first('courseOldPrice') }}</span>
                                         @endif
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label class="form-label">Giá đăng kí</label>
-                                            <input type="number" class="form-control" name="subscription_price"
-                                                value="{{ old('subscription_price') }}">
-                                        </div>
-                                        @if ($errors->has('subscription_price'))
-                                            <span class="text-danger"> {{ $errors->first('subscription_price') }}</span>
-                                        @endif
-                                    </div>
+
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label class="form-label">Bắt đầu từ</label>
@@ -206,15 +183,7 @@
                                             <span class="text-danger"> {{ $errors->first('prerequisites_en') }}</span>
                                         @endif
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label class="form-label">পূর্বশর্ত (বাংলায়)</label>
-                                            <textarea class="form-control" name="prerequisites_bn" value="{{ old('prerequisites_bn') }}"></textarea>
-                                        </div>
-                                        @if ($errors->has('prerequisites_bn'))
-                                            <span class="text-danger"> {{ $errors->first('prerequisites_bn') }}</span>
-                                        @endif
-                                    </div>
+
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label class="form-label">Mã khóa học</label>
@@ -227,12 +196,12 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                         <div class="form-group">
-                                            <label class="form-label">URL video hình thu nhỏ</label>
-                                            <input type="text" class="form-control" name="thumbnail_video"
-                                                value="{{ old('thumbnail_video') }}">
+                                            <label class="form-label">URL video tổng quan</label>
+                                            <input type="text" class="form-control" name="video"
+                                                value="{{ old('video') }}">
                                         </div>
-                                        @if ($errors->has('thumbnail_video'))
-                                            <span class="text-danger"> {{ $errors->first('thumbnail_video') }}</span>
+                                        @if ($errors->has('video'))
+                                            <span class="text-danger"> {{ $errors->first('video') }}</span>
                                         @endif
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12">
@@ -265,13 +234,7 @@
                                             <input type="file" class="dropify" data-default-file="" name="image">
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <label class="form-label">Hình ảnh thu nhỏ</label>
-                                        <div class="form-group fallback w-100">
-                                            <input type="file" class="dropify" data-default-file=""
-                                                name="thumbnail_image">
-                                        </div>
-                                    </div>
+
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <button type="submit" class="btn btn-primary">Lưu</button>
                                         <button type="submit" class="btn btn-light">Hủy bỏ</button>

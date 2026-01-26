@@ -168,10 +168,11 @@
                             <div class="profile-tab">
                                 <div class="custom-tab-1">
                                     <ul class="nav nav-tabs">
-                                        <li class="nav-item"><a href="#my-posts" data-toggle="tab"
+                                        {{-- <li class="nav-item"><a href="#my-posts" data-toggle="tab"
                                                 class="nav-link active show">Bài viết</a>
-                                        </li>
-                                        <li class="nav-item"><a href="#about-me" data-toggle="tab" class="nav-link">Giới
+                                        </li> --}}
+                                        <li class="nav-item"><a href="#about-me" data-toggle="tab"
+                                                class="nav-link active show">Giới
                                                 thiệu</a>
                                         </li>
                                         <li class="nav-item"><a href="#profile-settings" data-toggle="tab"
@@ -179,77 +180,7 @@
                                         </li>
                                     </ul>
                                     <div class="tab-content">
-                                        <div id="my-posts" class="tab-pane fade active show">
-                                            <div class="my-post-content pt-3">
-                                                <div class="post-input">
-                                                    <textarea name="textarea" id="textarea" cols="30" rows="5" class="form-control bg-transparent"
-                                                        placeholder="Vui lòng nhập nội dung bạn muốn..."></textarea>
-                                                    <a href="javascript:void()"><i class="ti-clip"></i></a>
-                                                    <a href="javascript:void()"><i class="ti-camera"></i></a>
-                                                    <a href="javascript:void()" class="btn btn-primary">Đăng bài</a>
-                                                </div>
-
-                                                <div class="profile-uoloaded-post border-bottom-1 pb-5">
-                                                    <img src="{{ asset('images/profile/8.jpg') }}" alt=""
-                                                        class="img-fluid">
-                                                    <a class="post-title" href="javascript:void()">
-                                                        <h4>Bộ sưu tập mẫu vải được bày ra</h4>
-                                                    </a>
-                                                    <p>Một sự thanh thản tuyệt vời chiếm trọn tâm hồn tôi, giống như buổi
-                                                        sáng ngọt ngào này mà tôi tận hưởng bằng cả trái tim.
-                                                        Một sự thanh thản tuyệt vời chiếm trọn tâm hồn tôi giống như những
-                                                        buổi sáng ngọt ngào này mà tôi tận hưởng bằng cả trái tim.</p>
-                                                    <button class="btn btn-primary mr-3">
-                                                        <span class="mr-3"><i class="fa fa-heart"></i></span>Thích
-                                                    </button>
-                                                    <button class="btn btn-secondary">
-                                                        <span class="mr-3"><i class="fa fa-reply"></i></span>Trả lời
-                                                    </button>
-                                                </div>
-
-                                                <div class="profile-uoloaded-post border-bottom-1 pb-5">
-                                                    <img src="{{ asset('images/profile/9.jpg') }}" alt=""
-                                                        class="img-fluid">
-                                                    <a class="post-title" href="javascript:void()">
-                                                        <h4>Bộ sưu tập mẫu vải được bày ra</h4>
-                                                    </a>
-                                                    <p>Một sự thanh thản tuyệt vời chiếm trọn tâm hồn tôi, giống như buổi
-                                                        sáng ngọt ngào này mà tôi tận hưởng bằng cả trái tim.
-                                                        Một sự thanh thản tuyệt vời chiếm trọn tâm hồn tôi giống như những
-                                                        buổi sáng ngọt ngào này mà tôi tận hưởng bằng cả trái tim.</p>
-                                                    <button class="btn btn-primary mr-3">
-                                                        <span class="mr-3"><i class="fa fa-heart"></i></span>Thích
-                                                    </button>
-                                                    <button class="btn btn-secondary">
-                                                        <span class="mr-3"><i class="fa fa-reply"></i></span>Trả lời
-                                                    </button>
-                                                </div>
-
-                                                <div class="profile-uoloaded-post pb-5">
-                                                    <img src="{{ asset('images/profile/8.jpg') }}" alt=""
-                                                        class="img-fluid">
-                                                    <a class="post-title" href="javascript:void()">
-                                                        <h4>Bộ sưu tập mẫu vải được bày ra</h4>
-                                                    </a>
-                                                    <p>Một sự thanh thản tuyệt vời chiếm trọn tâm hồn tôi, giống như buổi
-                                                        sáng ngọt ngào này mà tôi tận hưởng bằng cả trái tim.
-                                                        Một sự thanh thản tuyệt vời chiếm trọn tâm hồn tôi giống như những
-                                                        buổi sáng ngọt ngào này mà tôi tận hưởng bằng cả trái tim.</p>
-                                                    <button class="btn btn-primary mr-3">
-                                                        <span class="mr-3"><i class="fa fa-heart"></i></span>Thích
-                                                    </button>
-                                                    <button class="btn btn-secondary">
-                                                        <span class="mr-3"><i class="fa fa-reply"></i></span>Trả lời
-                                                    </button>
-                                                </div>
-
-                                                <div class="text-center mb-2">
-                                                    <a href="javascript:void()" class="btn btn-primary">Xem thêm</a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div id="about-me" class="tab-pane fade">
+                                        <div id="about-me" class="tab-pane fade active show">
                                             <div class="profile-about-me">
                                                 <div class="pt-4 border-bottom-1 pb-4">
                                                     <h4 class="text-primary">Giới thiệu về tôi</h4>

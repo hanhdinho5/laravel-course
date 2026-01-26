@@ -21,11 +21,11 @@ class CourseController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $course = Course::paginate(10);
-        return view('backend.course.courses.index', compact('course'));
-    }
+    // public function index()
+    // {
+    //     $course = Course::paginate(10);
+    //     return view('backend.course.courses.index', compact('course'));
+    // }
 
     public function indexForAdmin()
     {
@@ -53,6 +53,7 @@ class CourseController extends Controller
      */
     public function store(AddNewRequest $request)
     {
+        // dd(1);
         try {
             $course = new Course;
             $course->title = $request->courseTitle_en;
@@ -60,7 +61,7 @@ class CourseController extends Controller
             $course->course_category_id = $request->categoryId;
             $course->instructor_id = $request->instructorId;
             $course->type = $request->courseType;
-            $course->price = $request->coursePrice;
+            $course->price = $request->coursePrice ?? 0;
             $course->old_price = $request->courseOldPrice;
             $course->subscription_price = $request->subscriptionPrice;
             $course->start_from = $request->start_from;
@@ -69,7 +70,7 @@ class CourseController extends Controller
             $course->difficulty = $request->courseDifficulty;
             $course->course_code = $request->course_code;
             $course->prerequisites_en = $request->prerequisites_en;
-            $course->thumbnail_video = $request->thumbnail_video;
+            $course->video = $request->video;
             $course->tag = $request->tag;
             $course->language = 'vi';
 
@@ -84,7 +85,7 @@ class CourseController extends Controller
                 $course->thumbnail_image = $thumbnailImageName;
             }
             if ($course->save())
-                return redirect()->route('course.index')->with('success', 'Lưu dữ liệu thành công!');
+                return redirect()->route('courseList')->with('success', 'Lưu dữ liệu thành công!');
             else
                 return redirect()->back()->withInput()->with('error', 'Vui lòng thử lại');
         } catch (Exception $e) {
@@ -128,6 +129,7 @@ class CourseController extends Controller
      */
     public function edit($id)
     {
+        // dd(1);
         $courseCategory = CourseCategory::get();
         $instructor = Instructor::get();
         $course = Course::findOrFail(encryptor('decrypt', $id));
@@ -155,7 +157,7 @@ class CourseController extends Controller
             $course->difficulty = $request->courseDifficulty;
             $course->course_code = $request->course_code;
             $course->prerequisites_en = $request->prerequisites_en;
-            $course->thumbnail_video = $request->thumbnail_video;
+            $course->video = $request->video;
             $course->tag = $request->tag;
             $course->language = 'vi';
 
@@ -170,7 +172,7 @@ class CourseController extends Controller
                 $course->thumbnail_image = $thumbnailImageName;
             }
             if ($course->save())
-                return redirect()->route('course.index')->with('success', 'Lưu dữ liệu thành công!');
+                return redirect()->route('courseList')->with('success', 'Lưu dữ liệu thành công!');
             else
                 return redirect()->back()->withInput()->with('error', 'Vui lòng thử lại');
         } catch (Exception $e) {
@@ -197,7 +199,7 @@ class CourseController extends Controller
             $course->difficulty = $request->courseDifficulty;
             $course->course_code = $request->course_code;
             $course->prerequisites_en = $request->prerequisites_en;
-            $course->thumbnail_video = $request->thumbnail_video;
+            $course->video = $request->video;
             $course->tag = $request->tag;
             $course->status = $request->status;
             $course->language = 'vi';
