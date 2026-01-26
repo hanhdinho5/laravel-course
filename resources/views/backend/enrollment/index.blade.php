@@ -44,11 +44,12 @@
                                             <thead>
                                                 <tr>
                                                     <th>{{ __('#') }}</th>
-                                                    <th>{{ __('Tên học sinh') }}</th>
+                                                    <th>{{ __('Tên học viên') }}</th>
                                                     <th>{{ __('Tên khóa học') }}</th>
                                                     <th>{{ __('Hình ảnh khóa học') }}</th>
-                                                    <th>{{ __('Giá trị khóa học') }}</th>
-                                                    <th>{{ __('Ngày nhập học') }}</th>
+                                                    <th>{{ __('Mã thanh toán') }}</th>
+                                                    <th>{{ __('Học phí') }}</th>
+                                                    <th>{{ __('Ngày đăng ký') }}</th>
                                                     <th>{{ __('Hoạt động') }}</th>
                                                 </tr>
                                             </thead>
@@ -65,9 +66,14 @@
                                                                 src="{{ asset('uploads/courses/' . $e->course?->image) }}"
                                                                 alt="">
                                                         </td>
-                                                        <td><strong>{{ $e->course?->price == null ? 'Free' : $e->course?->price . ' VNĐ' }}</strong>
+                                                        <td><strong>{{ $e->course?->price == null ? 'Free' : number_format($e->course?->price, 0, ',', '.') . ' VNĐ' }}</strong>
                                                         </td>
-                                                        <td><strong>{{ $e->enrollment_date }}</strong></td>
+                                                        <td>
+                                                            <strong>{{ $e->order_code }}</strong>
+                                                        </td>
+                                                        <td>
+                                                            <strong>{{ \Carbon\Carbon::parse($e->enrollment_date)->format('d/m/Y') }}</strong>
+                                                        </td>
                                                         <td>
                                                             @if ($e->status == '0')
                                                                 <button type="button"

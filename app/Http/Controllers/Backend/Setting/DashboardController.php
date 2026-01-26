@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -36,7 +37,29 @@ class DashboardController extends Controller
             ->sum('courses.price');
         // dd($totalTuitionFee);
 
+        $currentYear = Carbon::now()->year;
+        $monthlyRevenue = Enrollment::join('courses', 'enrollments.course_id', '=', 'courses.id')
+            ->whereYear('enrollments.created_at', $currentYear)
+            ->where('enrollments.status', '1')
+            ->select(DB::raw('MONTH(enrollments.created_at) as month'), DB::raw('SUM(courses.price) as total'))
+            ->groupBy('month')
+            ->pluck('total', 'month');
+        // dd($monthlyRevenue);
+        $monthlyRevenueLabels = collect(range(1, 12))->map(function ($month) {
+            return 'Tháng ' . $month;
+        })->values();
+        $monthlyRevenueData = collect(range(1, 12))->map(function ($month) use ($monthlyRevenue) {
+            return (float) ($monthlyRevenue->get($month, 0));
+        })->values();
 
-        return view('backend.adminDashboard', compact('totalStudents', 'totalCourses', 'totalTuitionFee', 'totalEnrollments', 'enrollments'));
+        return view('backend.adminDashboard', compact(
+            'totalStudents',
+            'totalCourses',
+            'totalTuitionFee',
+            'totalEnrollments',
+            'enrollments',
+            'monthlyRevenueLabels',
+            'monthlyRevenueData'
+        ));
     }
 }

@@ -50,6 +50,27 @@
         };
         var barChart = function () {
             if (jQuery("#barChart_2").length > 0) {
+                const dashboardBarChart = window.dashboardBarChart || {};
+                const chartLabels = Array.isArray(dashboardBarChart.labels)
+                    ? dashboardBarChart.labels
+                    : [
+                          "Tháng 1",
+                          "Tháng 2",
+                          "Tháng 3",
+                          "Tháng 4",
+                          "Tháng 5",
+                          "Tháng 6",
+                          "Tháng 7",
+                          "Tháng 8",
+                          "Tháng 9",
+                          "Tháng 10",
+                          "Tháng 11",
+                          "Tháng 12",
+                      ];
+                const chartData = Array.isArray(dashboardBarChart.data)
+                    ? dashboardBarChart.data
+                    : [65, 59, 80, 81, 56, 55, 40, 35, 48, 52, 60, 70];
+
                 //gradient bar chart
                 const barChart_2 = document
                     .getElementById("barChart_2")
@@ -72,19 +93,11 @@
                     type: "bar",
                     data: {
                         defaultFontFamily: "Poppins",
-                        labels: [
-                            "ThÃ¡ng 1",
-                            "ThÃ¡ng 2",
-                            "ThÃ¡ng 3",
-                            "ThÃ¡ng 4",
-                            "ThÃ¡ng 5",
-                            "ThÃ¡ng 6",
-                            "ThÃ¡ng 7",
-                        ],
+                        labels: chartLabels,
                         datasets: [
                             {
-                                label: "My First dataset",
-                                data: [65, 59, 80, 81, 56, 55, 40],
+                                label: "Doanh thu",
+                                data: chartData,
                                 borderColor: barChart_2gradientStroke,
                                 borderWidth: "0",
                                 backgroundColor: barChart_2gradientStroke,

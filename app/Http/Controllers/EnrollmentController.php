@@ -13,7 +13,7 @@ class EnrollmentController extends Controller
      */
     public function index()
     {
-        $enrollment = Enrollment::with('student')->get();
+        $enrollment = Enrollment::with('student')->orderBy('created_at', 'desc')->get();
         // dd($enrollment);
         return view('backend.enrollment.index', compact('enrollment'));
     }

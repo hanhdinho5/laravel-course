@@ -90,14 +90,14 @@
                                     session('cart_details')) ? number_format(session('cart_details')['cart_total'], 0) . ' VNĐ' :
                                     '0.00') }} --}}
                                         </li>
-                                        <li>
+                                        {{-- <li>
                                             <p>Phiếu Giảm giá ({{ session('cart_details')['discount'] ?? 0.0 }}%)</p>
                                             <p>{{ number_format(
                                                 (float) isset(session('cart_details')['discount_amount']) ? session('cart_details')['discount_amount'] : 0.0,
                                                 0,
                                             ) . ' VNĐ' }}
                                             </p>
-                                        </li>
+                                        </li> --}}
                                         <li>
                                             <p>Thuế (15%)</p>
                                             <p>{{ number_format((float) session('cart_details')['tax'], 0) . ' VNĐ' }}</p>

@@ -64,7 +64,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-6 col-xxl-6 col-sm-6">
+                <div class="col-12">
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Báo cáo Thu nhập/Chi phí</h3>
@@ -74,7 +74,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-6 col-xxl-6 col-sm-6">
+                {{-- <div class="col-xl-6 col-xxl-6 col-sm-6">
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Báo cáo Thu nhập/Chi phí</h3>
@@ -83,7 +83,7 @@
                             <canvas id="areaChart_1"></canvas>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="col-lg-12">
                     <div class="card">
@@ -264,6 +264,13 @@
 
     <!-- Chart sparkline plugin files -->
     <script src="{{ asset('vendor/jquery-sparkline/jquery.sparkline.min.js') }}"></script>
+
+    <script>
+        window.dashboardBarChart = {
+            labels: @json($monthlyRevenueLabels),
+            data: @json($monthlyRevenueData),
+        };
+    </script>
 
     <!-- Demo scripts -->
     <script src="{{ asset('js/dashboard/dashboard-3.js') }}"></script>

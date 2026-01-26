@@ -66,6 +66,10 @@
                 <li><strong>Ngân hàng:</strong> MB Bank</li>
                 <li><strong>Số tài khoản:</strong> 01622147641176</li>
                 <li><strong>Chủ tài khoản:</strong> LU A HANH</li>
+                <li>
+                    Khi chuyển khoản, vui lòng ghi đúng nội dung sau:<br>
+                    <strong style="color:red">{{ $info['order_code'] }}</strong>
+                </li>
             </ul>
             <p style="margin-top: 10px; font-style: italic; color: #666;">
                 Sau khi thanh toán, các khóa học của bạn sẽ được kích hoạt trong thời gian sớm nhất.
@@ -73,7 +77,7 @@
         </div>
 
         <div style="text-align: center; margin-top: 30px;">
-            <a href="#"
+            <a href="http://127.0.0.1:8000/searchCourse"
                 style="display: inline-block; background-color: #007bff; color: #ffffff; font-size: 16px;
                 text-decoration: none; padding: 10px 25px; border-radius: 5px;">
                 Xem danh sách khóa học
