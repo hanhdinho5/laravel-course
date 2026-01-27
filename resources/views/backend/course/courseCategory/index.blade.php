@@ -9,8 +9,8 @@
 @section('content')
 
     <!--**********************************
-                        Content body start
-                    ***********************************-->
+                                Content body start
+                            ***********************************-->
     <div class="content-body">
         <!-- row -->
         <div class="container-fluid">
@@ -61,15 +61,15 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @forelse ($data as $d)
+                                                @forelse ($data as $i=> $d)
                                                     <tr>
-                                                        <td><strong>{{ $d->id }}</strong></td>
+                                                        <td><strong>{{ ++$i }}</strong></td>
                                                         <td><strong>{{ $d->category_name }}</strong></td>
                                                         <td>
                                                             <span
                                                                 class="badge {{ $d->category_status == 1
                                                                     ? "
-                                                                                                                                                                                                                                                                                                                                                                                        badge-success"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        badge-success"
                                                                     : 'badge-danger' }}">
                                                                 @if ($d->category_status == 1)
                                                                     {{ __('Active') }}
@@ -147,7 +147,7 @@
                                                             <strong><span
                                                                     class="badge {{ $d->category_status == 1
                                                                         ? "
-                                                                                                                                                                                                                                                                                                                                                                                                            badge-success"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    badge-success"
                                                                         : 'badge-danger' }}">
                                                                     @if ($d->category_status == 1)
                                                                         {{ __('Active') }}
@@ -186,8 +186,8 @@
         </div>
     </div>
     <!--**********************************
-                        Content body end
-                    ***********************************-->
+                                Content body end
+                            ***********************************-->
 
 @endsection
 

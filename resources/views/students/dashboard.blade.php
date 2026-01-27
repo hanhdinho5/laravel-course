@@ -169,9 +169,10 @@
                                                     href="{{ route('watchCourse', encryptor('encrypt', $a->course?->id)) }}">Tới
                                                     khoá học</a>
                                             @else
-                                                <a style="color: rgb(226, 167, 16)"
-                                                    class="button button-md button--primary-outline w-100 my-3"
-                                                    href="#">Khoá học chưa kịch hoạt</a>
+                                                <button disabled class="button button-md  w-100 my-3"
+                                                    style="color: rgb(226, 167, 16)">
+                                                    Khoá học chưa kích hoạt
+                                                </button>
                                             @endif
                                             {{-- <div class="contentCard-watch--progress">
                                                 <span class="percentage" style="width: 43%;"></span>

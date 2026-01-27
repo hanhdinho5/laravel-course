@@ -43,16 +43,13 @@
                         <ul class="hero__content-location">
                             <li>
                                 <span><i class="fas fa-map-marker-alt fa-2x"></i></span>
-                                <p>Chicago, Mỹ</p>
+                                <p>Cầu Giấy, Hà Nội</p>
                             </li>
                             <li>
                                 <span><i class="fas fa-map-marker-alt fa-2x"></i></span>
-                                <p>Mumbai, Ấn Độ</p>
+                                <p>Tp. Hồ Chí Minh</p>
                             </li>
-                            <li>
-                                <span><i class="fas fa-map-marker-alt fa-2x"></i></span>
-                                <p>Rome, Ý</p>
-                            </li>
+
                         </ul>
                     </div>
                 </div>
@@ -73,8 +70,8 @@
                         </div>
                         <div class="contact-feature-text">
                             <h6>Địa chỉ</h6>
-                            <p>Số nhà #15, Đường số #15/B</p>
-                            <p>Chicago-60827, Mỹ</p>
+                            <p>TOÀ AN BÌNH PLAZA 97 Số 97 Trần Bình,</p>
+                            <p>Nam Từ Liêm, Hà Nội</p>
                         </div>
                     </div>
 
@@ -84,7 +81,7 @@
                         </div>
                         <div class="contact-feature-text">
                             <h6>Email</h6>
-                            <h5>Edu.bd@gmail.com</h5>
+                            <h5>Eduguard@gmail.com</h5>
                         </div>
                     </div>
 
@@ -94,7 +91,7 @@
                         </div>
                         <div class="contact-feature-text">
                             <h6>Điện thoại</h6>
-                            <h5>+1202-555-0621</h5>
+                            <h5>0357-158-197</h5>
                         </div>
                     </div>
                     <img src="{{ asset('frontend/dist/images/shape/dots/dots-img-03.png') }}" alt="Hình dạng"

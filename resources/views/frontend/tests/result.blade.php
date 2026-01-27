@@ -120,8 +120,9 @@
 
                 <!-- Action -->
                 <div class="result-action">
-                    <a href="#result" class="button button--primary">
-                        Xem kết quả
+                    <a href="http://127.0.0.1:8000/students/watchCourse/UlplTGJTNWg1K1pJNGpzVEVaZXJJQT09"
+                        class="button button--primary">
+                        Quay lại
                     </a>
                 </div>
 

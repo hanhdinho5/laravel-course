@@ -168,7 +168,8 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <label for="dob">Ngày sinh</label>
-                                                    <input type="date" class="form-control" name="dob" />
+                                                    <input type="date" value="{{ $student_info->date_of_birth }}"
+                                                        class="form-control" name="dob" />
                                                 </div>
                                             </div>
                                             <div class="row">
