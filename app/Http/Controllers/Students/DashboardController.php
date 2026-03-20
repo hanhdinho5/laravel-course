@@ -19,7 +19,7 @@ class DashboardController extends Controller
         $course = Course::get();
         $checkout = Checkout::where('student_id', currentUserId())->get();
         $pendingOrders = Order::where('student_id', currentUserId())
-            ->where('status', 'pending')
+            ->where('status', '0')
             ->latest('id')
             ->get();
         // $purchaseHistory = Enrollment::with(['course', 'checkout'])->orderBy('enrollment_date', 'desc')->get();

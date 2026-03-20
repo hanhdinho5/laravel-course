@@ -6,51 +6,50 @@ use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Enrollment;
 use App\Models\Student;
-use Illuminate\Http\Request;
-use App\Models\User;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        // dd(1);
-        // dd(Auth::user());
-        // $id = encryptor('decrypt', session('userId'));
-        // $user = User::find($id);
-        // dd($user);
-        // dd(Session::get('instructorId'));
-        // dd(session()->all());
         $totalStudents = Student::count();
         $totalCourses = Course::count();
-        $totalEnrollments = Student::where('created_at', '>=', Carbon::now()->subMonths(2))
-            ->count();
-        $enrollments = Enrollment::where('created_at', '>=', Carbon::now()->subMonths(2))
-            ->orderBy('created_at', 'desc')
+
+        $recentFrom = Carbon::now()->subMonths(2)->startOfDay();
+
+        $totalEnrollments = Enrollment::where('enrollment_date', '>=', $recentFrom)->count();
+
+        $enrollments = Enrollment::with(['student', 'course.instructor'])
+            ->where('enrollment_date', '>=', $recentFrom)
+            ->orderByDesc('enrollment_date')
             ->limit(10)
             ->get();
+
         $totalTuitionFee = Enrollment::join('courses', 'enrollments.course_id', '=', 'courses.id')
-            ->where('enrollments.status', '1')
+            ->where('enrollments.status', 1)
             ->sum('courses.price');
-        // dd($totalTuitionFee);
 
         $currentYear = Carbon::now()->year;
+
         $monthlyRevenue = Enrollment::join('courses', 'enrollments.course_id', '=', 'courses.id')
-            ->whereYear('enrollments.created_at', $currentYear)
-            ->where('enrollments.status', '1')
-            ->select(DB::raw('MONTH(enrollments.created_at) as month'), DB::raw('SUM(courses.price) as total'))
+            ->whereYear('enrollments.enrollment_date', $currentYear)
+            ->where('enrollments.status', 1)
+            ->select(
+                DB::raw('MONTH(enrollments.enrollment_date) as month'),
+                DB::raw('SUM(courses.price) as total')
+            )
             ->groupBy('month')
+            ->orderBy('month')
             ->pluck('total', 'month');
-        // dd($monthlyRevenue);
-        $monthlyRevenueLabels = collect(range(1, 12))->map(function ($month) {
-            return 'Tháng ' . $month;
-        })->values();
-        $monthlyRevenueData = collect(range(1, 12))->map(function ($month) use ($monthlyRevenue) {
-            return (float) ($monthlyRevenue->get($month, 0));
-        })->values();
+
+        $monthlyRevenueLabels = collect(range(1, 12))
+            ->map(fn($month) => 'Tháng ' . $month)
+            ->values();
+
+        $monthlyRevenueData = collect(range(1, 12))
+            ->map(fn($month) => (float) $monthlyRevenue->get($month, 0))
+            ->values();
 
         return view('backend.adminDashboard', compact(
             'totalStudents',

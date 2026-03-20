@@ -70,7 +70,7 @@
                                             </div>
                                         @else
                                             <div class="alert alert-warning mb-3">
-                                                Đơn đang chờ thanh toán. Trang sẽ tự làm mới sau 5 giây.
+                                                Đơn đang chờ thanh toán. Tải lại trang nếu bạn đã thanh toán.
                                             </div>
                                         @endif
 

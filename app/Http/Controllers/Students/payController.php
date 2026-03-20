@@ -18,7 +18,7 @@ class payController extends Controller
     public function store(Request $request)
     {
         if (!session('cart') || empty(session('cart'))) {
-            return redirect()->route('checkout')->with('error', 'Gi? h�ng c?a b?n dang tr?ng.');
+            return redirect()->route('checkout')->with('error', 'Giỏ hàng của bạn đang trống.');
         }
 
         $student = Student::findOrFail(currentUserId());
@@ -29,17 +29,35 @@ class payController extends Controller
 
         $amount = (int) round((float) ($cartDetails['cart_details']['total_amount'] ?? 0));
         if ($amount <= 0) {
-            return redirect()->route('checkout')->with('error', 'Kh�ng x�c d?nh du?c s? ti?n thanh to�n.');
+            return redirect()->route('checkout')->with('error', 'Không xác định được số tiền thanh toán.');
         }
 
         $order = DB::transaction(function () use ($student, $amount, $cartDetails) {
-            return Order::create([
+            $order = Order::create([
                 'student_id' => $student->id,
                 'order_code' => $this->generateOrderCode(),
                 'amount' => $amount,
-                'status' => 'pending',
+                'status' => 0,
                 'cart_data' => base64_encode(json_encode($cartDetails, JSON_UNESCAPED_UNICODE)),
             ]);
+
+            foreach (array_keys($cartDetails['cart'] ?? []) as $courseId) {
+                $enrollment = Enrollment::firstOrNew([
+                    'student_id' => $student->id,
+                    'course_id' => (int) $courseId,
+                ]);
+
+                if ((int) $enrollment->status === 1) {
+                    continue;
+                }
+
+                $enrollment->order_code = $order->order_code;
+                $enrollment->enrollment_date = now();
+                $enrollment->status = 0;
+                $enrollment->save();
+            }
+
+            return $order;
         });
 
         $emailStudent = encryptor('decrypt', session('emailAddress'));
@@ -157,13 +175,15 @@ class payController extends Controller
             $courses = $decoded['cart'] ?? [];
 
             foreach (array_keys($courses) as $courseId) {
-                Enrollment::firstOrCreate(
+                Enrollment::updateOrCreate(
                     [
                         'student_id' => $order->student_id,
                         'course_id' => (int) $courseId,
                     ],
                     [
+                        'order_code' => $order->order_code,
                         'enrollment_date' => now(),
+                        'status' => 1,
                     ]
                 );
             }
@@ -200,17 +220,23 @@ class payController extends Controller
 
             if ($deposit->status == 1) {
                 foreach (json_decode(base64_decode($check->cart_data))->cart as $key => $course) {
-                    $enrole = new Enrollment;
-                    $enrole->student_id = $check->student_id;
-                    $enrole->course_id = $key;
-                    $enrole->enrollment_date = date('Y-m-d');
-                    $enrole->save();
+                    Enrollment::updateOrCreate(
+                        [
+                            'student_id' => $check->student_id,
+                            'course_id' => (int) $key,
+                        ],
+                        [
+                            'order_code' => $check->txnid,
+                            'enrollment_date' => now(),
+                            'status' => 1,
+                        ]
+                    );
                 }
             }
             return redirect()->route('studentdashboard')->with('success', 'Payment done!');
         }
 
-        return redirect()->route('studentdashboard')->with('danger', 'Vui l�ng th? l?i!');
+        return redirect()->route('studentdashboard')->with('danger', 'Vui lòng thử lại!');
     }
 
     public function setSession($student)

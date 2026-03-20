@@ -58,7 +58,8 @@
         </p>
 
         <div style="margin-top: 25px; padding: 15px; background-color: #f9f9f9; border-left: 4px solid #007bff;">
-            <h3 style="margin-top: 0; color: #007bff;">Hướng dẫn thanh toán:</h3>
+            <h3 style="margin-top: 0; color: #007bff;">Bạn có thể thanh toán bằng cách quét mã QR trên hệ thống hoặc qua
+                thông tin dưới đây:</h3>
             <p style="margin: 0; font-size: 15px;">
                 Vui lòng thanh toán trực tiếp vào tài khoản sau để kích hoạt các khóa học của bạn:
             </p>

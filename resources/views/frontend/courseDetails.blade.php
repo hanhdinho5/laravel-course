@@ -18,7 +18,7 @@
                         <a href="index.html" class="fs-6 text-secondary">Trang chủ</a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a href="#" class="fs-6 text-secondary">Khoá học</a>
+                        <a href="#" class="fs-6 text-secondary">Khóa học</a>
                     </li>
                     <li class="breadcrumb-item fs-6 text-secondary d-none d-lg-inline-block" aria-current="page">
                         {{ $course->title }}
@@ -106,7 +106,7 @@
                                         <p class="mb-2 font-para--lg">{{ $course->prerequisites_en }}</p>
                                     </div>
                                     <div class="course-overview-main-item">
-                                        <h6 class="font-title--card">Khóa học này danh cho ai</h6>
+                                        <h6 class="font-title--card">Khóa học này dành cho ai</h6>
                                         <p class="mb-2 font-para--lg">{{ $course->description_en }}</p>
                                     </div>
                                     <div class="course-overview-main-item mb-0">
@@ -149,51 +149,56 @@
                                             <div class="curriculum-area-bottom collapse show" id="collapse1">
                                                 <div class="curriculum-description">
                                                     <div class="curriculum-description-start">
-                                                        <p><a href="#">▶</a> <a href="#">1. Giới thiệu khóa
+                                                        <p><a href="#">&#9654;</a> <a href="#">1. Giới thiệu
+                                                                khóa
                                                                 học tiếng Anh</a></p>
                                                     </div>
                                                     <div class="curriculum-description-end">
-                                                        <p>08:15</p><span>🔒</span>
+                                                        <p>08:15</p><span>&#128274;</span>
                                                     </div>
                                                 </div>
 
                                                 <div class="curriculum-description">
                                                     <div class="curriculum-description-start">
-                                                        <p><a href="#">▶</a> <a href="#">2. Bảng chữ cái tiếng
+                                                        <p><a href="#">&#9654;</a> <a href="#">2. Bảng chữ cái
+                                                                tiếng
                                                                 Anh (Alphabet)</a></p>
                                                     </div>
                                                     <div class="curriculum-description-end">
-                                                        <p>15:40</p><span>🔒</span>
+                                                        <p>15:40</p><span>&#128274;</span>
                                                     </div>
                                                 </div>
 
                                                 <div class="curriculum-description active">
                                                     <div class="curriculum-description-start">
-                                                        <p><a href="#">▶</a> <a href="#">3. Cách phát âm chuẩn
+                                                        <p><a href="#">&#9654;</a> <a href="#">3. Cách phát âm
+                                                                chuẩn
                                                                 26 chữ cái</a></p>
                                                     </div>
                                                     <div class="curriculum-description-end">
-                                                        <p>20:10</p><span>🔒</span>
+                                                        <p>20:10</p><span>&#128274;</span>
                                                     </div>
                                                 </div>
 
                                                 <div class="curriculum-description">
                                                     <div class="curriculum-description-start">
-                                                        <p><a href="#">▶</a> <a href="#">4. Trọng âm và ngữ
+                                                        <p><a href="#">&#9654;</a> <a href="#">4. Trọng âm và
+                                                                ngữ
                                                                 điệu cơ bản</a></p>
                                                     </div>
                                                     <div class="curriculum-description-end">
-                                                        <p>22:35</p><span>🔒</span>
+                                                        <p>22:35</p><span>&#128274;</span>
                                                     </div>
                                                 </div>
 
                                                 <div class="curriculum-description">
                                                     <div class="curriculum-description-start">
-                                                        <p><a href="#">▶</a> <a href="#">5. Luyện nghe tiếng
+                                                        <p><a href="#">&#9654;</a> <a href="#">5. Luyện nghe
+                                                                tiếng
                                                                 Anh cho người mới</a></p>
                                                     </div>
                                                     <div class="curriculum-description-end">
-                                                        <p>23:20</p><span>🔒</span>
+                                                        <p>23:20</p><span>&#128274;</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -226,51 +231,56 @@
                                             <div class="curriculum-area-bottom collapse" id="collapse2">
                                                 <div class="curriculum-description">
                                                     <div class="curriculum-description-start">
-                                                        <p><a href="#">▶</a> <a href="#">1. Danh từ và mạo từ
+                                                        <p><a href="#">&#9654;</a> <a href="#">1. Danh từ và
+                                                                mạo từ
                                                                 (a, an, the)</a></p>
                                                     </div>
                                                     <div class="curriculum-description-end">
-                                                        <p>18:30</p><span>🔒</span>
+                                                        <p>18:30</p><span>&#128274;</span>
                                                     </div>
                                                 </div>
 
                                                 <div class="curriculum-description">
                                                     <div class="curriculum-description-start">
-                                                        <p><a href="#">▶</a> <a href="#">2. Đại từ nhân xưng
+                                                        <p><a href="#">&#9654;</a> <a href="#">2. Đại từ nhân
+                                                                xưng
                                                                 và sở hữu</a></p>
                                                     </div>
                                                     <div class="curriculum-description-end">
-                                                        <p>21:00</p><span>🔒</span>
+                                                        <p>21:00</p><span>&#128274;</span>
                                                     </div>
                                                 </div>
 
                                                 <div class="curriculum-description">
                                                     <div class="curriculum-description-start">
-                                                        <p><a href="#">▶</a> <a href="#">3. Thì hiện tại đơn
+                                                        <p><a href="#">&#9654;</a> <a href="#">3. Thì hiện tại
+                                                                đơn
                                                                 (Present Simple)</a></p>
                                                     </div>
                                                     <div class="curriculum-description-end">
-                                                        <p>25:40</p><span>🔒</span>
+                                                        <p>25:40</p><span>&#128274;</span>
                                                     </div>
                                                 </div>
 
                                                 <div class="curriculum-description">
                                                     <div class="curriculum-description-start">
-                                                        <p><a href="#">▶</a> <a href="#">4. Cách đặt câu hỏi
+                                                        <p><a href="#">&#9654;</a> <a href="#">4. Cách đặt câu
+                                                                hỏi
                                                                 trong tiếng Anh</a></p>
                                                     </div>
                                                     <div class="curriculum-description-end">
-                                                        <p>19:50</p><span>🔒</span>
+                                                        <p>19:50</p><span>&#128274;</span>
                                                     </div>
                                                 </div>
 
                                                 <div class="curriculum-description">
                                                     <div class="curriculum-description-start">
-                                                        <p><a href="#">▶</a> <a href="#">5. Từ vựng theo chủ
+                                                        <p><a href="#">&#9654;</a> <a href="#">5. Từ vựng theo
+                                                                chủ
                                                                 đề hằng ngày</a></p>
                                                     </div>
                                                     <div class="curriculum-description-end">
-                                                        <p>22:15</p><span>🔒</span>
+                                                        <p>22:15</p><span>&#128274;</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -303,41 +313,45 @@
                                             <div class="curriculum-area-bottom collapse" id="collapse3">
                                                 <div class="curriculum-description">
                                                     <div class="curriculum-description-start">
-                                                        <p><a href="#">▶</a> <a href="#">1. Chào hỏi và giới
+                                                        <p><a href="#">&#9654;</a> <a href="#">1. Chào hỏi và
+                                                                giới
                                                                 thiệu bản thân</a></p>
                                                     </div>
                                                     <div class="curriculum-description-end">
-                                                        <p>18:00</p><span>🔒</span>
+                                                        <p>18:00</p><span>&#128274;</span>
                                                     </div>
                                                 </div>
 
                                                 <div class="curriculum-description">
                                                     <div class="curriculum-description-start">
-                                                        <p><a href="#">▶</a> <a href="#">2. Hỏi đường và chỉ
+                                                        <p><a href="#">&#9654;</a> <a href="#">2. Hỏi đường và
+                                                                chỉ
                                                                 đường</a></p>
                                                     </div>
                                                     <div class="curriculum-description-end">
-                                                        <p>20:30</p><span>🔒</span>
+                                                        <p>20:30</p><span>&#128274;</span>
                                                     </div>
                                                 </div>
 
                                                 <div class="curriculum-description active">
                                                     <div class="curriculum-description-start">
-                                                        <p><a href="#">▶</a> <a href="#">3. Giao tiếp trong
+                                                        <p><a href="#">&#9654;</a> <a href="#">3. Giao tiếp
+                                                                trong
                                                                 quán cà phê & nhà hàng</a></p>
                                                     </div>
                                                     <div class="curriculum-description-end">
-                                                        <p>24:10</p><span>🔒</span>
+                                                        <p>24:10</p><span>&#128274;</span>
                                                     </div>
                                                 </div>
 
                                                 <div class="curriculum-description">
                                                     <div class="curriculum-description-start">
-                                                        <p><a href="#">▶</a> <a href="#">4. Hội thoại tiếng
+                                                        <p><a href="#">&#9654;</a> <a href="#">4. Hội thoại
+                                                                tiếng
                                                                 Anh thực tế</a></p>
                                                     </div>
                                                     <div class="curriculum-description-end">
-                                                        <p>22:20</p><span>🔒</span>
+                                                        <p>22:20</p><span>&#128274;</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -369,7 +383,7 @@
                                                         {{ $course->instructor?->designation
                                                             ? $course->instructor?->designation
                                                             : 'No
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Designation' }}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Designation' }}
                                                     </p>
                                                     <div class="d-flex align-items-center instructor-text-bottom">
                                                         {{-- <div class="d-flex align-items-center ratings-icon">
@@ -395,7 +409,7 @@
                                                                     stroke-linecap="round" stroke-linejoin="round" />
                                                             </svg>
 
-                                                            <p class="font-para--md">5 khoá học</p>
+                                                            <p class="font-para--md">5 khóa học</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -442,8 +456,8 @@
                                                                 <a href="#">Brandon Dias</a>
                                                             </div>
                                                             <div class="price">
-                                                                <del>৳95</del>
-                                                                <span>৳12</span>
+                                                                <del>?95</del>
+                                                                <span>?12</span>
                                                             </div>
                                                         </div>
                                                         <div
@@ -557,8 +571,8 @@
                                                                 <a href="#">Brandon Dias</a>
                                                             </div>
                                                             <div class="price">
-                                                                <del>৳95</del>
-                                                                <span>৳12</span>
+                                                                <del>?95</del>
+                                                                <span>?12</span>
                                                             </div>
                                                         </div>
                                                         <div
@@ -673,8 +687,8 @@
                                                                 <a href="#">Brandon Dias</a>
                                                             </div>
                                                             <div class="price">
-                                                                <del>৳95</del>
-                                                                <span>৳12</span>
+                                                                <del>?95</del>
+                                                                <span>?12</span>
                                                             </div>
                                                         </div>
                                                         <div
@@ -789,8 +803,8 @@
                                                                 <a href="#">Brandon Dias</a>
                                                             </div>
                                                             <div class="price">
-                                                                <del>৳95</del>
-                                                                <span>৳12</span>
+                                                                <del>?95</del>
+                                                                <span>?12</span>
                                                             </div>
                                                         </div>
                                                         <div
@@ -891,7 +905,8 @@
                                                     <div class="course__content">
                                                         <div class="course__content_title">
                                                             <h6>
-                                                                <a href="#">Adobe Illustrator CC – Advanced Training
+                                                                <a href="#">Adobe Illustrator CC ??" Advanced
+                                                                    Training
                                                                     Course...</a>
                                                             </h6>
                                                         </div>
@@ -904,8 +919,8 @@
                                                                 <a href="#">Brandon Dias</a>
                                                             </div>
                                                             <div class="price">
-                                                                <del>৳95</del>
-                                                                <span>৳12</span>
+                                                                <del>?95</del>
+                                                                <span>?12</span>
                                                             </div>
                                                         </div>
                                                         <div
@@ -1019,8 +1034,8 @@
                                                                 <a href="#">Brandon Dias</a>
                                                             </div>
                                                             <div class="price">
-                                                                <del>৳95</del>
-                                                                <span>৳12</span>
+                                                                <del>?95</del>
+                                                                <span>?12</span>
                                                             </div>
                                                         </div>
                                                         <div
@@ -1135,8 +1150,8 @@
                                                                 <a href="#">Brandon Dias</a>
                                                             </div>
                                                             <div class="price">
-                                                                <del>৳95</del>
-                                                                <span>৳12</span>
+                                                                <del>?95</del>
+                                                                <span>?12</span>
                                                             </div>
                                                         </div>
                                                         <div
@@ -1252,8 +1267,8 @@
                                                                 <a href="#">Brandon Dias</a>
                                                             </div>
                                                             <div class="price">
-                                                                <del>৳95</del>
-                                                                <span>৳12</span>
+                                                                <del>?95</del>
+                                                                <span>?12</span>
                                                             </div>
                                                         </div>
                                                         <div
@@ -1416,9 +1431,8 @@
                                                                     </svg>
                                                                 </li>
                                                                 <li class="list-inline-item">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                                        width="24" height="24"
-                                                                        viewBox="0 0 24 24" fill="none"
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                        height="24" viewBox="0 0 24 24" fill="none"
                                                                         stroke="currentColor" stroke-width="2"
                                                                         stroke-linecap="round" stroke-linejoin="round"
                                                                         class="feather feather-star">
@@ -1955,7 +1969,7 @@
                                                             Aliquam eget leo quis neque molestie dictum. Etiam ut tortor
                                                             tempor, vestibulum ante non, vulputate nibh. Cras non
                                                             molestie
-                                                            diam. Great Course for Beginner 😀
+                                                            diam. Great Course for Beginner ?Y~?
                                                         </p>
                                                     </div>
                                                     <div class="students-feedback-item">
@@ -2252,7 +2266,7 @@
                                     <h3 class="font-title--sm">
                                         {{ $course->price ? number_format($course->price, 0, ',', '.') . ' VNĐ' : 'Miễn phí' }}
                                     </h3>
-                                    {{-- <p><del>{{$course->old_price?number_format($course->old_price, 0, ',', '.') . ' VNĐ':''}}</del></p> --}}
+                                    {{-- <p><del>{{$course->old_price?number_format($course->old_price, 0, ',', '.') . ' VND':''}}</del></p> --}}
                                 </div>
                                 <div class="current-discount">
                                     @if ($course->price)
@@ -2272,9 +2286,12 @@
                                             class="text-white button button-lg button--primary w-100">Thêm giỏ hàng</a>
 
                                     </form>
-                                @else
-                                    <button class="btn btn-success p-3" type="button">Bạn đã đăng ký khoá học
+                                @elseif ((int) $enrollment->status === 1)
+                                    <button class="btn btn-success p-3" type="button">Bạn đã đăng ký khóa học
                                         này</button>
+                                @else
+                                    <a href="{{ route('payment.order.qr', $enrollment->order_code) }}"
+                                        class="button button-lg button--warning w-100">Tiếp tục thanh toán</a>
                                 @endif
                             </div>
                             <div class="cart__includes-info">
@@ -2285,11 +2302,7 @@
                                                 alt="dollar" /></span>
                                         <p class="font-para--md">Truy cập trọn đời</p>
                                     </li>
-                                    <li>
-                                        <span><img src="{{ asset('frontend/dist/images/icon/clock-2.png') }}"
-                                                alt="clock" /></span>
-                                        <p class="font-para--md">Đảm bảo hoàn tiền trong 30 ngày</p>
-                                    </li>
+
                                     <li>
                                         <span><img src="{{ asset('frontend/dist/images/icon/paper-plus.png') }}"
                                                 alt="paper-plus" /></span>
@@ -2386,7 +2399,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-12">
-                    <h2 class="font-title--md text-center">Khoá học liên quan</h2>
+                    <h2 class="font-title--md text-center">Khóa học liên quan</h2>
                 </div>
                 <div class="row">
                     <div class="col-12 position-relative px-0 mx-0">
@@ -2406,11 +2419,11 @@
                                             class="contentCard-user d-flex align-items-center">
                                             <img src="{{ asset('frontend/dist/images/courses/7.png') }}"
                                                 alt="client-image" class="rounded-circle" />
-                                            <p class="font-para--md">Nguyển Ánh Nhung</p>
+                                            <p class="font-para--md">Nguyễn Ánh Nhung</p>
                                         </a>
                                         <div class="price">
-                                            <span>350.000 VNĐ</span>
-                                            {{-- <del>৳95</del> --}}
+                                            <span>350.000 VND</span>
+                                            {{-- <del>?95</del> --}}
                                         </div>
                                     </div>
                                     <div class="contentCard-more">
@@ -2463,7 +2476,7 @@
                                             <p class="font-para--md">Đoàn Thanh Trí</p>
                                         </a>
                                         <div class="price">
-                                            <span>280.000 VNĐ</span>
+                                            <span>280.000 VND</span>
                                         </div>
                                     </div>
                                     <div class="contentCard-more">
@@ -2516,7 +2529,7 @@
                                             <p class="font-para--md">Ngọc Khánh</p>
                                         </a>
                                         <div class="price">
-                                            <span>150.000 VNĐ</span>
+                                            <span>150.000 VND</span>
                                         </div>
                                     </div>
                                     <div class="contentCard-more">
@@ -2569,7 +2582,7 @@
                                             <p class="font-para--md">Nguyễn Anh Tú</p>
                                         </a>
                                         <div class="price">
-                                            <span>400.000 VNĐ</span>
+                                            <span>400.000 VND</span>
                                         </div>
                                     </div>
                                     <div class="contentCard-more">

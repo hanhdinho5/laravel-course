@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Enrollment;
 use App\Http\Controllers\Controller;
+use App\Models\Enrollment;
 use Illuminate\Http\Request;
 
 class EnrollmentController extends Controller
@@ -13,20 +13,20 @@ class EnrollmentController extends Controller
      */
     public function index()
     {
-        $enrollment = Enrollment::with('student')->orderBy('created_at', 'desc')->get();
-        // dd($enrollment);
+        $enrollment = Enrollment::with(['student', 'course'])->orderBy('created_at', 'desc')->get();
         return view('backend.enrollment.index', compact('enrollment'));
     }
 
-    // Kích hoạt khoá học khi học viên thanh toán
+    // Kích hoạt khóa học khi học viên thanh toán
     public function activate($id)
     {
         $enrollment = Enrollment::findOrFail($id);
-        $enrollment->status = '1';
+        $enrollment->status = 1;
         $enrollment->save();
 
         return response()->json(['success' => true, 'message' => 'Kích hoạt thành công']);
     }
+
     /**
      * Show the form for creating a new resource.
      */

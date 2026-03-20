@@ -96,10 +96,11 @@
                                     <thead>
                                         <tr>
                                             <th class="px-5 py-3">Họ tên</th>
+                                            <th class="py-3">Khoá học</th>
                                             <th class="py-3">Giảng viên</th>
                                             <th class="py-3">Trạng thái</th>
                                             <th class="py-3">Ngày nhập học</th>
-                                            <th class="py-3">Sửa đổi</th>
+                                            {{-- <th class="py-3">Sửa đổi</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody id="customers">
@@ -109,9 +110,9 @@
                                                     <a href="javascript:void(0);">
                                                         <div class="media d-flex align-items-center">
                                                             <div class="avatar avatar-xl mr-2">
-                                                                <img class="rounded-circle img-fluid"
-                                                                    src="{{ asset('images/avatar/5.png') }}" width="30"
-                                                                    alt="">
+                                                                <img src="{{ $enrollment->student?->image ? asset('uploads/students/' . $enrollment->student?->image) : asset('uploads/students/avatar.png') }}"
+                                                                    alt=""
+                                                                    style="width:40px; height:40px; object-fit:cover; border-radius:50%;">
                                                             </div>
                                                             <div class="media-body">
                                                                 <h5 class="mb-0 fs--1">{{ $enrollment->student?->name_en }}
@@ -120,127 +121,32 @@
                                                         </div>
                                                     </a>
                                                 </td>
+                                                <td class="py-2">{{ $enrollment->course?->title }}</td>
                                                 <td class="py-2">{{ $enrollment->course?->instructor?->name_en }}</td>
                                                 <td>
                                                     @if ($enrollment->status == '1')
-                                                        <span class="badge badge-rounded badge-success">Đã duyệt</span>
+                                                        <span class="badge badge-rounded badge-success">Đã thanh toán</span>
                                                     @else
-                                                        <span class="badge badge-rounded badge-warning">Chờ duyệt</span>
+                                                        <span class="badge badge-rounded badge-warning">Chờ thanh
+                                                            toán</span>
                                                     @endif
                                                 </td>
-                                                <td class="py-2">{{ $enrollment->created_at->format('d/m/Y') }}</td>
-                                                <td>
+                                                <td class="py-2">
+                                                    {{ \Carbon\Carbon::parse($enrollment->enrollment_date)->format('d/m/Y') }}
+                                                </td>
+                                                {{-- <td>
                                                     <a href="edit-student.html" class="btn btn-sm btn-primary"><i
                                                             class="la la-pencil"></i></a>
                                                     <a href="javascript:void(0);" class="btn btn-sm btn-danger"><i
                                                             class="la la-trash-o"></i></a>
-                                                </td>
+                                                </td> --}}
                                             </tr>
                                         @empty
                                             <tr>
                                                 <td colspan="5">Không có học viên mới nào</td>
                                             </tr>
                                         @endforelse
-                                        {{-- <tr class="btn-reveal-trigger">
-                                            <td class="p-3">
-                                                <a href="javascript:void(0);">
-                                                    <div class="media d-flex align-items-center">
-                                                        <div class="avatar avatar-xl mr-2">
-                                                            <img class="rounded-circle img-fluid"
-                                                                src="{{ asset('images/avatar/1.png') }}" alt=""
-                                                                width="30">
-                                                        </div>
-                                                        <div class="media-body">
-                                                            <h5 class="mb-0 fs--1">Lê Thu Hà</h5>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </td>
-                                            <td class="py-2">Nguyễn Văn Hùng</td>
-                                            <td><span class="badge badge-rounded badge-warning">Chờ duyệt</span></td>
-                                            <td class="py-2">11/07/2017</td>
-                                            <td>
-                                                <a href="edit-student.html" class="btn btn-sm btn-primary"><i
-                                                        class="la la-pencil"></i></a>
-                                                <a href="javascript:void(0);" class="btn btn-sm btn-danger"><i
-                                                        class="la la-trash-o"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr class="btn-reveal-trigger">
-                                            <td class="p-3">
-                                                <a href="javascript:void(0);">
-                                                    <div class="media d-flex align-items-center">
-                                                        <div class="avatar avatar-xl mr-2">
-                                                            <img class="rounded-circle img-fluid"
-                                                                src="{{ asset('images/avatar/5.png') }}" width="30"
-                                                                alt="">
-                                                        </div>
-                                                        <div class="media-body">
-                                                            <h5 class="mb-0 fs--1">Phạm Anh Tuấn</h5>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </td>
-                                            <td class="py-2">Vũ Thị Mai</td>
-                                            <td><span class="badge badge-rounded badge-success">Đã duyệt</span></td>
-                                            <td class="py-2">05/04/2016</td>
-                                            <td>
-                                                <a href="edit-student.html" class="btn btn-sm btn-primary"><i
-                                                        class="la la-pencil"></i></a>
-                                                <a href="javascript:void(0);" class="btn btn-sm btn-danger"><i
-                                                        class="la la-trash-o"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr class="btn-reveal-trigger">
-                                            <td class="p-3">
-                                                <a href="javascript:void(0);">
-                                                    <div class="media d-flex align-items-center">
-                                                        <div class="avatar avatar-xl mr-2">
-                                                            <img class="rounded-circle img-fluid"
-                                                                src="{{ asset('images/avatar/1.png') }}" alt=""
-                                                                width="30">
-                                                        </div>
-                                                        <div class="media-body">
-                                                            <h5 class="mb-0 fs--1">Đinh Hữu Phước</h5>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </td>
-                                            <td class="py-2">Trần Văn Lâm</td>
-                                            <td><span class="badge badge-rounded badge-success">Đã duyệt</span></td>
-                                            <td class="py-2">05/04/2018</td>
-                                            <td>
-                                                <a href="edit-student.html" class="btn btn-sm btn-primary"><i
-                                                        class="la la-pencil"></i></a>
-                                                <a href="javascript:void(0);" class="btn btn-sm btn-danger"><i
-                                                        class="la la-trash-o"></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr class="btn-reveal-trigger">
-                                            <td class="p-3">
-                                                <a href="javascript:void(0);">
-                                                    <div class="media d-flex align-items-center">
-                                                        <div class="avatar avatar-xl mr-2">
-                                                            <img class="rounded-circle img-fluid"
-                                                                src="{{ asset('images/avatar/1.png') }}" alt=""
-                                                                width="30">
-                                                        </div>
-                                                        <div class="media-body">
-                                                            <h5 class="mb-0 fs--1">Hoàng Thị Lan</h5>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </td>
-                                            <td class="py-2">Lê Minh Đức</td>
-                                            <td><span class="badge badge-rounded badge-warning">Chờ duyệt</span></td>
-                                            <td class="py-2">17/03/2016</td>
-                                            <td>
-                                                <a href="edit-student.html" class="btn btn-sm btn-primary"><i
-                                                        class="la la-pencil"></i></a>
-                                                <a href="javascript:void(0);" class="btn btn-sm btn-danger"><i
-                                                        class="la la-trash-o"></i></a>
-                                            </td>
-                                        </tr> --}}
+
 
                                     </tbody>
                                 </table>
