@@ -36,7 +36,7 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">DANH SÁCH TẤT CẢ ĐƠN ĐĂNG KÍ </h4>
-                                    <a href="{{ route('enrollment.create') }}" class="btn btn-primary">+ Thêm mới</a>
+                                    {{-- <a href="" class="btn btn-primary"></a> --}}
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">

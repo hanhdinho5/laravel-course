@@ -28,4 +28,9 @@ class Student extends Model
     {
         return $this->hasMany(Enrollment::class);
     }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

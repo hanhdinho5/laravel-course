@@ -32,8 +32,7 @@
                     <ul class="nav nav-pills mb-3">
                         <li class="nav-item"><a href="#list-view" data-toggle="tab"
                                 class="nav-link btn-primary mr-1 show active">Chế độ xem danh sách</a></li>
-                        <li class="nav-item"><a href="#grid-view" data-toggle="tab" class="nav-link btn-primary">Chế độ xem
-                                lưới</a></li>
+
                     </ul>
                 </div>
                 <div class="col-lg-12">
@@ -85,7 +84,7 @@
                                                             <span
                                                                 class="badge {{ $d->status == 1
                                                                     ? "
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        badge-success"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        badge-success"
                                                                     : 'badge-danger' }}">
                                                                 @if ($d->status == 1)
                                                                     {{ __('Hoạt động') }}

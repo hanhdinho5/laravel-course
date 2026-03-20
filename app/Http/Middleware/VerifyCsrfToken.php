@@ -14,5 +14,6 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         'payment/ssl/notify',
         'payment/ssl/cancel',
+        'webhook/payment',
     ];
 }

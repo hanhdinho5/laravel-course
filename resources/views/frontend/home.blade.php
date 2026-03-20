@@ -133,13 +133,7 @@
                                                 </div>
                                             </div>
                                             <div class="contentCard-more">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="icon">
-                                                        <img src="{{ asset('frontend/dist/images/icon/star.png') }}"
-                                                            alt="star" />
-                                                    </div>
-                                                    <span>4.5</span>
-                                                </div>
+
                                                 <div class="eye d-flex align-items-center">
                                                     <div class="icon">
                                                         <img src="{{ asset('frontend/dist/images/icon/eye.png') }}"
@@ -152,14 +146,14 @@
                                                         <img src="{{ asset('frontend/dist/images/icon/book.png') }}"
                                                             alt="location" />
                                                     </div>
-                                                    <span>{{ $pc->lesson ? $pc->lesson : 0 }} Lesson</span>
+                                                    <span>{{ $pc->lesson ? $pc->lesson : 0 }} Bài học</span>
                                                 </div>
                                                 <div class="clock d-flex align-items-center">
                                                     <div class="icon">
                                                         <img src="{{ asset('frontend/dist/images/icon/Clock.png') }}"
                                                             alt="clock" />
                                                     </div>
-                                                    <span>{{ $pc->duration ? $pc->duration : 0 }} Hours</span>
+                                                    <span>{{ $pc->duration ? $pc->duration : 0 }} Giờ</span>
                                                 </div>
                                             </div>
                                         </div>

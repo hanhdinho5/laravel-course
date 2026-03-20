@@ -26,7 +26,7 @@ class DashboardController extends Controller
         // dd(session()->all());
         $totalStudents = Student::count();
         $totalCourses = Course::count();
-        $totalEnrollments = Enrollment::where('created_at', '>=', Carbon::now()->subMonths(2))
+        $totalEnrollments = Student::where('created_at', '>=', Carbon::now()->subMonths(2))
             ->count();
         $enrollments = Enrollment::where('created_at', '>=', Carbon::now()->subMonths(2))
             ->orderBy('created_at', 'desc')

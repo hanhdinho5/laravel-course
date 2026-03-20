@@ -7,6 +7,7 @@ use App\Models\Student;
 use App\Models\Enrollment;
 use App\Models\Course;
 use App\Models\Checkout;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -17,7 +18,11 @@ class DashboardController extends Controller
         $enrollment = Enrollment::where('student_id', currentUserId())->get();
         $course = Course::get();
         $checkout = Checkout::where('student_id', currentUserId())->get();
+        $pendingOrders = Order::where('student_id', currentUserId())
+            ->where('status', 'pending')
+            ->latest('id')
+            ->get();
         // $purchaseHistory = Enrollment::with(['course', 'checkout'])->orderBy('enrollment_date', 'desc')->get();
-        return view('students.dashboard', compact('student_info','enrollment', 'course','checkout'));
+        return view('students.dashboard', compact('student_info', 'enrollment', 'course', 'checkout', 'pendingOrders'));
     }
 }

@@ -132,6 +132,43 @@
                                     </div>
                                 </div>
                             </section>
+
+                            @if (!empty($pendingOrders) && $pendingOrders->count())
+                                <section class="section section--bg-white mt-4">
+                                    <div class="container">
+                                        <h5 class="font-title--sm mb-3">Đơn hàng chờ thanh toán</h5>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered align-middle">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Mã đơn</th>
+                                                        <th>Số tiền</th>
+                                                        <th>Ngày tạo</th>
+                                                        <th>Trạng thái</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($pendingOrders as $order)
+                                                        <tr>
+                                                            <td>{{ $order->order_code }}</td>
+                                                            <td>{{ number_format((float) $order->amount, 0) }} VND</td>
+                                                            <td>{{ $order->created_at }}</td>
+                                                            <td><span class="badge bg-warning text-dark">pending</span></td>
+                                                            <td>
+                                                                <a href="{{ route('payment.order.qr', $order->order_code) }}"
+                                                                    class="button button-sm button--primary">
+                                                                    Mở QR thanh toán
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </section>
+                            @endif
                         </div>
                     </div>
 
@@ -164,7 +201,7 @@
                                                     {{-- <span class="percentage">Hoàn thành 43%</span> --}}
                                                 </div>
                                             </div>
-                                            @if ($a->status == '1')
+                                            @if (!isset($a->status) || $a->status == '1')
                                                 <a class="button button-md button--primary-outline w-100 my-3"
                                                     href="{{ route('watchCourse', encryptor('encrypt', $a->course?->id)) }}">Tới
                                                     khoá học</a>

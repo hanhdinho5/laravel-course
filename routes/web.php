@@ -37,16 +37,7 @@ use App\Http\Controllers\Students\payController as sslcz;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\DB;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+
 
 Route::get('/register', [auth::class, 'signUpForm'])->name('register');
 Route::post('/register', [auth::class, 'signUpStore'])->name('register.store');
@@ -81,10 +72,10 @@ Route::middleware(['checkrole'])->prefix('admin')->group(function () {
 
     Route::resource('option', option::class);
     Route::resource('answer', answer::class);
-    Route::resource('review', review::class);
+    // Route::resource('review', review::class);
     Route::resource('discussion', discussion::class);
     Route::resource('message', message::class);
-    Route::resource('coupon', coupon::class);
+    // Route::resource('coupon', coupon::class);
     Route::resource('enrollment', enrollment::class);
     // Route::post('/admin/activate-course/{id}', [enrollment::class, 'activate'])->name('admin.activate-course'); // duyệt khi học viên thanh toán
     Route::post('/activate-course/{id}', [enrollment::class, 'activate'])
@@ -112,6 +103,7 @@ Route::middleware(['checkstudent'])->prefix('students')->group(function () {
 
     // ssl Routes
     Route::post('/payment/ssl/submit', [sslcz::class, 'store'])->name('payment.ssl.submit');
+    Route::get('/payment/order/{orderCode}', [sslcz::class, 'showOrderQr'])->name('payment.order.qr');
 
     // Cart
     Route::get('/cart_page', [CartController::class, 'index']);
@@ -139,9 +131,10 @@ Route::post('taking-the-test/{id}/submit', [TestController::class, 'submitTest']
 Route::get('test-result/{id}', [TestController::class, 'result'])->name('test.result');
 
 // Thông báo đăng ký thành công
-Route::get('/register-success', function () {
-    return view('frontend.register-success');
-})->name('register.success');
+Route::get('/register-success', [sslcz::class, 'showRegisterSuccess'])->name('register.success');
+
+// VietQR webhook
+Route::post('/webhook/payment', [sslcz::class, 'webhook'])->name('payment.webhook');
 /* ssl payment */
 Route::post('/payment/ssl/notify', [sslcz::class, 'notify'])->name('payment.ssl.notify');
 Route::post('/payment/ssl/cancel', [sslcz::class, 'cancel'])->name('payment.ssl.cancel');
@@ -155,3 +148,4 @@ Route::get('/about', function () {
 Route::get('/contact', function () {
     return view('frontend.contact');
 })->name('contact');
+
