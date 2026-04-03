@@ -1,52 +1,94 @@
-# Online Learning Management System (eLearning Platform with Laravel)
+# Hệ thống website khóa học trực tuyến
 
-![Project Banner](link-to-banner-image)
+## Giới thiệu
 
-## Introduction
+Đây là dự án website e-learning xây dựng bằng Laravel, phục vụ quản lý khóa học trực tuyến. Hệ thống có 2 khu vực chính:
 
-The Online Learning Management System is an eLearning platform built using Laravel. It provides a comprehensive solution for offering both free and paid courses, allowing students to acquire new skills through enrollment. This platform incorporates various features to facilitate a seamless learning experience for users.
+- Khu vực quản trị: quản lý người dùng, khóa học, bài học, quiz, đơn hàng.
+- Khu vực học viên: xem khóa học, đăng ký, thanh toán và học bài.
 
-## Features
+## Chức năng chính
 
-- **User Authentication:** Users can sign up, log in, and manage their accounts securely.
-- **Roles and Permissions:** Different user roles such as SuperAdmin, Instructor, and Student with distinct permissions.
-- **Course Management:** Instructors can create and publish courses, while students can enroll in them.
-- **Course Categories and Types:** Courses are organized into different categories and types for easy navigation.
-- **Profile Management:** Users can manage their profiles, update information, and view their enrolled courses.
-- **Shopping Cart and Checkout:** Users can add courses to their cart and complete the checkout process for paid courses.
-- **Course Enrollment:** Students can enroll in courses they are interested in and access course materials.
-- **Content Viewing:** Enrolled students can view course contents, including videos, documents, and etc.
-- **Search Filters:** Users can search for courses based on various filters such as category, and etc.
+### Khu vực quản trị
 
-## Technology Stack
+- Đăng nhập/đăng xuất.
+- Dashboard: thống kê học viên, khóa học, đơn hàng, doanh thu.
+- Quản lý người dùng, vai trò, phân quyền.
+- Quản lý giảng viên, danh mục khóa học, khóa học, bài học.
+- Quản lý quiz, câu hỏi, đáp án.
+- Quản lý ghi danh, thảo luận, tin nhắn.
 
-- **Framework:** Laravel
-- **Template Engine:** Laravel Blade
-- **Database:** MySQL
-- **Frontend:** HTML, CSS, jQuery, etc.
+### Khu vực học viên
 
-## Demo Credentials
+- Xem khóa học, giảng viên, danh mục nổi bật.
+- Tìm kiếm và xem chi tiết khóa học.
+- Đăng ký/đăng nhập.
+- Thêm khóa học vào giỏ hàng, checkout, thanh toán VietQR.
+- Học khóa học đã đăng ký và làm bài kiểm tra.
 
-- **SuperAdmin:** 
-  - Email: admin@gmail.com
-  - Password: 123
-- **Instructor:** 
-  - Email: fuad@gmail.com
-  - Password: 123
+## Công nghệ sử dụng
 
-## Getting Started
+- PHP ^8.1, Laravel ^10
+- MySQL/MariaDB
+- Blade, Bootstrap, jQuery
+- Laravel Sanctum, Toastr
+- Vite (chủ yếu dùng public/)
 
-To get started with the project, follow these steps:
+## Cài đặt
 
-1. Clone the repository.
-2. Install dependencies using `composer install`.
-3. Configure the database settings in the `.env` file.
-4. Start the development server with `php artisan serve`.
+1. Cài dependency PHP:
 
-## Contributing
+```bash
+composer install
+```
 
-Contributions are welcome! Please follow the contribution guidelines outlined in [CONTRIBUTING.md](CONTRIBUTING.md).
+2. Tạo file môi trường
 
-## License
+```bash
+copy .env.example .env      # Windows
+# hoặc
+cp .env.example .env         # Mac/Linux
 
-This project is licensed under the [MIT License](LICENSE).
+php artisan key:generate
+```
+
+- Chỉnh các thông tin database trong `.env`:
+
+```env
+APP_NAME="Khoa hoc online"
+APP_URL=http://localhost
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=laravel_elearning
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+3. Chuẩn bị database
+
+#### Cách A: Dùng migration + seed
+
+```bash
+php artisan migrate
+php artisan db:seed
+```
+
+#### Cách B: Import dữ liệu mẫu SQL
+
+- Import file `database/sql db/laravel_elearning.sql` vào MySQL/MariaDB.
+- Sau đó chạy thêm migration:
+
+```bash
+php artisan migrate
+```
+
+4. Chạy project
+
+```bash
+php artisan serve
+```
+
+- Truy cập:
+    - Trang người dùng: `http://127.0.0.1:8000/`
