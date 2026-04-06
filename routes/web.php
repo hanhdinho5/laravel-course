@@ -91,6 +91,8 @@ Route::get('/student/register', [sauth::class, 'signUpForm'])->name('studentRegi
 Route::post('/student/register/{back_route}', [sauth::class, 'signUpStore'])->name('studentRegister.store');
 Route::get('/student/login', [sauth::class, 'signInForm'])->name('studentLogin');
 Route::post('/student/login/{back_route}', [sauth::class, 'signInCheck'])->name('studentLogin.check');
+Route::get('/student/auth/google', [sauth::class, 'redirectToGoogle'])->name('studentLogin.google');
+Route::get('/student/auth/google/callback', [sauth::class, 'handleGoogleCallback'])->name('studentLogin.google.callback');
 Route::get('/student/logout', [sauth::class, 'signOut'])->name('studentlogOut');
 
 Route::middleware(['checkstudent'])->prefix('students')->group(function () {

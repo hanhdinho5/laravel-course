@@ -75,12 +75,7 @@
                     @endforelse
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <a href="{{ route('searchCourse') }}" class="button button-lg button--primary mt-5">Xem tất cả các khóa
-                        học</a>
-                </div>
-            </div>
+
         </div>
         <div class="browse-categories-shape">
             <img src="{{ asset('frontend/dist/images/shape/dots/dots-img-11.png') }}" alt="shape"

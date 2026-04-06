@@ -1,4 +1,4 @@
-@extends('frontend.layouts.app')
+﻿@extends('frontend.layouts.app')
 @section('title', 'Sign In')
 @section('header-attr') class="nav-shadow" @endsection
 
@@ -12,11 +12,23 @@
                         <h2 class="font-title--md mb-0">Đăng nhập</h2>
                         <p class="mt-2 mb-lg-4 mb-3">Chưa có tài khoản? <a href="{{ route('studentRegister') }}"
                                 class="text-black-50">Đăng ký</a></p>
+
+                        @if (session('success'))
+                            <div class="alert alert-success">{{ session('success') }}</div>
+                        @endif
+                        @if (session('error'))
+                            <div class="alert alert-danger">{{ session('error') }}</div>
+                        @endif
+                        @if (session('danger'))
+                            <div class="alert alert-danger">{{ session('danger') }}</div>
+                        @endif
+
                         <form action="{{ route('studentLogin.check', 'studentdashboard') }}" method="POST">
                             @csrf
                             <div class="form-element">
                                 <label for="email">Email</label>
-                                <input type="email" placeholder="Username" id="email" name="email" />
+                                <input type="email" placeholder="Tên đăng nhập" id="email" name="email"
+                                    value="{{ old('email') }}" />
                                 @if ($errors->has('email'))
                                     <small class="d-block text-danger">{{ $errors->first('email') }}</small>
                                 @endif
@@ -24,10 +36,9 @@
                             <div class="form-element">
                                 <div class="d-flex justify-content-between">
                                     <label for="password">Mật khẩu</label>
-                                    {{-- <a href="forget-password.html" class="text-primary fs-6"></a> --}}
                                 </div>
                                 <div class="form-alert-input">
-                                    <input type="password" placeholder="Type here..." id="password" name="password" />
+                                    <input type="password" placeholder="Mật khẩu" id="password" name="password" />
                                     <div class="form-alert-icon" onclick="showPassword('password',this);">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -49,6 +60,16 @@
                                 <button type="submit" class="button button-lg button--primary w-100">Đăng nhập</button>
                             </div>
                         </form>
+
+                        <div class="text-center my-3 text-secondary">Hoặc</div>
+
+                        <a href="{{ route('studentLogin.google', ['back_route' => 'studentdashboard']) }}"
+                            class="button button-lg w-100 d-flex align-items-center justify-content-center gap-2"
+                            style="background: #fff; color: #111827; border: 1px solid #d1d5db;">
+                            <img src="{{ asset('frontend/dist/images/social link/google.svg') }}" alt="Google"
+                                style="width: 20px; height: 20px;">
+                            <span>Đăng nhập với Google</span>
+                        </a>
                     </div>
                 </div>
                 <div class="col-xl-7 order-1 order-xl-0">
