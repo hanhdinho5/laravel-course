@@ -78,10 +78,10 @@ class InstructorController extends Controller
                     return redirect()->route('instructor.index');
                 }
             } else
-                return redirect()->back()->withInput()->with('error', 'Vui lòng thử lại');
+                return redirect()->back()->withInput()->with('error', 'Vui lòng thử lại.');
         } catch (Exception $e) {
             dd($e);
-            return redirect()->back()->withInput()->with('error', 'Vui lòng thử lại');
+            return redirect()->back()->withInput()->with('error', 'Vui lòng thử lại.');
         }
     }
 
@@ -135,7 +135,7 @@ class InstructorController extends Controller
                 $request->image->move(public_path('uploads/users'), $imageName);
                 $instructor->image = $imageName;
             }
-            //Chỉ cập nhật mật khẩu nếu có nhập mới
+            // Chỉ cập nhật mật khẩu nếu có nhập mới
             if (!empty($request->password)) {
                 $instructor->password = Hash::make($request->password);
             }
@@ -164,10 +164,10 @@ class InstructorController extends Controller
                 return redirect()->route('instructor.index');
                 // }
             }
-            return redirect()->back()->withInput()->with('error', 'Vui lòng thử lại');
+            return redirect()->back()->withInput()->with('error', 'Vui lòng thử lại.');
         } catch (Exception $e) {
             // dd($e);
-            return redirect()->back()->withInput()->with('error', 'Vui lòng thử lại');
+            return redirect()->back()->withInput()->with('error', 'Vui lòng thử lại.');
         }
     }
 
@@ -177,13 +177,18 @@ class InstructorController extends Controller
     public function destroy($id)
     {
         $data = Instructor::findOrFail(encryptor('decrypt', $id));
-        $image_path = public_path('uploads/instructors') . $data->image;
+        $image_path = public_path('uploads/users/' . $data->image);
 
         if ($data->delete()) {
-            if (File::exists($image_path))
+            if ($data->image && File::exists($image_path)) {
                 File::delete($image_path);
+            }
 
-            return redirect()->back();
+            return redirect()->back()->with('success', 'Xóa giảng viên thành công!');
         }
+
+        return redirect()->back()->with('error', 'Không thể xóa giảng viên.');
     }
 }
+
+

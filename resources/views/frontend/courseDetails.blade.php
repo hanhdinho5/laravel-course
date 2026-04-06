@@ -7,18 +7,16 @@
 @endpush
 
 @section('content')
-
-
     <!-- Breadcrumb Starts Here -->
     <section class="section event-sub-section">
         <div class="container">
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb align-items-center bg-transparent p-0 mb-0">
                     <li class="breadcrumb-item">
-                        <a href="index.html" class="fs-6 text-secondary">Trang chủ</a>
+                        <a href="index.html" class="fs-6 text-secondary">{{ 'Trang chủ' }}</a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a href="#" class="fs-6 text-secondary">Khóa học</a>
+                        <a href="#" class="fs-6 text-secondary">{{ 'Khóa học' }}</a>
                     </li>
                     <li class="breadcrumb-item fs-6 text-secondary d-none d-lg-inline-block" aria-current="page">
                         {{ $course->title }}
@@ -32,13 +30,14 @@
                     </h3>
                     <div class="created-by d-flex align-items-center">
                         <div class="created-by-image me-3">
-                            <img src="{{ asset('uploads/users/' . ($course->instructor?->image ?? 'avatar.png')) }}"
+                            <img src="{{ $course->instructor?->image ? asset('uploads/users/' . $course->instructor->image) : asset('images/avatar/1.png') }}"
                                 class="rounded-circle" alt="Instructor Image" height="75" width="75" />
                         </div>
                         <div class="created-by-text">
-                            <p>Giảng viên</p>
+                            <p>{{ 'Giảng viên' }}</p>
                             <h6>
-                                <a href="{{ route('instructorProfile', encryptor('encrypt', $course->instructor->id)) }}">{{ $course->instructor?->name_en }}
+                                <a
+                                    href="{{ $course->instructor ? route('instructorProfile', encryptor('encrypt', $course->instructor->id)) : '#' }}">{{ $course->instructor?->name_en }}
                                 </a>
                             </h6>
                         </div>
@@ -72,21 +71,21 @@
                                 <button class="nav-link active font-para--lg" id="pills-courseoverview-tab"
                                     data-bs-toggle="pill" data-bs-target="#pills-courseoverview" type="button"
                                     role="tab" aria-controls="pills-courseoverview" aria-selected="true">
-                                    Tổng quan
+                                    {{ 'Tổng quan' }}
                                 </button>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link font-para--lg" id="pills-profile-tab" data-bs-toggle="pill"
                                     data-bs-target="#pills-profile" type="button" role="tab"
                                     aria-controls="pills-profile" aria-selected="false">
-                                    Chương trình
+                                    {{ 'Chương trình' }}
                                 </button>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link font-para--lg" id="pills-c-instructor-tab" data-bs-toggle="pill"
                                     data-bs-target="#pills-c-instructor" type="button" role="tab"
                                     aria-controls="pills-c-instructor" aria-selected="false">
-                                    Giảng viên
+                                    {{ 'Giảng viên' }}
                                 </button>
                             </li>
                         </ul>
@@ -98,272 +97,118 @@
                                 aria-labelledby="pills-courseoverview-tab">
                                 <div class="row course-overview-main mt-4">
                                     <div class="course-overview-main-item">
-                                        <h6 class="font-title--card">Miêu tả</h6>
+                                        <h6 class="font-title--card">{{ 'Mô tả' }}</h6>
                                         <p class="mb-3 font-para--lg">{{ $course->description_en }}</p>
                                     </div>
                                     <div class="course-overview-main-item">
-                                        <h6 class="font-title--card">Yêu cầu</h6>
+                                        <h6 class="font-title--card">{{ 'Yêu cầu' }}</h6>
                                         <p class="mb-2 font-para--lg">{{ $course->prerequisites_en }}</p>
                                     </div>
                                     <div class="course-overview-main-item">
-                                        <h6 class="font-title--card">Khóa học này dành cho ai</h6>
+                                        <h6 class="font-title--card">
+                                            {{ 'Khóa học này dành cho ai' }}</h6>
                                         <p class="mb-2 font-para--lg">{{ $course->description_en }}</p>
                                     </div>
                                     <div class="course-overview-main-item mb-0">
-                                        <h6 class="font-title--card">Những gì bạn sẽ học được</h6>
+                                        <h6 class="font-title--card">
+                                            {{ 'Những gì bạn sẽ học được' }}
+                                        </h6>
                                         <p class="mb-2 font-para--lg">{{ $course->description_en }}</p>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Course Overview Ends Here -->
-
-                            <!-- Course Curriculum Area Starts Here -->
+                            <!-- Course Overview Ends Here --> <!-- Course Curriculum Area Starts Here -->
                             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile">
                                 <div class="row">
                                     <div class="course-curriculum-area">
-
-                                        <!-- PHẦN 1 -->
-                                        <div class="curriculum-area">
-                                            <div class="curriculum-area-top" role="button" data-bs-toggle="collapse"
-                                                data-bs-target="#collapse1" aria-expanded="true"
-                                                aria-controls="collapse1">
-                                                <div class="curriculum-area-top-start">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                        viewBox="0 0 20 20">
-                                                        <path d="M15.8332 7.08337L9.99984 12.9167L4.1665 7.08337"
-                                                            stroke="#42414B" stroke-width="2" stroke-linecap="round"
-                                                            stroke-linejoin="round" />
-                                                    </svg>
-                                                    <p class="font-para--lg">Phần 1: Làm quen với tiếng Anh</p>
-                                                </div>
-                                                <div class="curriculum-area-top-end">
-                                                    <div class="total-lesson">
-                                                        <p>5 Bài học</p>
+                                        @if ($course->lessons && $course->lessons->count())
+                                            @foreach ($course->lessons as $lessonIndex => $lesson)
+                                                @php
+                                                    $collapseId = 'lessonCollapse' . $lesson->id;
+                                                    $materials = $lesson->material ?? collect();
+                                                    $totalMinutes = (int) $materials->sum('test_time');
+                                                    $hours = intdiv($totalMinutes, 60);
+                                                    $minutes = $totalMinutes % 60;
+                                                    $durationLabel =
+                                                        $hours > 0
+                                                            ? $hours . ' ' . 'giờ' . ' ' . $minutes . ' ' . 'phút'
+                                                            : $minutes . ' ' . 'phút';
+                                                @endphp
+                                                <div class="curriculum-area{{ $loop->last ? ' mb-0' : '' }}">
+                                                    <div class="curriculum-area-top{{ $loop->first ? '' : ' collapsed' }}"
+                                                        role="button" data-bs-toggle="collapse"
+                                                        data-bs-target="#{{ $collapseId }}"
+                                                        aria-expanded="{{ $loop->first ? 'true' : 'false' }}"
+                                                        aria-controls="{{ $collapseId }}">
+                                                        <div class="curriculum-area-top-start">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                                                height="20" viewBox="0 0 20 20">
+                                                                <path d="M15.8332 7.08337L9.99984 12.9167L4.1665 7.08337"
+                                                                    stroke="#42414B" stroke-width="2"
+                                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                                            </svg>
+                                                            <p class="font-para--lg">{{ 'Phần' }}
+                                                                {{ $lessonIndex + 1 }}: {{ $lesson->title }}</p>
+                                                        </div>
+                                                        <div class="curriculum-area-top-end">
+                                                            <div class="total-lesson">
+                                                                <p>{{ $materials->count() }}
+                                                                    {{ 'bài học' }}</p>
+                                                            </div>
+                                                            <div class="total-hours">
+                                                                <p>{{ $durationLabel }}</p>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="total-hours">
-                                                        <p>1 Giờ 30 Phút</p>
+
+                                                    <div class="curriculum-area-bottom collapse{{ $loop->first ? ' show' : '' }}"
+                                                        id="{{ $collapseId }}">
+                                                        @if ($materials->count())
+                                                            @foreach ($materials as $materialIndex => $material)
+                                                                <div
+                                                                    class="curriculum-description{{ $loop->first ? ' active' : '' }}">
+                                                                    <div class="curriculum-description-start">
+                                                                        <p>
+                                                                            <a
+                                                                                href="{{ $material->content_url ?: '#' }}">&#9654;</a>
+                                                                            <a href="{{ $material->content_url ?: '#' }}">
+                                                                                {{ $materialIndex + 1 }}.
+                                                                                {{ $material->title }}
+                                                                            </a>
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="curriculum-description-end">
+                                                                        <span>&#128274;</span>
+                                                                    </div>
+                                                                </div>
+                                                            @endforeach
+                                                        @else
+                                                            <div class="curriculum-description">
+                                                                <div class="curriculum-description-start">
+                                                                    <p>{{ 'Chưa có nội dung cho bài học này.' }}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        @else
+                                            <div class="curriculum-area mb-0">
+                                                <div class="curriculum-area-bottom collapse show" id="noCurriculum">
+                                                    <div class="curriculum-description">
+                                                        <div class="curriculum-description-start">
+                                                            <p>{{ 'Chưa có chương trình cho khóa học này.' }}
+                                                            </p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-
-                                            <div class="curriculum-area-bottom collapse show" id="collapse1">
-                                                <div class="curriculum-description">
-                                                    <div class="curriculum-description-start">
-                                                        <p><a href="#">&#9654;</a> <a href="#">1. Giới thiệu
-                                                                khóa
-                                                                học tiếng Anh</a></p>
-                                                    </div>
-                                                    <div class="curriculum-description-end">
-                                                        <p>08:15</p><span>&#128274;</span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="curriculum-description">
-                                                    <div class="curriculum-description-start">
-                                                        <p><a href="#">&#9654;</a> <a href="#">2. Bảng chữ cái
-                                                                tiếng
-                                                                Anh (Alphabet)</a></p>
-                                                    </div>
-                                                    <div class="curriculum-description-end">
-                                                        <p>15:40</p><span>&#128274;</span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="curriculum-description active">
-                                                    <div class="curriculum-description-start">
-                                                        <p><a href="#">&#9654;</a> <a href="#">3. Cách phát âm
-                                                                chuẩn
-                                                                26 chữ cái</a></p>
-                                                    </div>
-                                                    <div class="curriculum-description-end">
-                                                        <p>20:10</p><span>&#128274;</span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="curriculum-description">
-                                                    <div class="curriculum-description-start">
-                                                        <p><a href="#">&#9654;</a> <a href="#">4. Trọng âm và
-                                                                ngữ
-                                                                điệu cơ bản</a></p>
-                                                    </div>
-                                                    <div class="curriculum-description-end">
-                                                        <p>22:35</p><span>&#128274;</span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="curriculum-description">
-                                                    <div class="curriculum-description-start">
-                                                        <p><a href="#">&#9654;</a> <a href="#">5. Luyện nghe
-                                                                tiếng
-                                                                Anh cho người mới</a></p>
-                                                    </div>
-                                                    <div class="curriculum-description-end">
-                                                        <p>23:20</p><span>&#128274;</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- PHẦN 2 -->
-                                        <div class="curriculum-area">
-                                            <div class="curriculum-area-top collapsed" role="button"
-                                                data-bs-toggle="collapse" data-bs-target="#collapse2"
-                                                aria-expanded="false" aria-controls="collapse2">
-                                                <div class="curriculum-area-top-start">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                        viewBox="0 0 20 20">
-                                                        <path d="M15.8332 7.08337L9.99984 12.9167L4.1665 7.08337"
-                                                            stroke="#42414B" stroke-width="2" stroke-linecap="round"
-                                                            stroke-linejoin="round" />
-                                                    </svg>
-                                                    <p class="font-para--lg">Phần 2: Từ vựng & Ngữ pháp cơ bản</p>
-                                                </div>
-                                                <div class="curriculum-area-top-end">
-                                                    <div class="total-lesson">
-                                                        <p>6 Bài học</p>
-                                                    </div>
-                                                    <div class="total-hours">
-                                                        <p>2 Giờ 10 Phút</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="curriculum-area-bottom collapse" id="collapse2">
-                                                <div class="curriculum-description">
-                                                    <div class="curriculum-description-start">
-                                                        <p><a href="#">&#9654;</a> <a href="#">1. Danh từ và
-                                                                mạo từ
-                                                                (a, an, the)</a></p>
-                                                    </div>
-                                                    <div class="curriculum-description-end">
-                                                        <p>18:30</p><span>&#128274;</span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="curriculum-description">
-                                                    <div class="curriculum-description-start">
-                                                        <p><a href="#">&#9654;</a> <a href="#">2. Đại từ nhân
-                                                                xưng
-                                                                và sở hữu</a></p>
-                                                    </div>
-                                                    <div class="curriculum-description-end">
-                                                        <p>21:00</p><span>&#128274;</span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="curriculum-description">
-                                                    <div class="curriculum-description-start">
-                                                        <p><a href="#">&#9654;</a> <a href="#">3. Thì hiện tại
-                                                                đơn
-                                                                (Present Simple)</a></p>
-                                                    </div>
-                                                    <div class="curriculum-description-end">
-                                                        <p>25:40</p><span>&#128274;</span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="curriculum-description">
-                                                    <div class="curriculum-description-start">
-                                                        <p><a href="#">&#9654;</a> <a href="#">4. Cách đặt câu
-                                                                hỏi
-                                                                trong tiếng Anh</a></p>
-                                                    </div>
-                                                    <div class="curriculum-description-end">
-                                                        <p>19:50</p><span>&#128274;</span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="curriculum-description">
-                                                    <div class="curriculum-description-start">
-                                                        <p><a href="#">&#9654;</a> <a href="#">5. Từ vựng theo
-                                                                chủ
-                                                                đề hằng ngày</a></p>
-                                                    </div>
-                                                    <div class="curriculum-description-end">
-                                                        <p>22:15</p><span>&#128274;</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- PHẦN 3 -->
-                                        <div class="curriculum-area mb-0">
-                                            <div class="curriculum-area-top collapsed" role="button"
-                                                data-bs-toggle="collapse" data-bs-target="#collapse3"
-                                                aria-expanded="false" aria-controls="collapse3">
-                                                <div class="curriculum-area-top-start">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                        viewBox="0 0 20 20">
-                                                        <path d="M15.8332 7.08337L9.99984 12.9167L4.1665 7.08337"
-                                                            stroke="#42414B" stroke-width="2" stroke-linecap="round"
-                                                            stroke-linejoin="round" />
-                                                    </svg>
-                                                    <p class="font-para--lg">Phần 3: Giao tiếp tiếng Anh hằng ngày</p>
-                                                </div>
-                                                <div class="curriculum-area-top-end">
-                                                    <div class="total-lesson">
-                                                        <p>4 Bài học</p>
-                                                    </div>
-                                                    <div class="total-hours">
-                                                        <p>1 Giờ 25 Phút</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="curriculum-area-bottom collapse" id="collapse3">
-                                                <div class="curriculum-description">
-                                                    <div class="curriculum-description-start">
-                                                        <p><a href="#">&#9654;</a> <a href="#">1. Chào hỏi và
-                                                                giới
-                                                                thiệu bản thân</a></p>
-                                                    </div>
-                                                    <div class="curriculum-description-end">
-                                                        <p>18:00</p><span>&#128274;</span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="curriculum-description">
-                                                    <div class="curriculum-description-start">
-                                                        <p><a href="#">&#9654;</a> <a href="#">2. Hỏi đường và
-                                                                chỉ
-                                                                đường</a></p>
-                                                    </div>
-                                                    <div class="curriculum-description-end">
-                                                        <p>20:30</p><span>&#128274;</span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="curriculum-description active">
-                                                    <div class="curriculum-description-start">
-                                                        <p><a href="#">&#9654;</a> <a href="#">3. Giao tiếp
-                                                                trong
-                                                                quán cà phê & nhà hàng</a></p>
-                                                    </div>
-                                                    <div class="curriculum-description-end">
-                                                        <p>24:10</p><span>&#128274;</span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="curriculum-description">
-                                                    <div class="curriculum-description-start">
-                                                        <p><a href="#">&#9654;</a> <a href="#">4. Hội thoại
-                                                                tiếng
-                                                                Anh thực tế</a></p>
-                                                    </div>
-                                                    <div class="curriculum-description-end">
-                                                        <p>22:20</p><span>&#128274;</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
+                                        @endif
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- Course Curriculum Area Ends Here -->
-
-                            <!-- Course Details Instructor Starts Here -->
+                            <!-- Course Curriculum Area Ends Here --><!-- Course Details Instructor Starts Here -->
                             <div class="tab-pane fade" id="pills-c-instructor" role="tabpanel"
                                 aria-labelledby="pills-c-instructor-tab">
                                 <div class="row">
@@ -371,19 +216,16 @@
                                         <div class="course-instructor">
                                             <div class="course-instructor-info">
                                                 <div class="instructor-image">
-                                                    <img src="{{ asset('uploads/users/' . $course->instructor?->image) }}"
+                                                    <img src="{{ $course->instructor?->image ? asset('uploads/users/' . $course->instructor->image) : asset('images/avatar/1.png') }}"
                                                         alt="Instructor" height="125" width="125" />
                                                 </div>
                                                 <div class="instructor-text">
                                                     <h6 class="font-title--xs mb-0">
                                                         <a
-                                                            href="instructor-profile.html">{{ $course->instructor?->name_en }}</a>
+                                                            href="{{ $course->instructor ? route('instructorProfile', encryptor('encrypt', $course->instructor->id)) : '#' }}">{{ $course->instructor?->name_en }}</a>
                                                     </h6>
                                                     <p class="font-para--md">
-                                                        {{ $course->instructor?->designation
-                                                            ? $course->instructor?->designation
-                                                            : 'No
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Designation' }}
+                                                        {{ $course->instructor?->designation ? $course->instructor?->designation : 'Chưa cập nhật chức danh' }}
                                                     </p>
                                                     <div class="d-flex align-items-center instructor-text-bottom">
                                                         {{-- <div class="d-flex align-items-center ratings-icon">
@@ -409,16 +251,18 @@
                                                                     stroke-linecap="round" stroke-linejoin="round" />
                                                             </svg>
 
-                                                            <p class="font-para--md">5 khóa học</p>
+                                                            <p class="font-para--md">
+                                                                {{ $course->instructor?->courses_count ?? 0 }}
+                                                                {{ 'khóa học' }}</p>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <p class="lead-p font-para--lg">
-                                                {{ $course->instructor?->title ? $course->instructor?->title : 'Không có tiêu đề' }}
+                                                {{ $course->instructor?->title ? $course->instructor?->title : 'Chưa cập nhật' }}
                                             </p>
                                             <p class="font-para--md">
-                                                {{ $course->instructor?->bio ? $course->instructor?->bio : 'Không có tiêu đề' }}
+                                                {{ $course->instructor?->bio ? $course->instructor?->bio : 'Chưa cập nhật' }}
                                             </p>
                                         </div>
                                     </div>
@@ -427,1832 +271,7 @@
                             <!-- Course Details Instructor Ends Here -->
 
                             <!-- Course Details Review Starts Here -->
-                            <div class="tab-pane fade show course-review-content" id="pills-review" role="tabpanel"
-                                aria-labelledby="pills-review">
-                                <div class="tab-content" id="pills-tabContent">
-                                    <div class="tab-pane fade" id="pills-courses" role="tabpanel"
-                                        aria-labelledby="pills-courses">
-                                        <div class="row">
-                                            <div class="col-lg-6 mb-4">
-                                                <div class="course">
-                                                    <div class="course__img">
-                                                        <a href="#"><img
-                                                                src="{{ asset('frontend/dist/images/courses/demo-img-01.png') }}"
-                                                                alt="images" class="img-fluid" /></a>
-                                                    </div>
-                                                    <div class="course__content">
-                                                        <div class="course__content_title">
-                                                            <h6>
-                                                                <a href="#">Chicago International Conference on
-                                                                    Education</a>
-                                                            </h6>
-                                                        </div>
-                                                        <div class="course__content_author">
-                                                            <div class="info">
-                                                                <a href="#" class="info_img"><img
-                                                                        src="{{ asset('frontend/dist/images/courses/7.png') }}"
-                                                                        alt="client-image" /></a>
 
-                                                                <a href="#">Brandon Dias</a>
-                                                            </div>
-                                                            <div class="price">
-                                                                <del>?95</del>
-                                                                <span>?12</span>
-                                                            </div>
-                                                        </div>
-                                                        <div
-                                                            class="course__content_time d-flex justify-content-between align-items-center">
-                                                            <div class="star d-flex align-items-center">
-                                                                <div class="icon pe-2">
-                                                                    <svg width="18" height="18"
-                                                                        viewBox="0 0 18 18" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <path
-                                                                            d="M9 1.5L11.3175 6.195L16.5 6.9525L12.75 10.605L13.635 15.765L9 13.3275L4.365 15.765L5.25 10.605L1.5 6.9525L6.6825 6.195L9 1.5Z"
-                                                                            stroke="#FF7A1A" stroke-width="1.8"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                        </path>
-                                                                    </svg>
-                                                                </div>
-                                                                <span>4.5</span>
-                                                            </div>
-                                                            <div class="eye d-flex align-items-center">
-                                                                <div class="icon pe-2">
-                                                                    <svg width="18" height="18"
-                                                                        viewBox="0 0 18 18" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <g clip-path="url(#clipOne)">
-                                                                            <path
-                                                                                d="M1 9C1 9 4 3 9.25 3C14.5 3 17.5 9 17.5 9C17.5 9 14.5 15 9.25 15C4 15 1 9 1 9Z"
-                                                                                stroke="#1089FF" stroke-width="1.8"
-                                                                                stroke-linecap="round"
-                                                                                stroke-linejoin="round"></path>
-                                                                            <path
-                                                                                d="M9.25 11.25C10.4926 11.25 11.5 10.2426 11.5 9C11.5 7.75736 10.4926 6.75 9.25 6.75C8.00736 6.75 7 7.75736 7 9C7 10.2426 8.00736 11.25 9.25 11.25Z"
-                                                                                stroke="#1089FF" stroke-width="1.8"
-                                                                                stroke-linecap="round"
-                                                                                stroke-linejoin="round"></path>
-                                                                        </g>
-                                                                        <defs>
-                                                                            <clipPath>
-                                                                                <rect width="18" height="18"
-                                                                                    fill="white">
-                                                                                </rect>
-                                                                            </clipPath>
-                                                                        </defs>
-                                                                    </svg>
-                                                                </div>
-                                                                <span>24,517</span>
-                                                            </div>
-                                                            <div class="book d-flex align-items-center">
-                                                                <div class="icon pe-2">
-                                                                    <svg width="18" height="18"
-                                                                        viewBox="0 0 18 18" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <path
-                                                                            d="M1.5 2.25H6C6.79565 2.25 7.55871 2.56607 8.12132 3.12868C8.68393 3.69129 9 4.45435 9 5.25V15.75C9 15.1533 8.76295 14.581 8.34099 14.159C7.91903 13.7371 7.34674 13.5 6.75 13.5H1.5V2.25Z"
-                                                                            stroke="#00AF91" stroke-width="1.8"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                        </path>
-                                                                        <path
-                                                                            d="M16.5 2.25H12C11.2044 2.25 10.4413 2.56607 9.87868 3.12868C9.31607 3.69129 9 4.45435 9 5.25V15.75C9 15.1533 9.23705 14.581 9.65901 14.159C10.081 13.7371 10.6533 13.5 11.25 13.5H16.5V2.25Z"
-                                                                            stroke="#00AF91" stroke-width="1.8"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                        </path>
-                                                                    </svg>
-                                                                </div>
-                                                                <span>37 Lesson</span>
-                                                            </div>
-                                                            <div class="clock d-flex align-items-center">
-                                                                <div class="icon pe-2">
-                                                                    <svg width="18" height="18"
-                                                                        viewBox="0 0 18 18" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <path
-                                                                            d="M9 16.5C13.1421 16.5 16.5 13.1421 16.5 9C16.5 4.85786 13.1421 1.5 9 1.5C4.85786 1.5 1.5 4.85786 1.5 9C1.5 13.1421 4.85786 16.5 9 16.5Z"
-                                                                            stroke="#FFC91B" stroke-width="1.8"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                        </path>
-                                                                        <path d="M9 4.5V9L12 10.5" stroke="#FFC91B"
-                                                                            stroke-width="1.8" stroke-linecap="round"
-                                                                            stroke-linejoin="round"></path>
-                                                                    </svg>
-                                                                </div>
-                                                                <span>3 Hours</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 mb-4">
-                                                <div class="course">
-                                                    <div class="course__img">
-                                                        <a href="#"><img
-                                                                src="{{ asset('frontend/dist/images/courses/demo-img-02.png') }}"
-                                                                alt="images" class="img-fluid" /></a>
-                                                    </div>
-                                                    <div class="course__content">
-                                                        <div class="course__content_title">
-                                                            <h6>
-                                                                <a href="#">Digital Art for Beginners - Unleash Your
-                                                                    Creativity</a>
-                                                            </h6>
-                                                        </div>
-                                                        <div class="course__content_author">
-                                                            <div class="info">
-                                                                <a href="#" class="info_img"><img
-                                                                        src="{{ asset('frontend/dist/images/courses/7.png') }}"
-                                                                        alt="client-image" /></a>
-
-                                                                <a href="#">Brandon Dias</a>
-                                                            </div>
-                                                            <div class="price">
-                                                                <del>?95</del>
-                                                                <span>?12</span>
-                                                            </div>
-                                                        </div>
-                                                        <div
-                                                            class="course__content_time d-flex justify-content-between align-items-center">
-                                                            <div class="star d-flex align-items-center">
-                                                                <div class="icon pe-2">
-                                                                    <svg width="18" height="18"
-                                                                        viewBox="0 0 18 18" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <path
-                                                                            d="M9 1.5L11.3175 6.195L16.5 6.9525L12.75 10.605L13.635 15.765L9 13.3275L4.365 15.765L5.25 10.605L1.5 6.9525L6.6825 6.195L9 1.5Z"
-                                                                            stroke="#FF7A1A" stroke-width="1.8"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                        </path>
-                                                                    </svg>
-                                                                </div>
-                                                                <span>4.5</span>
-                                                            </div>
-                                                            <div class="eye d-flex align-items-center">
-                                                                <div class="icon pe-2">
-                                                                    <svg width="18" height="18"
-                                                                        viewBox="0 0 18 18" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <g clip-path="url(#clipOne)">
-                                                                            <path
-                                                                                d="M1 9C1 9 4 3 9.25 3C14.5 3 17.5 9 17.5 9C17.5 9 14.5 15 9.25 15C4 15 1 9 1 9Z"
-                                                                                stroke="#1089FF" stroke-width="1.8"
-                                                                                stroke-linecap="round"
-                                                                                stroke-linejoin="round"></path>
-                                                                            <path
-                                                                                d="M9.25 11.25C10.4926 11.25 11.5 10.2426 11.5 9C11.5 7.75736 10.4926 6.75 9.25 6.75C8.00736 6.75 7 7.75736 7 9C7 10.2426 8.00736 11.25 9.25 11.25Z"
-                                                                                stroke="#1089FF" stroke-width="1.8"
-                                                                                stroke-linecap="round"
-                                                                                stroke-linejoin="round"></path>
-                                                                        </g>
-                                                                        <defs>
-                                                                            <clipPath>
-                                                                                <rect width="18" height="18"
-                                                                                    fill="white">
-                                                                                </rect>
-                                                                            </clipPath>
-                                                                        </defs>
-                                                                    </svg>
-                                                                </div>
-                                                                <span>24,517</span>
-                                                            </div>
-                                                            <div class="book d-flex align-items-center">
-                                                                <div class="icon pe-2">
-                                                                    <svg width="18" height="18"
-                                                                        viewBox="0 0 18 18" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <path
-                                                                            d="M1.5 2.25H6C6.79565 2.25 7.55871 2.56607 8.12132 3.12868C8.68393 3.69129 9 4.45435 9 5.25V15.75C9 15.1533 8.76295 14.581 8.34099 14.159C7.91903 13.7371 7.34674 13.5 6.75 13.5H1.5V2.25Z"
-                                                                            stroke="#00AF91" stroke-width="1.8"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                        </path>
-                                                                        <path
-                                                                            d="M16.5 2.25H12C11.2044 2.25 10.4413 2.56607 9.87868 3.12868C9.31607 3.69129 9 4.45435 9 5.25V15.75C9 15.1533 9.23705 14.581 9.65901 14.159C10.081 13.7371 10.6533 13.5 11.25 13.5H16.5V2.25Z"
-                                                                            stroke="#00AF91" stroke-width="1.8"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                        </path>
-                                                                    </svg>
-                                                                </div>
-                                                                <span>37 Lesson</span>
-                                                            </div>
-                                                            <div class="clock d-flex align-items-center">
-                                                                <div class="icon pe-2">
-                                                                    <svg width="18" height="18"
-                                                                        viewBox="0 0 18 18" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <path
-                                                                            d="M9 16.5C13.1421 16.5 16.5 13.1421 16.5 9C16.5 4.85786 13.1421 1.5 9 1.5C4.85786 1.5 1.5 4.85786 1.5 9C1.5 13.1421 4.85786 16.5 9 16.5Z"
-                                                                            stroke="#FFC91B" stroke-width="1.8"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                        </path>
-                                                                        <path d="M9 4.5V9L12 10.5" stroke="#FFC91B"
-                                                                            stroke-width="1.8" stroke-linecap="round"
-                                                                            stroke-linejoin="round"></path>
-                                                                    </svg>
-                                                                </div>
-                                                                <span>3 Hours</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 mb-4">
-                                                <div class="course">
-                                                    <div class="course__img">
-                                                        <a href="#"><img
-                                                                src="{{ asset('frontend/dist/images/courses/demo-img-05.png') }}"
-                                                                alt="images" class="img-fluid" /></a>
-                                                    </div>
-                                                    <div class="course__content">
-                                                        <div class="course__content_title">
-                                                            <h6>
-                                                                <a href="#">Let's Color a Goblin with Procreate!
-                                                                    Complete
-                                                                    Color...</a>
-                                                            </h6>
-                                                        </div>
-                                                        <div class="course__content_author">
-                                                            <div class="info">
-                                                                <a href="#" class="info_img"><img
-                                                                        src="{{ asset('frontend/dist/images/courses/7.png') }}"
-                                                                        alt="client-image" /></a>
-
-                                                                <a href="#">Brandon Dias</a>
-                                                            </div>
-                                                            <div class="price">
-                                                                <del>?95</del>
-                                                                <span>?12</span>
-                                                            </div>
-                                                        </div>
-                                                        <div
-                                                            class="course__content_time d-flex justify-content-between align-items-center">
-                                                            <div class="star d-flex align-items-center">
-                                                                <div class="icon pe-2">
-                                                                    <svg width="18" height="18"
-                                                                        viewBox="0 0 18 18" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <path
-                                                                            d="M9 1.5L11.3175 6.195L16.5 6.9525L12.75 10.605L13.635 15.765L9 13.3275L4.365 15.765L5.25 10.605L1.5 6.9525L6.6825 6.195L9 1.5Z"
-                                                                            stroke="#FF7A1A" stroke-width="1.8"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                        </path>
-                                                                    </svg>
-                                                                </div>
-                                                                <span>4.5</span>
-                                                            </div>
-                                                            <div class="eye d-flex align-items-center">
-                                                                <div class="icon pe-2">
-                                                                    <svg width="18" height="18"
-                                                                        viewBox="0 0 18 18" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <g clip-path="url(#clipOne)">
-                                                                            <path
-                                                                                d="M1 9C1 9 4 3 9.25 3C14.5 3 17.5 9 17.5 9C17.5 9 14.5 15 9.25 15C4 15 1 9 1 9Z"
-                                                                                stroke="#1089FF" stroke-width="1.8"
-                                                                                stroke-linecap="round"
-                                                                                stroke-linejoin="round"></path>
-                                                                            <path
-                                                                                d="M9.25 11.25C10.4926 11.25 11.5 10.2426 11.5 9C11.5 7.75736 10.4926 6.75 9.25 6.75C8.00736 6.75 7 7.75736 7 9C7 10.2426 8.00736 11.25 9.25 11.25Z"
-                                                                                stroke="#1089FF" stroke-width="1.8"
-                                                                                stroke-linecap="round"
-                                                                                stroke-linejoin="round"></path>
-                                                                        </g>
-                                                                        <defs>
-                                                                            <clipPath>
-                                                                                <rect width="18" height="18"
-                                                                                    fill="white">
-                                                                                </rect>
-                                                                            </clipPath>
-                                                                        </defs>
-                                                                    </svg>
-                                                                </div>
-                                                                <span>24,517</span>
-                                                            </div>
-                                                            <div class="book d-flex align-items-center">
-                                                                <div class="icon pe-2">
-                                                                    <svg width="18" height="18"
-                                                                        viewBox="0 0 18 18" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <path
-                                                                            d="M1.5 2.25H6C6.79565 2.25 7.55871 2.56607 8.12132 3.12868C8.68393 3.69129 9 4.45435 9 5.25V15.75C9 15.1533 8.76295 14.581 8.34099 14.159C7.91903 13.7371 7.34674 13.5 6.75 13.5H1.5V2.25Z"
-                                                                            stroke="#00AF91" stroke-width="1.8"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                        </path>
-                                                                        <path
-                                                                            d="M16.5 2.25H12C11.2044 2.25 10.4413 2.56607 9.87868 3.12868C9.31607 3.69129 9 4.45435 9 5.25V15.75C9 15.1533 9.23705 14.581 9.65901 14.159C10.081 13.7371 10.6533 13.5 11.25 13.5H16.5V2.25Z"
-                                                                            stroke="#00AF91" stroke-width="1.8"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                        </path>
-                                                                    </svg>
-                                                                </div>
-                                                                <span>37 Lesson</span>
-                                                            </div>
-                                                            <div class="clock d-flex align-items-center">
-                                                                <div class="icon pe-2">
-                                                                    <svg width="18" height="18"
-                                                                        viewBox="0 0 18 18" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <path
-                                                                            d="M9 16.5C13.1421 16.5 16.5 13.1421 16.5 9C16.5 4.85786 13.1421 1.5 9 1.5C4.85786 1.5 1.5 4.85786 1.5 9C1.5 13.1421 4.85786 16.5 9 16.5Z"
-                                                                            stroke="#FFC91B" stroke-width="1.8"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                        </path>
-                                                                        <path d="M9 4.5V9L12 10.5" stroke="#FFC91B"
-                                                                            stroke-width="1.8" stroke-linecap="round"
-                                                                            stroke-linejoin="round"></path>
-                                                                    </svg>
-                                                                </div>
-                                                                <span>3 Hours</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 mb-4">
-                                                <div class="course">
-                                                    <div class="course__img">
-                                                        <a href="#"><img
-                                                                src="{{ asset('frontend/dist/images/courses/demo-img-03.png') }}"
-                                                                alt="images" class="img-fluid" /></a>
-                                                    </div>
-                                                    <div class="course__content">
-                                                        <div class="course__content_title">
-                                                            <h6>
-                                                                <a href="#">2020 Complete Drawing Masterclass. From
-                                                                    Beginner
-                                                                    to...</a>
-                                                            </h6>
-                                                        </div>
-                                                        <div class="course__content_author">
-                                                            <div class="info">
-                                                                <a href="#" class="info_img"><img
-                                                                        src="{{ asset('frontend/dist/images/courses/7.png') }}"
-                                                                        alt="client-image" /></a>
-
-                                                                <a href="#">Brandon Dias</a>
-                                                            </div>
-                                                            <div class="price">
-                                                                <del>?95</del>
-                                                                <span>?12</span>
-                                                            </div>
-                                                        </div>
-                                                        <div
-                                                            class="course__content_time d-flex justify-content-between align-items-center">
-                                                            <div class="star d-flex align-items-center">
-                                                                <div class="icon pe-2">
-                                                                    <svg width="18" height="18"
-                                                                        viewBox="0 0 18 18" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <path
-                                                                            d="M9 1.5L11.3175 6.195L16.5 6.9525L12.75 10.605L13.635 15.765L9 13.3275L4.365 15.765L5.25 10.605L1.5 6.9525L6.6825 6.195L9 1.5Z"
-                                                                            stroke="#FF7A1A" stroke-width="1.8"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                        </path>
-                                                                    </svg>
-                                                                </div>
-                                                                <span>4.5</span>
-                                                            </div>
-                                                            <div class="eye d-flex align-items-center">
-                                                                <div class="icon pe-2">
-                                                                    <svg width="18" height="18"
-                                                                        viewBox="0 0 18 18" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <g clip-path="url(#clipOne)">
-                                                                            <path
-                                                                                d="M1 9C1 9 4 3 9.25 3C14.5 3 17.5 9 17.5 9C17.5 9 14.5 15 9.25 15C4 15 1 9 1 9Z"
-                                                                                stroke="#1089FF" stroke-width="1.8"
-                                                                                stroke-linecap="round"
-                                                                                stroke-linejoin="round"></path>
-                                                                            <path
-                                                                                d="M9.25 11.25C10.4926 11.25 11.5 10.2426 11.5 9C11.5 7.75736 10.4926 6.75 9.25 6.75C8.00736 6.75 7 7.75736 7 9C7 10.2426 8.00736 11.25 9.25 11.25Z"
-                                                                                stroke="#1089FF" stroke-width="1.8"
-                                                                                stroke-linecap="round"
-                                                                                stroke-linejoin="round"></path>
-                                                                        </g>
-                                                                        <defs>
-                                                                            <clipPath>
-                                                                                <rect width="18" height="18"
-                                                                                    fill="white">
-                                                                                </rect>
-                                                                            </clipPath>
-                                                                        </defs>
-                                                                    </svg>
-                                                                </div>
-                                                                <span>24,517</span>
-                                                            </div>
-                                                            <div class="book d-flex align-items-center">
-                                                                <div class="icon pe-2">
-                                                                    <svg width="18" height="18"
-                                                                        viewBox="0 0 18 18" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <path
-                                                                            d="M1.5 2.25H6C6.79565 2.25 7.55871 2.56607 8.12132 3.12868C8.68393 3.69129 9 4.45435 9 5.25V15.75C9 15.1533 8.76295 14.581 8.34099 14.159C7.91903 13.7371 7.34674 13.5 6.75 13.5H1.5V2.25Z"
-                                                                            stroke="#00AF91" stroke-width="1.8"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                        </path>
-                                                                        <path
-                                                                            d="M16.5 2.25H12C11.2044 2.25 10.4413 2.56607 9.87868 3.12868C9.31607 3.69129 9 4.45435 9 5.25V15.75C9 15.1533 9.23705 14.581 9.65901 14.159C10.081 13.7371 10.6533 13.5 11.25 13.5H16.5V2.25Z"
-                                                                            stroke="#00AF91" stroke-width="1.8"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                        </path>
-                                                                    </svg>
-                                                                </div>
-                                                                <span>37 Lesson</span>
-                                                            </div>
-                                                            <div class="clock d-flex align-items-center">
-                                                                <div class="icon pe-2">
-                                                                    <svg width="18" height="18"
-                                                                        viewBox="0 0 18 18" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <path
-                                                                            d="M9 16.5C13.1421 16.5 16.5 13.1421 16.5 9C16.5 4.85786 13.1421 1.5 9 1.5C4.85786 1.5 1.5 4.85786 1.5 9C1.5 13.1421 4.85786 16.5 9 16.5Z"
-                                                                            stroke="#FFC91B" stroke-width="1.8"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                        </path>
-                                                                        <path d="M9 4.5V9L12 10.5" stroke="#FFC91B"
-                                                                            stroke-width="1.8" stroke-linecap="round"
-                                                                            stroke-linejoin="round"></path>
-                                                                    </svg>
-                                                                </div>
-                                                                <span>3 Hours</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 mb-4">
-                                                <div class="course">
-                                                    <div class="course__img">
-                                                        <a href="#"><img
-                                                                src="{{ asset('frontend/dist/images/courses/8.jpg') }}"
-                                                                alt="images" class="img-fluid" /></a>
-                                                    </div>
-                                                    <div class="course__content">
-                                                        <div class="course__content_title">
-                                                            <h6>
-                                                                <a href="#">Adobe Illustrator CC ??" Advanced
-                                                                    Training
-                                                                    Course...</a>
-                                                            </h6>
-                                                        </div>
-                                                        <div class="course__content_author">
-                                                            <div class="info">
-                                                                <a href="#" class="info_img"><img
-                                                                        src="{{ asset('frontend/dist/images/courses/7.png') }}"
-                                                                        alt="client-image" /></a>
-
-                                                                <a href="#">Brandon Dias</a>
-                                                            </div>
-                                                            <div class="price">
-                                                                <del>?95</del>
-                                                                <span>?12</span>
-                                                            </div>
-                                                        </div>
-                                                        <div
-                                                            class="course__content_time d-flex justify-content-between align-items-center">
-                                                            <div class="star d-flex align-items-center">
-                                                                <div class="icon pe-2">
-                                                                    <svg width="18" height="18"
-                                                                        viewBox="0 0 18 18" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <path
-                                                                            d="M9 1.5L11.3175 6.195L16.5 6.9525L12.75 10.605L13.635 15.765L9 13.3275L4.365 15.765L5.25 10.605L1.5 6.9525L6.6825 6.195L9 1.5Z"
-                                                                            stroke="#FF7A1A" stroke-width="1.8"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                        </path>
-                                                                    </svg>
-                                                                </div>
-                                                                <span>4.5</span>
-                                                            </div>
-                                                            <div class="eye d-flex align-items-center">
-                                                                <div class="icon pe-2">
-                                                                    <svg width="18" height="18"
-                                                                        viewBox="0 0 18 18" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <g clip-path="url(#clipOne)">
-                                                                            <path
-                                                                                d="M1 9C1 9 4 3 9.25 3C14.5 3 17.5 9 17.5 9C17.5 9 14.5 15 9.25 15C4 15 1 9 1 9Z"
-                                                                                stroke="#1089FF" stroke-width="1.8"
-                                                                                stroke-linecap="round"
-                                                                                stroke-linejoin="round"></path>
-                                                                            <path
-                                                                                d="M9.25 11.25C10.4926 11.25 11.5 10.2426 11.5 9C11.5 7.75736 10.4926 6.75 9.25 6.75C8.00736 6.75 7 7.75736 7 9C7 10.2426 8.00736 11.25 9.25 11.25Z"
-                                                                                stroke="#1089FF" stroke-width="1.8"
-                                                                                stroke-linecap="round"
-                                                                                stroke-linejoin="round"></path>
-                                                                        </g>
-                                                                        <defs>
-                                                                            <clipPath>
-                                                                                <rect width="18" height="18"
-                                                                                    fill="white">
-                                                                                </rect>
-                                                                            </clipPath>
-                                                                        </defs>
-                                                                    </svg>
-                                                                </div>
-                                                                <span>24,517</span>
-                                                            </div>
-                                                            <div class="book d-flex align-items-center">
-                                                                <div class="icon pe-2">
-                                                                    <svg width="18" height="18"
-                                                                        viewBox="0 0 18 18" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <path
-                                                                            d="M1.5 2.25H6C6.79565 2.25 7.55871 2.56607 8.12132 3.12868C8.68393 3.69129 9 4.45435 9 5.25V15.75C9 15.1533 8.76295 14.581 8.34099 14.159C7.91903 13.7371 7.34674 13.5 6.75 13.5H1.5V2.25Z"
-                                                                            stroke="#00AF91" stroke-width="1.8"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                        </path>
-                                                                        <path
-                                                                            d="M16.5 2.25H12C11.2044 2.25 10.4413 2.56607 9.87868 3.12868C9.31607 3.69129 9 4.45435 9 5.25V15.75C9 15.1533 9.23705 14.581 9.65901 14.159C10.081 13.7371 10.6533 13.5 11.25 13.5H16.5V2.25Z"
-                                                                            stroke="#00AF91" stroke-width="1.8"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                        </path>
-                                                                    </svg>
-                                                                </div>
-                                                                <span>37 Lesson</span>
-                                                            </div>
-                                                            <div class="clock d-flex align-items-center">
-                                                                <div class="icon pe-2">
-                                                                    <svg width="18" height="18"
-                                                                        viewBox="0 0 18 18" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <path
-                                                                            d="M9 16.5C13.1421 16.5 16.5 13.1421 16.5 9C16.5 4.85786 13.1421 1.5 9 1.5C4.85786 1.5 1.5 4.85786 1.5 9C1.5 13.1421 4.85786 16.5 9 16.5Z"
-                                                                            stroke="#FFC91B" stroke-width="1.8"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                        </path>
-                                                                        <path d="M9 4.5V9L12 10.5" stroke="#FFC91B"
-                                                                            stroke-width="1.8" stroke-linecap="round"
-                                                                            stroke-linejoin="round"></path>
-                                                                    </svg>
-                                                                </div>
-                                                                <span>3 Hours</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 mb-4">
-                                                <div class="course">
-                                                    <div class="course__img">
-                                                        <a href="#"><img
-                                                                src="{{ asset('frontend/dist/images/courses/demo-img-04.png') }}"
-                                                                alt="images" class="img-fluid" /></a>
-                                                    </div>
-                                                    <div class="course__content">
-                                                        <div class="course__content_title">
-                                                            <h6>
-                                                                <a href="#">Graphic Design Masterclass - Learn Great
-                                                                    Design...</a>
-                                                            </h6>
-                                                        </div>
-                                                        <div class="course__content_author">
-                                                            <div class="info">
-                                                                <a href="#" class="info_img"><img
-                                                                        src="{{ asset('frontend/dist/images/courses/7.png') }}"
-                                                                        alt="client-image" /></a>
-
-                                                                <a href="#">Brandon Dias</a>
-                                                            </div>
-                                                            <div class="price">
-                                                                <del>?95</del>
-                                                                <span>?12</span>
-                                                            </div>
-                                                        </div>
-                                                        <div
-                                                            class="course__content_time d-flex justify-content-between align-items-center">
-                                                            <div class="star d-flex align-items-center">
-                                                                <div class="icon pe-2">
-                                                                    <svg width="18" height="18"
-                                                                        viewBox="0 0 18 18" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <path
-                                                                            d="M9 1.5L11.3175 6.195L16.5 6.9525L12.75 10.605L13.635 15.765L9 13.3275L4.365 15.765L5.25 10.605L1.5 6.9525L6.6825 6.195L9 1.5Z"
-                                                                            stroke="#FF7A1A" stroke-width="1.8"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                        </path>
-                                                                    </svg>
-                                                                </div>
-                                                                <span>4.5</span>
-                                                            </div>
-                                                            <div class="eye d-flex align-items-center">
-                                                                <div class="icon pe-2">
-                                                                    <svg width="18" height="18"
-                                                                        viewBox="0 0 18 18" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <g clip-path="url(#clipOne)">
-                                                                            <path
-                                                                                d="M1 9C1 9 4 3 9.25 3C14.5 3 17.5 9 17.5 9C17.5 9 14.5 15 9.25 15C4 15 1 9 1 9Z"
-                                                                                stroke="#1089FF" stroke-width="1.8"
-                                                                                stroke-linecap="round"
-                                                                                stroke-linejoin="round"></path>
-                                                                            <path
-                                                                                d="M9.25 11.25C10.4926 11.25 11.5 10.2426 11.5 9C11.5 7.75736 10.4926 6.75 9.25 6.75C8.00736 6.75 7 7.75736 7 9C7 10.2426 8.00736 11.25 9.25 11.25Z"
-                                                                                stroke="#1089FF" stroke-width="1.8"
-                                                                                stroke-linecap="round"
-                                                                                stroke-linejoin="round"></path>
-                                                                        </g>
-                                                                        <defs>
-                                                                            <clipPath>
-                                                                                <rect width="18" height="18"
-                                                                                    fill="white">
-                                                                                </rect>
-                                                                            </clipPath>
-                                                                        </defs>
-                                                                    </svg>
-                                                                </div>
-                                                                <span>24,517</span>
-                                                            </div>
-                                                            <div class="book d-flex align-items-center">
-                                                                <div class="icon pe-2">
-                                                                    <svg width="18" height="18"
-                                                                        viewBox="0 0 18 18" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <path
-                                                                            d="M1.5 2.25H6C6.79565 2.25 7.55871 2.56607 8.12132 3.12868C8.68393 3.69129 9 4.45435 9 5.25V15.75C9 15.1533 8.76295 14.581 8.34099 14.159C7.91903 13.7371 7.34674 13.5 6.75 13.5H1.5V2.25Z"
-                                                                            stroke="#00AF91" stroke-width="1.8"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                        </path>
-                                                                        <path
-                                                                            d="M16.5 2.25H12C11.2044 2.25 10.4413 2.56607 9.87868 3.12868C9.31607 3.69129 9 4.45435 9 5.25V15.75C9 15.1533 9.23705 14.581 9.65901 14.159C10.081 13.7371 10.6533 13.5 11.25 13.5H16.5V2.25Z"
-                                                                            stroke="#00AF91" stroke-width="1.8"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                        </path>
-                                                                    </svg>
-                                                                </div>
-                                                                <span>37 Lesson</span>
-                                                            </div>
-                                                            <div class="clock d-flex align-items-center">
-                                                                <div class="icon pe-2">
-                                                                    <svg width="18" height="18"
-                                                                        viewBox="0 0 18 18" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <path
-                                                                            d="M9 16.5C13.1421 16.5 16.5 13.1421 16.5 9C16.5 4.85786 13.1421 1.5 9 1.5C4.85786 1.5 1.5 4.85786 1.5 9C1.5 13.1421 4.85786 16.5 9 16.5Z"
-                                                                            stroke="#FFC91B" stroke-width="1.8"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                        </path>
-                                                                        <path d="M9 4.5V9L12 10.5" stroke="#FFC91B"
-                                                                            stroke-width="1.8" stroke-linecap="round"
-                                                                            stroke-linejoin="round"></path>
-                                                                    </svg>
-                                                                </div>
-                                                                <span>3 Hours</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 mb-4">
-                                                <div class="course">
-                                                    <div class="course__img">
-                                                        <a href="#"><img
-                                                                src="{{ asset('frontend/dist/images/courses/demo-img-05.png') }}"
-                                                                alt="images" class="img-fluid" /></a>
-                                                    </div>
-                                                    <div class="course__content">
-                                                        <div class="course__content_title">
-                                                            <h6>
-                                                                <a href="#">Advanced Digital Comic Coloring Concepts
-                                                                    &amp;
-                                                                    Techniques</a>
-                                                            </h6>
-                                                        </div>
-                                                        <div class="course__content_author">
-                                                            <div class="info">
-                                                                <a href="#" class="info_img"><img
-                                                                        src="{{ asset('frontend/dist/images/courses/7.png') }}"
-                                                                        alt="client-image" /></a>
-
-                                                                <a href="#">Brandon Dias</a>
-                                                            </div>
-                                                            <div class="price">
-                                                                <del>?95</del>
-                                                                <span>?12</span>
-                                                            </div>
-                                                        </div>
-                                                        <div
-                                                            class="course__content_time d-flex justify-content-between align-items-center">
-                                                            <div class="star d-flex align-items-center">
-                                                                <div class="icon pe-2">
-                                                                    <svg width="18" height="18"
-                                                                        viewBox="0 0 18 18" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <path
-                                                                            d="M9 1.5L11.3175 6.195L16.5 6.9525L12.75 10.605L13.635 15.765L9 13.3275L4.365 15.765L5.25 10.605L1.5 6.9525L6.6825 6.195L9 1.5Z"
-                                                                            stroke="#FF7A1A" stroke-width="1.8"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                        </path>
-                                                                    </svg>
-                                                                </div>
-                                                                <span>4.5</span>
-                                                            </div>
-                                                            <div class="eye d-flex align-items-center">
-                                                                <div class="icon pe-2">
-                                                                    <svg width="18" height="18"
-                                                                        viewBox="0 0 18 18" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <g clip-path="url(#clipOne)">
-                                                                            <path
-                                                                                d="M1 9C1 9 4 3 9.25 3C14.5 3 17.5 9 17.5 9C17.5 9 14.5 15 9.25 15C4 15 1 9 1 9Z"
-                                                                                stroke="#1089FF" stroke-width="1.8"
-                                                                                stroke-linecap="round"
-                                                                                stroke-linejoin="round"></path>
-                                                                            <path
-                                                                                d="M9.25 11.25C10.4926 11.25 11.5 10.2426 11.5 9C11.5 7.75736 10.4926 6.75 9.25 6.75C8.00736 6.75 7 7.75736 7 9C7 10.2426 8.00736 11.25 9.25 11.25Z"
-                                                                                stroke="#1089FF" stroke-width="1.8"
-                                                                                stroke-linecap="round"
-                                                                                stroke-linejoin="round"></path>
-                                                                        </g>
-                                                                        <defs>
-                                                                            <clipPath>
-                                                                                <rect width="18" height="18"
-                                                                                    fill="white">
-                                                                                </rect>
-                                                                            </clipPath>
-                                                                        </defs>
-                                                                    </svg>
-                                                                </div>
-                                                                <span>24,517</span>
-                                                            </div>
-                                                            <div class="book d-flex align-items-center">
-                                                                <div class="icon pe-2">
-                                                                    <svg width="18" height="18"
-                                                                        viewBox="0 0 18 18" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <path
-                                                                            d="M1.5 2.25H6C6.79565 2.25 7.55871 2.56607 8.12132 3.12868C8.68393 3.69129 9 4.45435 9 5.25V15.75C9 15.1533 8.76295 14.581 8.34099 14.159C7.91903 13.7371 7.34674 13.5 6.75 13.5H1.5V2.25Z"
-                                                                            stroke="#00AF91" stroke-width="1.8"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                        </path>
-                                                                        <path
-                                                                            d="M16.5 2.25H12C11.2044 2.25 10.4413 2.56607 9.87868 3.12868C9.31607 3.69129 9 4.45435 9 5.25V15.75C9 15.1533 9.23705 14.581 9.65901 14.159C10.081 13.7371 10.6533 13.5 11.25 13.5H16.5V2.25Z"
-                                                                            stroke="#00AF91" stroke-width="1.8"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                        </path>
-                                                                    </svg>
-                                                                </div>
-                                                                <span>37 Lesson</span>
-                                                            </div>
-                                                            <div class="clock d-flex align-items-center">
-                                                                <div class="icon pe-2">
-                                                                    <svg width="18" height="18"
-                                                                        viewBox="0 0 18 18" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <path
-                                                                            d="M9 16.5C13.1421 16.5 16.5 13.1421 16.5 9C16.5 4.85786 13.1421 1.5 9 1.5C4.85786 1.5 1.5 4.85786 1.5 9C1.5 13.1421 4.85786 16.5 9 16.5Z"
-                                                                            stroke="#FFC91B" stroke-width="1.8"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                        </path>
-                                                                        <path d="M9 4.5V9L12 10.5" stroke="#FFC91B"
-                                                                            stroke-width="1.8" stroke-linecap="round"
-                                                                            stroke-linejoin="round"></path>
-                                                                    </svg>
-                                                                </div>
-                                                                <span>3 Hours</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="course">
-                                                    <div class="course__img">
-                                                        <a href="#"><img
-                                                                src="{{ asset('frontend/dist/images/courses/demo-img-03.png') }}"
-                                                                alt="images" class="img-fluid" /></a>
-                                                    </div>
-                                                    <div class="course__content">
-                                                        <div class="course__content_title">
-                                                            <h6>
-                                                                <a href="#">Gamification: Motivation Psychology
-                                                                    &amp;
-                                                                    The
-                                                                    Art of...</a>
-                                                            </h6>
-                                                        </div>
-                                                        <div class="course__content_author">
-                                                            <div class="info">
-                                                                <a href="#" class="info_img"><img
-                                                                        src="{{ asset('frontend/dist/images/courses/7.png') }}"
-                                                                        alt="client-image" /></a>
-
-                                                                <a href="#">Brandon Dias</a>
-                                                            </div>
-                                                            <div class="price">
-                                                                <del>?95</del>
-                                                                <span>?12</span>
-                                                            </div>
-                                                        </div>
-                                                        <div
-                                                            class="course__content_time d-flex justify-content-between align-items-center">
-                                                            <div class="star d-flex align-items-center">
-                                                                <div class="icon pe-2">
-                                                                    <svg width="18" height="18"
-                                                                        viewBox="0 0 18 18" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <path
-                                                                            d="M9 1.5L11.3175 6.195L16.5 6.9525L12.75 10.605L13.635 15.765L9 13.3275L4.365 15.765L5.25 10.605L1.5 6.9525L6.6825 6.195L9 1.5Z"
-                                                                            stroke="#FF7A1A" stroke-width="1.8"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                        </path>
-                                                                    </svg>
-                                                                </div>
-                                                                <span>4.5</span>
-                                                            </div>
-                                                            <div class="eye d-flex align-items-center">
-                                                                <div class="icon pe-2">
-                                                                    <svg width="18" height="18"
-                                                                        viewBox="0 0 18 18" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <g clip-path="url(#clipOne)">
-                                                                            <path
-                                                                                d="M1 9C1 9 4 3 9.25 3C14.5 3 17.5 9 17.5 9C17.5 9 14.5 15 9.25 15C4 15 1 9 1 9Z"
-                                                                                stroke="#1089FF" stroke-width="1.8"
-                                                                                stroke-linecap="round"
-                                                                                stroke-linejoin="round"></path>
-                                                                            <path
-                                                                                d="M9.25 11.25C10.4926 11.25 11.5 10.2426 11.5 9C11.5 7.75736 10.4926 6.75 9.25 6.75C8.00736 6.75 7 7.75736 7 9C7 10.2426 8.00736 11.25 9.25 11.25Z"
-                                                                                stroke="#1089FF" stroke-width="1.8"
-                                                                                stroke-linecap="round"
-                                                                                stroke-linejoin="round"></path>
-                                                                        </g>
-                                                                        <defs>
-                                                                            <clipPath>
-                                                                                <rect width="18" height="18"
-                                                                                    fill="white">
-                                                                                </rect>
-                                                                            </clipPath>
-                                                                        </defs>
-                                                                    </svg>
-                                                                </div>
-                                                                <span>24,517</span>
-                                                            </div>
-                                                            <div class="book d-flex align-items-center">
-                                                                <div class="icon pe-2">
-                                                                    <svg width="18" height="18"
-                                                                        viewBox="0 0 18 18" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <path
-                                                                            d="M1.5 2.25H6C6.79565 2.25 7.55871 2.56607 8.12132 3.12868C8.68393 3.69129 9 4.45435 9 5.25V15.75C9 15.1533 8.76295 14.581 8.34099 14.159C7.91903 13.7371 7.34674 13.5 6.75 13.5H1.5V2.25Z"
-                                                                            stroke="#00AF91" stroke-width="1.8"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                        </path>
-                                                                        <path
-                                                                            d="M16.5 2.25H12C11.2044 2.25 10.4413 2.56607 9.87868 3.12868C9.31607 3.69129 9 4.45435 9 5.25V15.75C9 15.1533 9.23705 14.581 9.65901 14.159C10.081 13.7371 10.6533 13.5 11.25 13.5H16.5V2.25Z"
-                                                                            stroke="#00AF91" stroke-width="1.8"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                        </path>
-                                                                    </svg>
-                                                                </div>
-                                                                <span>37 Lesson</span>
-                                                            </div>
-                                                            <div class="clock d-flex align-items-center">
-                                                                <div class="icon pe-2">
-                                                                    <svg width="18" height="18"
-                                                                        viewBox="0 0 18 18" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <path
-                                                                            d="M9 16.5C13.1421 16.5 16.5 13.1421 16.5 9C16.5 4.85786 13.1421 1.5 9 1.5C4.85786 1.5 1.5 4.85786 1.5 9C1.5 13.1421 4.85786 16.5 9 16.5Z"
-                                                                            stroke="#FFC91B" stroke-width="1.8"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                        </path>
-                                                                        <path d="M9 4.5V9L12 10.5" stroke="#FFC91B"
-                                                                            stroke-width="1.8" stroke-linecap="round"
-                                                                            stroke-linejoin="round"></path>
-                                                                    </svg>
-                                                                </div>
-                                                                <span>3 Hours</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12 mt-lg-5 mt-4">
-                                                <div class="pagination pb-0 justify-content-center">
-                                                    <div class="pagination-group">
-                                                        <a href="#" class="p_prev">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="9.414"
-                                                                height="16.828" viewBox="0 0 9.414 16.828">
-                                                                <path data-name="Icon feather-chevron-left"
-                                                                    d="M20.5,23l-7-7,7-7"
-                                                                    transform="translate(-12.5 -7.586)" fill="none"
-                                                                    stroke="currentColor" stroke-linecap="round"
-                                                                    stroke-linejoin="round" stroke-width="2"></path>
-                                                            </svg>
-                                                        </a>
-                                                        <a href="#!1" class="cdp_i active">01</a>
-                                                        <a href="#!2" class="cdp_i">02</a>
-                                                        <a href="#!3" class="cdp_i">03</a>
-                                                        <a href="#!+1" class="p_next">
-                                                            <svg width="10" height="16" viewBox="0 0 10 16"
-                                                                fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <path d="M1.5 1L8.5 8L1.5 15" stroke="currentColor"
-                                                                    stroke-width="2" stroke-linecap="round"
-                                                                    stroke-linejoin="round"></path>
-                                                            </svg>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade show active" id="pills-pills-review" role="tabpanel"
-                                        aria-labelledby="pills-pills-review">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="instructor-rating-area d-flex">
-                                                    <div class="rating-number">
-                                                        <h2>4.6</h2>
-                                                        <div class="rating-icon">
-                                                            <ul class="list-inline">
-                                                                <li class="list-inline-item">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                        height="24" viewBox="0 0 24 24" fill="none"
-                                                                        stroke="currentColor" stroke-width="2"
-                                                                        stroke-linecap="round" stroke-linejoin="round"
-                                                                        class="feather feather-star">
-                                                                        <polygon
-                                                                            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                        </polygon>
-                                                                    </svg>
-                                                                </li>
-                                                                <li class="list-inline-item">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                        height="24" viewBox="0 0 24 24" fill="none"
-                                                                        stroke="currentColor" stroke-width="2"
-                                                                        stroke-linecap="round" stroke-linejoin="round"
-                                                                        class="feather feather-star">
-                                                                        <polygon
-                                                                            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                        </polygon>
-                                                                    </svg>
-                                                                </li>
-                                                                <li class="list-inline-item">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                        height="24" viewBox="0 0 24 24" fill="none"
-                                                                        stroke="currentColor" stroke-width="2"
-                                                                        stroke-linecap="round" stroke-linejoin="round"
-                                                                        class="feather feather-star">
-                                                                        <polygon
-                                                                            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                        </polygon>
-                                                                    </svg>
-                                                                </li>
-                                                                <li class="list-inline-item">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                        height="24" viewBox="0 0 24 24" fill="none"
-                                                                        stroke="currentColor" stroke-width="2"
-                                                                        stroke-linecap="round" stroke-linejoin="round"
-                                                                        class="feather feather-star">
-                                                                        <polygon
-                                                                            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                        </polygon>
-                                                                    </svg>
-                                                                </li>
-                                                                <li class="list-inline-item">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                                        width="16" height="16"
-                                                                        fill="currentColor" class="bi bi-star-half"
-                                                                        viewBox="0 0 16 16">
-                                                                        <path
-                                                                            d="M5.354 5.119L7.538.792A.516.516 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.537.537 0 0 1 16 6.32a.55.55 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.519.519 0 0 1-.146.05c-.341.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.171-.403.59.59 0 0 1 .084-.302.513.513 0 0 1 .37-.245l4.898-.696zM8 12.027c.08 0 .16.018.232.056l3.686 1.894-.694-3.957a.564.564 0 0 1 .163-.505l2.906-2.77-4.052-.576a.525.525 0 0 1-.393-.288L8.002 2.223 8 2.226v9.8z">
-                                                                        </path>
-                                                                    </svg>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <p>Course Rating</p>
-                                                    </div>
-                                                    <div class="ms-lg-4 rating-range">
-                                                        <div class="rating-range-item d-flex align-items-center">
-                                                            <div class="rating-range-item-ratings">
-                                                                <ul class="list-inline">
-                                                                    <li class="list-inline-item">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="none"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-star">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                    <li class="list-inline-item">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="none"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-star">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                    <li class="list-inline-item">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="none"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-star">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                    <li class="list-inline-item">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="none"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-star">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                    <li class="list-inline-item">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="none"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-star">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="rating-range-item-bar">
-                                                                <div class="rating-width" style="width: 60%;"></div>
-                                                            </div>
-                                                            <div class="rating-range-item-percent">
-                                                                <p>59%</p>
-                                                            </div>
-                                                        </div>
-                                                        <div
-                                                            class="rating-range-item d-flex align-items-center four-star">
-                                                            <div class="rating-range-item-ratings">
-                                                                <ul class="list-inline">
-                                                                    <li class="list-inline-item">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="none"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-star">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                    <li class="list-inline-item">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="none"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-star">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                    <li class="list-inline-item">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="none"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-star">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                    <li class="list-inline-item">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="none"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-star">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                    <li class="list-inline-item">
-                                                                        <svg class="fill-star"
-                                                                            xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="none"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="rating-range-item-bar">
-                                                                <div class="rating-width" style="width: 60%;"></div>
-                                                            </div>
-                                                            <div class="rating-range-item-percent">
-                                                                <p>31%</p>
-                                                            </div>
-                                                        </div>
-                                                        <div
-                                                            class="rating-range-item d-flex align-items-center three-star">
-                                                            <div class="rating-range-item-ratings">
-                                                                <ul class="list-inline">
-                                                                    <li class="list-inline-item">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="none"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-star">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                    <li class="list-inline-item">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="none"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-star">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                    <li class="list-inline-item">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="none"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-star">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                    <li class="list-inline-item">
-                                                                        <svg class="fill-star"
-                                                                            xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="none"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                    <li class="list-inline-item">
-                                                                        <svg class="fill-star"
-                                                                            xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="none"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="rating-range-item-bar">
-                                                                <div class="rating-width" style="width: 60%;"></div>
-                                                            </div>
-                                                            <div class="rating-range-item-percent">
-                                                                <p>1%</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="rating-range-item d-flex align-items-center two-star">
-                                                            <div class="rating-range-item-ratings">
-                                                                <ul class="list-inline">
-                                                                    <li class="list-inline-item">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="none"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-star">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                    <li class="list-inline-item">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="none"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-star">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                    <li class="list-inline-item">
-                                                                        <svg class="fill-star"
-                                                                            xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="none"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                    <li class="list-inline-item">
-                                                                        <svg class="fill-star"
-                                                                            xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="none"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                    <li class="list-inline-item">
-                                                                        <svg class="fill-star"
-                                                                            xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="none"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="rating-range-item-bar">
-                                                                <div class="rating-width" style="width: 60%;"></div>
-                                                            </div>
-                                                            <div class="rating-range-item-percent">
-                                                                <p>1%</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="rating-range-item d-flex align-items-center one-star">
-                                                            <div class="rating-range-item-ratings">
-                                                                <ul class="list-inline">
-                                                                    <li class="list-inline-item">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="none"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-star">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                    <li class="list-inline-item">
-                                                                        <svg class="fill-star"
-                                                                            xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="none"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                    <li class="list-inline-item">
-                                                                        <svg class="fill-star"
-                                                                            xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="none"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                    <li class="list-inline-item">
-                                                                        <svg class="fill-star"
-                                                                            xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="none"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                    <li class="list-inline-item">
-                                                                        <svg class="fill-star"
-                                                                            xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="none"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="rating-range-item-bar">
-                                                                <div class="rating-width" style="width: 60%;"></div>
-                                                            </div>
-                                                            <div class="rating-range-item-percent">
-                                                                <p>1%</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="students-feedback">
-                                                    <div class="students-feedback-heading">
-                                                        <h5 class="font-title--card">Students Feedback
-                                                            <span>(57,685)</span>
-                                                        </h5>
-                                                        <div class="right">
-                                                            <h6 class="font-para--md">Sort by:</h6>
-                                                            <div class="dropdown ms-2">
-                                                                <button
-                                                                    class="dropdown-toggle font-para--md border-0 bg-white"
-                                                                    type="button" id="dropdownMenu2"
-                                                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                                                    All Rating
-                                                                </button>
-                                                                <ul class="dropdown-menu"
-                                                                    aria-labelledby="dropdownMenu2">
-                                                                    <li>
-                                                                        <button class="dropdown-item" type="button">
-                                                                            Rating
-                                                                        </button>
-                                                                    </li>
-                                                                    <li>
-                                                                        <button class="dropdown-item" type="button">
-                                                                            Another Rating
-                                                                        </button>
-                                                                    </li>
-                                                                    <li>
-                                                                        <button class="dropdown-item" type="button">
-                                                                            Rating else here
-                                                                        </button>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="students-feedback-item">
-                                                        <div class="feedback-rating">
-                                                            <div class="feedback-rating-start">
-                                                                <div class="image">
-                                                                    <img src="{{ asset('frontend/dist/images/ellipse/user.jpg') }}"
-                                                                        alt="Image" />
-                                                                </div>
-                                                                <div class="text">
-                                                                    <h6 class="font-para--md">
-                                                                        <a href="students-profile.html">Harry Pinsky</a>
-                                                                    </h6>
-                                                                    <p>1 hour ago</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="feedback-rating-end">
-                                                                <ul
-                                                                    class="testimonial__item-star d-flex align-items-center">
-                                                                    <li>
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="currentColor"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-star">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                    <li>
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="currentColor"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-star">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                    <li>
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="currentColor"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-star">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                    <li>
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="currentColor"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-star">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                    <li>
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="currentColor"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-star">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                        <p class="font-para--md">
-                                                            Aliquam eget leo quis neque molestie dictum. Etiam ut tortor
-                                                            tempor, vestibulum ante non, vulputate nibh. Cras non
-                                                            molestie
-                                                            diam. Great Course for Beginner ?Y~?
-                                                        </p>
-                                                    </div>
-                                                    <div class="students-feedback-item">
-                                                        <div class="feedback-rating">
-                                                            <div class="feedback-rating-start">
-                                                                <div class="image">
-                                                                    <img src="{{ asset('frontend/dist/images/ellipse/1.png') }}"
-                                                                        alt="Image" />
-                                                                </div>
-                                                                <div class="text">
-                                                                    <h6><a href="#">Harry Pinsky</a></h6>
-                                                                    <p>2 hour ago</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="feedback-rating-end">
-                                                                <ul
-                                                                    class="testimonial__item-star d-flex align-items-center">
-                                                                    <li>
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="currentColor"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-star">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                    <li>
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="currentColor"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-star">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                    <li>
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="currentColor"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-star">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                    <li>
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="currentColor"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-star">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                    <li>
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="currentColor"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-star">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                        <p class="font-para--md">
-                                                            Aliquam eget leo quis neque molestie dictum. Etiam ut tortor
-                                                            tempor, vestibulum ante non, vulputate nibh.
-                                                        </p>
-                                                    </div>
-                                                    <div class="students-feedback-item">
-                                                        <div class="feedback-rating">
-                                                            <div class="feedback-rating-start">
-                                                                <div class="image">
-                                                                    <img src="{{ asset('frontend/dist/images/ellipse/2.png') }}"
-                                                                        alt="Image" />
-                                                                </div>
-                                                                <div class="text">
-                                                                    <h6><a href="#">Watcraz Eggsy</a></h6>
-                                                                    <p>1 day ago</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="feedback-rating-end">
-                                                                <ul
-                                                                    class="testimonial__item-star d-flex align-items-center">
-                                                                    <li>
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="currentColor"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-star">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                    <li>
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="currentColor"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-star">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                    <li>
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="currentColor"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-star">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                    <li>
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="currentColor"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-star">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                    <li>
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="currentColor"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-star">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                        <p class="font-para--md">
-                                                            Aenean vulputate nisi ligula. Quisque in tempus sapien.
-                                                            Quisque
-                                                            vestibulum massa eget consequat scelerisque. Phasellus
-                                                            varius
-                                                            risus nec maximus auctor.
-                                                        </p>
-                                                    </div>
-                                                    <div class="students-feedback-item border-0">
-                                                        <div class="feedback-rating">
-                                                            <div class="feedback-rating-start">
-                                                                <div class="image">
-                                                                    <img src="{{ asset('frontend/dist/images/ellipse/3.png') }}"
-                                                                        alt="Image" />
-                                                                </div>
-                                                                <div class="text">
-                                                                    <h6><a href="#">Watcraz Eggsy</a></h6>
-                                                                    <p>1 day ago</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="feedback-rating-end">
-                                                                <ul
-                                                                    class="testimonial__item-star d-flex align-items-center">
-                                                                    <li>
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="currentColor"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-star">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                    <li>
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="currentColor"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-star">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                    <li>
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="currentColor"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-star">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                    <li>
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="currentColor"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-star">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                    <li>
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            width="24" height="24"
-                                                                            viewBox="0 0 24 24" fill="currentColor"
-                                                                            stroke="currentColor" stroke-width="2"
-                                                                            stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            class="feather feather-star">
-                                                                            <polygon
-                                                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                                                            </polygon>
-                                                                        </svg>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                        <p class="font-para--md">
-                                                            Cras non molestie diam. Aenean vulputate nisi ligula.
-                                                            Quisque in
-                                                            tempus sapien. Quisque vestibulum massa eget consequat
-                                                            scelerisque.
-                                                        </p>
-                                                    </div>
-                                                    <div class="text-center">
-                                                        <button class="button button-md button--primary-outline"
-                                                            type="button">
-                                                            Load more
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <!-- Course Details Review Ends Here -->
                         </div>
                     </div>
@@ -2264,64 +283,68 @@
                             <div class="cart__price">
                                 <div class="current-price">
                                     <h3 class="font-title--sm">
-                                        {{ $course->price ? number_format($course->price, 0, ',', '.') . ' VNĐ' : 'Miễn phí' }}
+                                        {{ $course->price ? number_format($course->price, 0, ',', '.') . ' VND' : 'Miễn phí' }}
                                     </h3>
                                     {{-- <p><del>{{$course->old_price?number_format($course->old_price, 0, ',', '.') . ' VND':''}}</del></p> --}}
                                 </div>
                                 <div class="current-discount">
                                     @if ($course->price)
-                                        <p class="font-para--md">40% off</p>
+                                        <p class="font-para--md">{{ 'Giảm 40%' }}</p>
                                     @else
-                                        <p class="font-para--md">Free 100%</p>
+                                        <p class="font-para--md">{{ 'Miễn phí' }}</p>
                                     @endif
                                 </div>
                             </div>
                             <div class="cart__checkout-process text-center">
                                 @if ($course->price)
-                                    <p class="time-left text-center">Còn 5 giờ nữa là hết giá này</p>
+                                    <p class="time-left text-center">
+                                        {{ 'Còn 5 giờ nữa là hết giá này' }}</p>
                                 @endif
                                 @if (!$enrollment)
                                     <form action="#">
                                         <a href="{{ route('add.to.cart', $course->id) }}"
-                                            class="text-white button button-lg button--primary w-100">Thêm giỏ hàng</a>
+                                            class="text-white button button-lg button--primary w-100">{{ 'Thêm giỏ hàng' }}</a>
 
                                     </form>
                                 @elseif ((int) $enrollment->status === 1)
-                                    <button class="btn btn-success p-3" type="button">Bạn đã đăng ký khóa học
-                                        này</button>
+                                    <button class="btn btn-success p-3"
+                                        type="button">{{ 'Bạn đã đăng ký khóa học này' }}</button>
                                 @else
                                     <a href="{{ route('payment.order.qr', $enrollment->order_code) }}"
-                                        class="button button-lg button--warning w-100">Tiếp tục thanh toán</a>
+                                        class="button button-lg button--warning w-100">{{ 'Tiếp tục thanh toán' }}</a>
                                 @endif
                             </div>
                             <div class="cart__includes-info">
-                                <h6 class="font-title--card">Khóa học này bao gồm:</h6>
+                                <h6 class="font-title--card">{{ 'Khóa học này bao gồm:' }}</h6>
                                 <ul>
                                     <li>
                                         <span><img src="{{ asset('frontend/dist/images/icon/dollar.png') }}"
                                                 alt="dollar" /></span>
-                                        <p class="font-para--md">Truy cập trọn đời</p>
+                                        <p class="font-para--md">{{ 'Truy cập trọn đời' }}</p>
                                     </li>
 
                                     <li>
                                         <span><img src="{{ asset('frontend/dist/images/icon/paper-plus.png') }}"
                                                 alt="paper-plus" /></span>
-                                        <p class="font-para--md">Tập tin bài tập miễn phí</p>
+                                        <p class="font-para--md">
+                                            {{ 'Tập tin bài tập miễn phí' }}</p>
                                     </li>
                                     <li>
                                         <span><img src="{{ asset('frontend/dist/images/icon/airplay.png') }}"
                                                 alt="airplay" /></span>
-                                        <p class="font-para--md">Truy cập trên Mobile, Laptop,..</p>
+                                        <p class="font-para--md">
+                                            {{ 'Truy cập trên mobile và laptop' }}</p>
                                     </li>
                                     <li>
                                         <span><img src="{{ asset('frontend/dist/images/icon/clipboard.png') }}"
                                                 alt="clipboard" /></span>
-                                        <p class="font-para--md">Giấy chứng nhận hoàn thành</p>
+                                        <p class="font-para--md">
+                                            {{ 'Giấy chứng nhận hoàn thành' }}</p>
                                     </li>
                                 </ul>
                             </div>
                             <div class="cart__share-content">
-                                <h6 class="font-title--card">Chia sẻ khóa học này</h6>
+                                <h6 class="font-title--card">{{ 'Chia sẻ khóa học này' }}</h6>
                                 <ul class="social-icons social-icons--outline">
                                     <li>
                                         <a href="#">
@@ -2392,239 +415,84 @@
                 </div>
             </div>
         </div>
-    </section>
-
-    {{-- Related Course --}}
+    </section> {{-- Related Course --}}
     <section class="section new-course-feature section--bg-offwhite-five">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-12">
-                    <h2 class="font-title--md text-center">Khóa học liên quan</h2>
+                    <h2 class="font-title--md text-center">{{ 'Khóa học liên quan' }}</h2>
                 </div>
-                <div class="row">
-                    <div class="col-12 position-relative px-0 mx-0">
-                        <div class="new__courses">
+            </div>
+            <div class="row">
+                <div class="col-12 position-relative px-0 mx-0">
+                    <div class="new__courses">
+                        @forelse ($relatedCourses as $relatedCourse)
                             <div class="contentCard contentCard--course contentCard--space">
                                 <div class="contentCard-top">
-                                    <a href="#"><img
-                                            src="{{ asset('frontend/dist/images/courses/demo-img-01.png') }}"
-                                            alt="images" class="img-fluid" /></a>
+                                    <a
+                                        href="{{ route('courseDetails', ['id' => encryptor('encrypt', $relatedCourse->id)]) }}">
+                                        <img src="{{ asset('uploads/courses/' . ($relatedCourse->image ?? 'default-course.jpg')) }}"
+                                            alt="{{ $relatedCourse->title }}" class="img-fluid" />
+                                    </a>
                                 </div>
                                 <div class="contentCard-bottom">
-                                    <h5>
-                                        <a href="#" class="font-title--card">General English Fluency</a>
-                                    </h5>
-                                    <div class="contentCard-info d-flex align-items-center justify-content-between">
-                                        <a href="instructor-profile.html"
-                                            class="contentCard-user d-flex align-items-center">
-                                            <img src="{{ asset('frontend/dist/images/courses/7.png') }}"
-                                                alt="client-image" class="rounded-circle" />
-                                            <p class="font-para--md">Nguyễn Ánh Nhung</p>
-                                        </a>
-                                        <div class="price">
-                                            <span>350.000 VND</span>
-                                            {{-- <del>?95</del> --}}
+                                    <div class="d-flex align-items-center gap-2 mb-2">
+                                        <div class="price ms-auto">
+                                            <span>
+                                                {{ $relatedCourse->price == null || $relatedCourse->price == 0
+                                                    ? 'Miễn phí'
+                                                    : number_format($relatedCourse->price, 0, ',', '.') . ' VND' }}
+                                            </span>
                                         </div>
                                     </div>
+                                    <h5>
+                                        <a href="{{ route('courseDetails', ['id' => encryptor('encrypt', $relatedCourse->id)]) }}"
+                                            class="font-title--card">{{ $relatedCourse->title }}</a>
+                                    </h5>
+                                    <div class="contentCard-info d-flex align-items-center justify-content-between">
+                                        <a href="{{ $relatedCourse->instructor ? route('instructorProfile', encryptor('encrypt', $relatedCourse->instructor->id)) : '#' }}"
+                                            class="contentCard-user d-flex align-items-center">
+                                            <img src="{{ $relatedCourse->instructor?->image ? asset('uploads/users/' . $relatedCourse->instructor->image) : asset('images/avatar/1.png') }}"
+                                                alt="client-image" class="rounded-circle" width="34" height="34"
+                                                style="width:34px;height:34px;object-fit:cover;flex:0 0 34px;" />
+                                            <p class="font-para--md">
+                                                {{ $relatedCourse->instructor?->name_en ?? 'Đang cập nhật' }}
+                                            </p>
+                                        </a>
+                                    </div>
                                     <div class="contentCard-more">
-                                        {{-- <div class="d-flex align-items-center">
-                                            <div class="icon">
-                                                <img src="{{ asset('frontend/dist/images/icon/star.png') }}"
-                                                    alt="star" />
-                                            </div>
-                                            <span>4.5</span>
-                                        </div> --}}
-                                        <div class="eye d-flex align-items-center">
-                                            <div class="icon">
-                                                <img src="{{ asset('frontend/dist/images/icon/eye.png') }}"
-                                                    alt="eye" />
-                                            </div>
-                                            <span>24,517</span>
-                                        </div>
                                         <div class="book d-flex align-items-center">
                                             <div class="icon">
                                                 <img src="{{ asset('frontend/dist/images/icon/book.png') }}"
-                                                    alt="location" />
+                                                    alt="book" />
                                             </div>
-                                            <span>37 Bài học</span>
+                                            <span>{{ $relatedCourse->lessons_count ?? ($relatedCourse->lesson ?? 0) }}
+                                                {{ 'Bài học' }}</span>
                                         </div>
                                         <div class="clock d-flex align-items-center">
                                             <div class="icon">
                                                 <img src="{{ asset('frontend/dist/images/icon/Clock.png') }}"
                                                     alt="clock" />
                                             </div>
-                                            <span>3 Giờ</span>
+                                            <span>{{ $relatedCourse->duration ?? 0 }} {{ 'Giờ' }}</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        @empty
                             <div class="contentCard contentCard--course contentCard--space">
-                                <div class="contentCard-top">
-                                    <a href="#"><img
-                                            src="{{ asset('frontend/dist/images/courses/demo-img-02.png') }}"
-                                            alt="images" class="img-fluid" /></a>
-                                </div>
-                                <div class="contentCard-bottom">
-                                    <h5>
-                                        <a href="#" class="font-title--card">General English Communicator</a>
+                                <div class="contentCard-bottom text-center py-4">
+                                    <h5><span class="font-title--card">{{ 'Chưa có khóa học liên quan.' }}</span>
                                     </h5>
-                                    <div class="contentCard-info d-flex align-items-center justify-content-between">
-                                        <a href="instructor-profile.html"
-                                            class="contentCard-user d-flex align-items-center">
-                                            <img src="{{ asset('frontend/dist/images/courses/7.png') }}"
-                                                alt="client-image" class="rounded-circle" />
-                                            <p class="font-para--md">Đoàn Thanh Trí</p>
-                                        </a>
-                                        <div class="price">
-                                            <span>280.000 VND</span>
-                                        </div>
-                                    </div>
-                                    <div class="contentCard-more">
-                                        {{-- <div class="d-flex align-items-center">
-                                            <div class="icon">
-                                                <img src="{{ asset('frontend/dist/images/icon/star.png') }}"
-                                                    alt="star" />
-                                            </div>
-                                            <span>4.5</span>
-                                        </div> --}}
-                                        <div class="eye d-flex align-items-center">
-                                            <div class="icon">
-                                                <img src="{{ asset('frontend/dist/images/icon/eye.png') }}"
-                                                    alt="eye" />
-                                            </div>
-                                            <span>24,517</span>
-                                        </div>
-                                        <div class="book d-flex align-items-center">
-                                            <div class="icon">
-                                                <img src="{{ asset('frontend/dist/images/icon/book.png') }}"
-                                                    alt="location" />
-                                            </div>
-                                            <span>37 Bài học</span>
-                                        </div>
-                                        <div class="clock d-flex align-items-center">
-                                            <div class="icon">
-                                                <img src="{{ asset('frontend/dist/images/icon/Clock.png') }}"
-                                                    alt="clock" />
-                                            </div>
-                                            <span>3 Giờ</span>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
-                            <div class="contentCard contentCard--course contentCard--space">
-                                <div class="contentCard-top">
-                                    <a href="#"><img
-                                            src="{{ asset('frontend/dist/images/courses/demo-img-03.png') }}"
-                                            alt="images" class="img-fluid" /></a>
-                                </div>
-                                <div class="contentCard-bottom">
-                                    <h5>
-                                        <a href="#" class="font-title--card">IELTS Intensive</a>
-                                    </h5>
-                                    <div class="contentCard-info d-flex align-items-center justify-content-between">
-                                        <a href="instructor-profile.html"
-                                            class="contentCard-user d-flex align-items-center">
-                                            <img src="{{ asset('frontend/dist/images/courses/7.png') }}"
-                                                alt="client-image" class="rounded-circle" />
-                                            <p class="font-para--md">Ngọc Khánh</p>
-                                        </a>
-                                        <div class="price">
-                                            <span>150.000 VND</span>
-                                        </div>
-                                    </div>
-                                    <div class="contentCard-more">
-                                        {{-- <div class="d-flex align-items-center">
-                                            <div class="icon">
-                                                <img src="{{ asset('frontend/dist/images/icon/star.png') }}"
-                                                    alt="star" />
-                                            </div>
-                                            <span>4.5</span>
-                                        </div> --}}
-                                        <div class="eye d-flex align-items-center">
-                                            <div class="icon">
-                                                <img src="{{ asset('frontend/dist/images/icon/eye.png') }}"
-                                                    alt="eye" />
-                                            </div>
-                                            <span>24,517</span>
-                                        </div>
-                                        <div class="book d-flex align-items-center">
-                                            <div class="icon">
-                                                <img src="{{ asset('frontend/dist/images/icon/book.png') }}"
-                                                    alt="location" />
-                                            </div>
-                                            <span>37 Bài học</span>
-                                        </div>
-                                        <div class="clock d-flex align-items-center">
-                                            <div class="icon">
-                                                <img src="{{ asset('frontend/dist/images/icon/Clock.png') }}"
-                                                    alt="clock" />
-                                            </div>
-                                            <span>3 Giờ</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="contentCard contentCard--course contentCard--space">
-                                <div class="contentCard-top">
-                                    <a href="#"><img
-                                            src="{{ asset('frontend/dist/images/courses/demo-img-04.png') }}"
-                                            alt="images" class="img-fluid" /></a>
-                                </div>
-                                <div class="contentCard-bottom">
-                                    <h5>
-                                        <a href="#" class="font-title--card">IELTS Mastery</a>
-                                    </h5>
-                                    <div class="contentCard-info d-flex align-items-center justify-content-between">
-                                        <a href="instructor-profile.html"
-                                            class="contentCard-user d-flex align-items-center">
-                                            <img src="{{ asset('frontend/dist/images/courses/7.png') }}"
-                                                alt="client-image" class="rounded-circle" />
-                                            <p class="font-para--md">Nguyễn Anh Tú</p>
-                                        </a>
-                                        <div class="price">
-                                            <span>400.000 VND</span>
-                                        </div>
-                                    </div>
-                                    <div class="contentCard-more">
-                                        {{-- <div class="d-flex align-items-center">
-                                            <div class="icon">
-                                                <img src="{{ asset('frontend/dist/images/icon/star.png') }}"
-                                                    alt="star" />
-                                            </div>
-                                            <span>4.5</span>
-                                        </div> --}}
-                                        <div class="eye d-flex align-items-center">
-                                            <div class="icon">
-                                                <img src="{{ asset('frontend/dist/images/icon/eye.png') }}"
-                                                    alt="eye" />
-                                            </div>
-                                            <span>24,517</span>
-                                        </div>
-                                        <div class="book d-flex align-items-center">
-                                            <div class="icon">
-                                                <img src="{{ asset('frontend/dist/images/icon/book.png') }}"
-                                                    alt="location" />
-                                            </div>
-                                            <span>37 Bài học</span>
-                                        </div>
-                                        <div class="clock d-flex align-items-center">
-                                            <div class="icon">
-                                                <img src="{{ asset('frontend/dist/images/icon/Clock.png') }}"
-                                                    alt="clock" />
-                                            </div>
-                                            <span>3 Giờ</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforelse
                     </div>
                 </div>
             </div>
         </div>
         <div class="new-course-overlay">
-            <img src="{{ asset('frontend/dist/images/shape/circle5.png') }}" alt="shape"
-                class="img-fluid shape01" />
+            <img src="{{ asset('frontend/dist/images/shape/circle5.png') }}" alt="shape" class="img-fluid shape01" />
             <img src="{{ asset('frontend/dist/images/shape/dots/dots-img-15.png') }}" alt="shape"
                 class="img-fluid shape02" />
         </div>

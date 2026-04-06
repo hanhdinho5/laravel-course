@@ -91,7 +91,7 @@
                                 <button class="nav-link" id="nav-lnotes-tab" data-bs-toggle="tab"
                                     data-bs-target="#nav-lnotes" type="button" role="tab"
                                     aria-controls="nav-lnotes" aria-selected="false">Ghi chú bài học</button>
-                                <button class="nav-link"> <a href="http://127.0.0.1:8001/vi/test-set-category/4"
+                                <button class="nav-link"> <a href="https://onlinetestgo.com/vi"
                                         target="_blank">Tham
                                         gia ôn luyện TOEIC</a></button>
                                 {{-- <button class="nav-link" id="nav-lcomments-tab" data-bs-toggle="tab"
@@ -296,7 +296,7 @@
                                         <div class="course-instructor mw-100">
                                             <div class="course-instructor-info">
                                                 <div class="instructor-image">
-                                                    <img src="{{ asset('uploads/users/' . $course?->instructor?->image) }}"
+                                                    <img src="{{ $course?->instructor?->image ? asset('uploads/users/' . $course->instructor->image) : asset('images/avatar/1.png') }}"
                                                         alt="Instructor" />
                                                 </div>
                                                 <div class="instructor-text">

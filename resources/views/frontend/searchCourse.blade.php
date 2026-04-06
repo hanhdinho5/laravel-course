@@ -4,6 +4,107 @@
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('frontend/src/scss/vendors/plugin/css/jquery-ui.css') }}" />
+    <style>
+        .search-course-pagination {
+            margin-top: 2rem;
+        }
+
+        .search-course-pagination .pagination {
+            --page-accent: #f26a2e;
+            --page-accent-soft: #fff2ea;
+            --page-border: #eadfd8;
+            --page-text: #372d2a;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.65rem;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .search-course-pagination .page-item {
+            list-style: none;
+        }
+
+        .search-course-pagination .page-link,
+        .search-course-pagination .page-item span {
+            min-width: 46px;
+            height: 46px;
+            padding: 0 1rem;
+            border-radius: 999px;
+            border: 1px solid var(--page-border);
+            background: #fff;
+            color: var(--page-text);
+            font-weight: 600;
+            font-size: 0.95rem;
+            line-height: 44px;
+            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            box-shadow: 0 10px 24px rgba(33, 18, 11, 0.06);
+        }
+
+        .search-course-pagination .page-link:hover {
+            background: var(--page-accent-soft);
+            border-color: rgba(242, 106, 46, 0.35);
+            color: var(--page-accent);
+            transform: translateY(-1px);
+        }
+
+        .search-course-pagination .page-item.active .page-link,
+        .search-course-pagination .page-item.active span {
+            background: linear-gradient(135deg, #f26a2e, #ff8b54);
+            border-color: transparent;
+            color: #fff;
+            box-shadow: 0 14px 30px rgba(242, 106, 46, 0.28);
+        }
+
+        .search-course-pagination .page-item.disabled span,
+        .search-course-pagination .page-item.disabled .page-link {
+            background: #f6f3f1;
+            border-color: #eee5df;
+            color: #b0a39b;
+            box-shadow: none;
+            cursor: not-allowed;
+        }
+
+        .search-course-pagination .page-item:first-child .page-link,
+        .search-course-pagination .page-item:last-child .page-link,
+        .search-course-pagination .page-item:first-child span,
+        .search-course-pagination .page-item:last-child span {
+            min-width: 96px;
+        }
+
+        @media (max-width: 575.98px) {
+            .search-course-pagination {
+                display: flex;
+                justify-content: center;
+            }
+
+            .search-course-pagination .pagination {
+                justify-content: center;
+                gap: 0.5rem;
+            }
+
+            .search-course-pagination .page-link,
+            .search-course-pagination .page-item span {
+                min-width: 42px;
+                height: 42px;
+                padding: 0 0.85rem;
+                line-height: 40px;
+                font-size: 0.9rem;
+            }
+
+            .search-course-pagination .page-item:first-child .page-link,
+            .search-course-pagination .page-item:last-child .page-link,
+            .search-course-pagination .page-item:first-child span,
+            .search-course-pagination .page-item:last-child span {
+                min-width: 86px;
+            }
+        }
+    </style>
 @endpush
 
 @section('content')
@@ -322,7 +423,7 @@
                                         <div class="contentCard-info d-flex align-items-center justify-content-between">
                                             <a href="{{ route('instructorProfile', encryptor('encrypt', $c->instructor?->id)) }}"
                                                 class="contentCard-user d-flex align-items-center">
-                                                <img src="{{ asset('uploads/users/' . $c->instructor?->image) }}"
+                                                <img src="{{ $c->instructor?->image ? asset('uploads/users/' . $c->instructor->image) : asset('images/avatar/1.png') }}"
                                                     alt="Instructor Image" class="rounded-circle" height="34"
                                                     width="34" />
                                                 <p class="font-para--md">{{ $c->instructor?->name_en }}</p>
@@ -378,9 +479,8 @@
                         @endforelse
                     </div>
 
-                    <!-- Hiển thị nút phân trang -->
-                    <div class="d-flex justify-content-start mt-4">
-                        {{ $course->links('pagination::bootstrap-5') }}
+                    <div class="search-course-pagination d-flex justify-content-start">
+                        {{ $course->links('vendor.pagination.search-course') }}
                     </div>
                 </div>
             </div>

@@ -150,7 +150,7 @@
                             @forelse ($instructor as $i)
                                 <div class="mentor">
                                     <div class="mentor__img">
-                                        <img src="{{ asset('uploads/users/' . $i->image) }}" alt="Mentor image" />
+                                        <img src="{{ $i->image ? asset('uploads/users/' . $i->image) : asset('images/avatar/1.png') }}" alt="Mentor image" />
                                         <ul class="list-inline">
                                             <li class="list-inline-item">
                                                 <a href="#" tabindex="0">

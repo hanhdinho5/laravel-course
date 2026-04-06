@@ -14,7 +14,7 @@ class HomeController extends Controller
         $course = Course::get();
         $instructor = Instructor::get();
         $category = CourseCategory::get();
-        $popularCourses = Course::where('tag', 'popular')->get();
+        $popularCourses = Course::where('tag', 'popular')->limit(6)->get();
 
         $designCategories = CourseCategory::whereIn('category_name', ['Graphics Desgin', 'Web Design', 'Video Editing'])->pluck('id')->toArray();
         $designCourses = Course::whereIn('course_category_id', $designCategories)->where('tag', 'popular')->get();

@@ -194,7 +194,7 @@
                                                 class="contentCard-info d-flex align-items-center justify-content-between">
                                                 <a href="{{ route('instructorProfile', encryptor('encrypt', $a->course?->instructor->id)) }}"
                                                     class="contentCard-user d-flex align-items-center">
-                                                    <img src="{{ asset('uploads/users/' . $a->course?->instructor?->image) }}"
+                                                    <img src="{{ $a->course?->instructor?->image ? asset('uploads/users/' . $a->course->instructor->image) : asset('images/avatar/1.png') }}"
                                                         alt="client-image" class="rounded-circle" height="34"
                                                         width="34" />
                                                     <p class="font-para--md">{{ $a->course?->instructor?->name_en }}</p>

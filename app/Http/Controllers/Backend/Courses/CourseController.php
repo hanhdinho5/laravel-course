@@ -33,7 +33,7 @@ class CourseController extends Controller
 
         $course = Course::when($idInstructor, function ($query) use ($idInstructor) {
             $query->where('instructor_id', $idInstructor);
-        })
+        })->orderBy('created_at', 'desc')
             ->paginate(10);
         return view('backend.course.courses.indexForAdmin', compact('course'));
     }
@@ -87,10 +87,10 @@ class CourseController extends Controller
             if ($course->save())
                 return redirect()->route('courseList')->with('success', 'Lưu dữ liệu thành công!');
             else
-                return redirect()->back()->withInput()->with('error', 'Vui lòng thử lại');
+                return redirect()->back()->withInput()->with('error', 'Vui lòng thử lại.');
         } catch (Exception $e) {
             dd($e);
-            return redirect()->back()->withInput()->with('error', 'Vui lòng thử lại');
+            return redirect()->back()->withInput()->with('error', 'Vui lòng thử lại.');
         }
     }
 
@@ -101,16 +101,27 @@ class CourseController extends Controller
     {
         //
     }
-
     public function frontShow($id)
     {
-        // Giải mã ID khóa học một lần
         $courseId = encryptor('decrypt', $id);
-        $course = Course::findOrFail($courseId);
+        $course = Course::with([
+            'courseCategory',
+            'instructor',
+            'lessons.material',
+        ])->findOrFail($courseId);
+
+        if ($course->instructor) {
+            $course->instructor->loadCount('courses');
+        }
+
+        $relatedCourses = Course::with(['instructor', 'courseCategory'])->withCount('lessons')
+            ->where('id', '!=', $courseId)
+            ->inRandomOrder()
+            ->take(5)
+            ->get();
 
         $enrollment = null;
 
-        // Nếu học viên đã đăng nhập, kiểm tra đã đăng ký khóa này chưa
         if (session('studentLogin')) {
             $studentId = encryptor('decrypt', session('userId'));
 
@@ -119,10 +130,8 @@ class CourseController extends Controller
                 ->first();
         }
 
-        // Trả về view, truyền cả thông tin khóa học và đăng ký
-        return view('frontend.courseDetails', compact('course', 'enrollment'));
+        return view('frontend.courseDetails', compact('course', 'enrollment', 'relatedCourses'));
     }
-
 
     /**
      * Show the form for editing the specified resource.
@@ -174,10 +183,10 @@ class CourseController extends Controller
             if ($course->save())
                 return redirect()->route('courseList')->with('success', 'Lưu dữ liệu thành công!');
             else
-                return redirect()->back()->withInput()->with('error', 'Vui lòng thử lại');
+                return redirect()->back()->withInput()->with('error', 'Vui lòng thử lại.');
         } catch (Exception $e) {
             // dd($e);
-            return redirect()->back()->withInput()->with('error', 'Vui lòng thử lại');
+            return redirect()->back()->withInput()->with('error', 'Vui lòng thử lại.');
         }
     }
 
@@ -217,10 +226,10 @@ class CourseController extends Controller
             if ($course->save())
                 return redirect()->route('courseList')->with('success', 'Lưu dữ liệu thành công!');
             else
-                return redirect()->back()->withInput()->with('error', 'Vui lòng thử lại');
+                return redirect()->back()->withInput()->with('error', 'Vui lòng thử lại.');
         } catch (Exception $e) {
             // dd($e);
-            return redirect()->back()->withInput()->with('error', 'Vui lòng thử lại');
+            return redirect()->back()->withInput()->with('error', 'Vui lòng thử lại.');
         }
     }
 
@@ -230,13 +239,21 @@ class CourseController extends Controller
     public function destroy($id)
     {
         $data = Course::findOrFail(encryptor('decrypt', $id));
-        $image_path = public_path('uploads/courses') . $data->image;
+        $image_path = public_path('uploads/courses/' . $data->image);
+        $thumbnail_path = public_path('uploads/courses/thumbnails/' . $data->thumbnail_image);
 
         if ($data->delete()) {
-            if (File::exists($image_path))
+            if ($data->image && File::exists($image_path)) {
                 File::delete($image_path);
+            }
 
-            return redirect()->back();
+            if ($data->thumbnail_image && File::exists($thumbnail_path)) {
+                File::delete($thumbnail_path);
+            }
+
+            return redirect()->back()->with('success', 'Xóa khóa học thành công!');
         }
+
+        return redirect()->back()->with('error', 'Không thể xóa khóa học.');
     }
 }
